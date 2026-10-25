@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Framework/Cartridges"
 
 SpiffBoy.GameTexts=SpiffBoy.GameTexts or{}
@@ -154,7 +155,7 @@ end
 local function v(definition,language,path,content)
 local e,a=pcall(b.decode,content)
 if not e then
-error("SpiffBoy: the texts of "..definition.id.." in "..language..", file "..path.." of the mod "..definition.mod..", cannot be read: "..tostring(a))
+SpiffBoy.GameErrors.raise("SB-TEXTS","the texts of "..definition.id.." in "..language..", file "..path.." of the mod "..definition.mod..", cannot be read: "..tostring(a))
 end
 return a
 end
@@ -175,11 +176,11 @@ a={}
 if m then
 local n=v(definition,language,g,m)
 if type(n)~="table"then
-error("SpiffBoy: the texts of "..definition.id.." in "..language..", file "..g.." of the mod "..definition.mod..", hold no JSON object")
+SpiffBoy.GameErrors.raise("SB-TEXTS","the texts of "..definition.id.." in "..language..", file "..g.." of the mod "..definition.mod..", hold no JSON object")
 end
 local o=n[b.SECTION]
 if type(o)~="table"then
-error("SpiffBoy: the texts of "..definition.id.." in "..language.." have no "..b.SECTION.." section")
+SpiffBoy.GameErrors.raise("SB-TEXTS","the texts of "..definition.id.." in "..language.." have no "..b.SECTION.." section")
 end
 a=o
 end
@@ -217,7 +218,7 @@ if a==nil then
 local g=definition.id.."."..key
 if not j[g]then
 j[g]=true
-SpiffBoy.log("the game "..definition.id.." has no text "..key)
+SpiffBoy.GameErrors.warn("SB-TEXT-MISSING","the game "..definition.id.." has no text "..key)
 end
 return key
 end
@@ -230,7 +231,7 @@ return function(key,...)
 if not a then
 a=p.byId(gameId)
 if not a then
-error("SpiffBoy: no cartridge registered with the id "..tostring(gameId))
+SpiffBoy.GameErrors.raise("SB-TEXTS-ID","no cartridge registered with the id "..tostring(gameId))
 end
 end
 return b.text(a,key,...)

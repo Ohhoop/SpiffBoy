@@ -1,3 +1,5 @@
+require"SpiffBoy/Core/GameErrors"
+
 SpiffBoyRandom={}
 SpiffBoyRandom.__index=SpiffBoyRandom
 
@@ -14,7 +16,7 @@ end
 
 function SpiffBoyRandom:reseed(seed)
 if type(seed)~="number"then
-error("SpiffBoy: a seed is a number, not "..tostring(seed))
+SpiffBoy.GameErrors.raise("SB-SEED","a seed is a number, not "..tostring(seed))
 end
 local b=math.floor(math.abs(seed))%a
 if b==0 then

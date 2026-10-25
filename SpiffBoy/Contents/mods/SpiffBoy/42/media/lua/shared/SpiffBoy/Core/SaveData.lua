@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Core/Commands"
 
 SpiffBoy.SaveData=SpiffBoy.SaveData or{}
@@ -139,7 +140,7 @@ end
 
 function a.measure(save)
 if type(save)~="table"then
-error("SpiffBoy: a save is measured as a table, not a "..type(save))
+SpiffBoy.GameErrors.raise("SB-SAVE-TABLE","a save is measured as a table, not a "..type(save))
 end
 return c(save,0)
 end

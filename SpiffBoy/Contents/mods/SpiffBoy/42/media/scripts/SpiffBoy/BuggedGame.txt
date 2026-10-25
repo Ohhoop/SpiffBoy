@@ -1,0 +1,13 @@
+module SpiffBoy
+{
+    item Cartridge_BuggedGame
+    {
+        DisplayCategory = Entertainment,
+        ItemType = base:normal,
+        Weight = 0.1,
+        Icon = SpiffBoy_Cartridge_BuggedGame,
+        WorldStaticModel = SpiffBoy.Cartridge_BuggedGame,
+        MetalValue = 1.0,
+        Tags = base:hasmetal;spiffboy:cartridge,
+    }
+}

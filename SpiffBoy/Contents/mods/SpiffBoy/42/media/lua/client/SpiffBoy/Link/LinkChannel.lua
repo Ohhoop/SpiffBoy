@@ -1,4 +1,6 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
+require"SpiffBoy/Core/GameView"
 require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Link/LinkState"
 require"SpiffBoy/Link/LocalLink"
@@ -54,7 +56,7 @@ end
 
 function a:send(message)
 if not SpiffBoy.isLinkMessage(message)then
-error("SpiffBoy: a link message is a text of 1 to "..SpiffBoy.LINK_MESSAGE_MAX.." bytes")
+SpiffBoy.GameErrors.raise("SB-LINK-MESSAGE","link:send got "..tostring(message)..", and a link message is a text of 1 to "..SpiffBoy.LINK_MESSAGE_MAX.." bytes")
 end
 self.lastUsedMs=getTimestampMs()
 if not self:isConnected()or self.pending>=h then
@@ -149,7 +151,7 @@ end
 
 function a:view()
 local b=self
-local c={
+return SpiffBoy.GameView.new("link port",{
 isConnected=function()
 return b:isConnected()
 end,
@@ -162,12 +164,5 @@ end,
 receive=function()
 return b:receive()
 end,
-}
-return setmetatable({},{
-__index=c,
-__newindex=function()
-error("a game cannot change the link port of the console")
-end,
-__metatable=false,
-})
+},{})
 end

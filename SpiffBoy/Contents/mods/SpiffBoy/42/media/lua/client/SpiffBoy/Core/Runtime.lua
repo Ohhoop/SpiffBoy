@@ -1,4 +1,6 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
+require"SpiffBoy/Core/GameView"
 require"SpiffBoy/Core/Clock"
 require"SpiffBoy/Core/PixelFont"
 
@@ -27,7 +29,7 @@ end
 
 local function e(screen)
 if screen.calls>=SpiffBoyScreen.MAX_CALLS then
-error("SpiffBoy: a frame went past "..SpiffBoyScreen.MAX_CALLS.." draw calls")
+SpiffBoy.GameErrors.raise("SB-DRAW-LIMIT","a frame went past "..SpiffBoyScreen.MAX_CALLS.." draw calls")
 end
 screen.calls=screen.calls+1
 end
@@ -81,7 +83,7 @@ return 1,1,1,a or 1
 end
 local b=g[shadeIndex or 1]
 if not b then
-error("SpiffBoy: the palette of the screen has no shade "..tostring(shadeIndex))
+SpiffBoy.GameErrors.raise("SB-SHADE","the palette of the screen has no shade "..tostring(shadeIndex))
 end
 return b.r,b.g,b.b,1
 end
@@ -290,42 +292,36 @@ end
 SpiffBoyRuntime={}
 SpiffBoyRuntime.__index=SpiffBoyRuntime
 
-local function h(screen)
-local a=setmetatable({width=screen.width,height=screen.height},{
-__index=function(_,key)
-if key=="calls"then
-return screen.calls
-end
-return nil
-end,
-})
-for i,b in ipairs(B)do
+local function i(screen)
+local a={width=screen.width,height=screen.height}
+for h,b in ipairs(B)do
 local g=SpiffBoyScreen[b]
 a[b]=function(_,...)
 return g(screen,...)
 end
 end
-return setmetatable({},{
-__index=a,
-__newindex=function()
-error("a game cannot change the screen of the console")
+return SpiffBoy.GameView.new("screen",a,{
+calls=function()
+return screen.calls
 end,
-__metatable=false,
 })
 end
 
 function SpiffBoyRuntime.new(screen)
 local a=setmetatable({},SpiffBoyRuntime)
 a.screen=screen
-a.view=h(screen)
+a.view=i(screen)
 a.game=nil
 a.devices={}
+a.inputViews={}
+a.viewOf={}
 a.clock=SpiffBoyClock.new()
 a.tick=0
 a.ticksThisFrame=0
 a.frameMs=0
 a.crash=nil
 a.onCrash=nil
+a.cartridgeId=nil
 return a
 end
 
@@ -343,7 +339,8 @@ end
 
 function SpiffBoyRuntime:fail(stage,gameType,message)
 self.crash={stage=stage,message=tostring(message)}
-SpiffBoy.log("the game "..tostring(gameType).." crashed in "..stage..": "..self.crash.message)
+SpiffBoy.log("the cartridge "..tostring(self.cartridgeId).." (class "..tostring(gameType)..") crashed in "..stage.." at tick "..self.tick)
+SpiffBoy.log(SpiffBoy.GameErrors.describe(message))
 if self.onCrash then
 self.onCrash(self.crash)
 end
@@ -351,6 +348,11 @@ end
 
 function SpiffBoyRuntime:start(gameClass,context)
 self:setGame(nil)
+self.cartridgeId=context.definition and context.definition.id
+self.acting=false
+context.acting=function()
+return self.acting
+end
 local b,a=pcall(gameClass.new,gameClass,self,context)
 if b then
 self:setGame(a)
@@ -369,26 +371,45 @@ self:fail(stage,self.game.Type,b)
 return false
 end
 
+function SpiffBoyRuntime:viewsOf(inputs)
+local a,g=self.inputViews,self.viewOf
+for h=1,#inputs do
+local b=inputs[h]
+if not g[b]then
+g[b]=b:view()
+end
+a[h]=g[b]
+end
+for b=#a,#inputs+1,-1 do
+a[b]=nil
+end
+return a
+end
+
 function SpiffBoyRuntime:advance(inputs,paused,rate)
-local a=UIManager.getMillisSinceLastRender()
-self.frameMs=a
+local b=UIManager.getMillisSinceLastRender()
+self.frameMs=b
 self.ticksThisFrame=0
 if not self.game or paused or self.crash then
 return
 end
-local i=self.clock:advance(a,rate)
-local b=self.devices
-for k=1,i do
+local h=self.clock:advance(b,rate)
+local g=self.devices
+local j=self:viewsOf(inputs)
+for m=1,h do
 self.tick=self.tick+1
-local g=inputs[1]
-if g then
-g:latch()
+local a=inputs[1]
+if a then
+a:latch()
 end
-if not self:guard("tick",self.game.tick,inputs,self.tick)then
+self.acting=a~=nil and a:anyPressed()
+local k=self:guard("tick",self.game.tick,j,self.tick)
+self.acting=false
+if not k then
 return
 end
-for j=1,#b do
-b[j]:step()
+for l=1,#g do
+g[l]:step()
 end
 self.ticksThisFrame=self.ticksThisFrame+1
 end

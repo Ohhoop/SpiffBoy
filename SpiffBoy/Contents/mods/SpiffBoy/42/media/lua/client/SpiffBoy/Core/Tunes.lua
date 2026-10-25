@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Core/Chip"
 require"SpiffBoy/Framework/Cartridges"
 
@@ -253,7 +254,7 @@ end
 
 local function aD(label,key,voice,text)
 local function d(position,message)
-error("SpiffBoy: tune "..label..", voice "..key..", character "..tostring(position)..": "..message)
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label..", voice "..key..", character "..tostring(position)..": "..message)
 end
 text=aA(text,d)
 local c=aB(voice)
@@ -578,20 +579,20 @@ return a
 end
 
 local function y(label,key,voice,definition,states,loop)
-local c="SpiffBoy: tune "..label..", voice "..key..": "
+local c="tune "..label..", voice "..key..": "
 if not J[voice]then
-error(c.."only a pulse voice echoes")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."only a pulse voice echoes")
 end
 local n=f.VOICE_KEYS[definition.echo]
 local d=states[definition.echo]
 if not J[n]or not d then
-error(c.."an echo names a pulse voice written in the same tune")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo names a pulse voice written in the same tune")
 end
 if not SpiffBoy.isInteger(definition.delay)or definition.delay<i or definition.delay>j then
-error(c.."an echo delay is a note length from "..i.." to "..j)
+SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo delay is a note length from "..i.." to "..j)
 end
 if not SpiffBoy.isInteger(definition.drop)or definition.drop<0 or definition.drop>G then
-error(c.."an echo drop goes from 0 to "..G)
+SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo drop goes from 0 to "..G)
 end
 local h=m(d.time)
 local e={}
@@ -617,7 +618,7 @@ end
 
 local function L(label,definition)
 if type(definition)~="table"then
-error("SpiffBoy: tune "..label.." needs a table")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." needs a table")
 end
 local d={}
 local h={}
@@ -628,7 +629,7 @@ d[a]=aD(label,a,e,c)
 elseif type(c)=="table"then
 h[a]=c
 elseif c~=nil then
-error("SpiffBoy: tune "..label..", voice "..a.." needs a string or an echo table")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label..", voice "..a.." needs a string or an echo table")
 end
 end
 local n=definition.loop==true
@@ -644,20 +645,20 @@ a.tracks[c.voice]={events=c.events,n=#c.events,loopIndex=1}
 a.length=math.max(a.length,m(c.time))
 if c.loopStart then
 if e and c.loopStart~=a.loopStart then
-error("SpiffBoy: tune "..label.." places its loop point at different times on "..e.." and "..g)
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." places its loop point at different times on "..e.." and "..g)
 end
 a.loopStart=c.loopStart
 e=g
 end
 end
 if not p then
-error("SpiffBoy: tune "..label.." has no voice")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." has no voice")
 end
 if a.length<=0 then
-error("SpiffBoy: tune "..label.." lasts no time")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." lasts no time")
 end
 if a.loop and a.loopStart>=a.length then
-error("SpiffBoy: tune "..label.." loops from its end")
+SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." loops from its end")
 end
 for M,g in pairs(a.tracks)do
 local c=1
@@ -671,19 +672,19 @@ end
 
 function f.register(id,definitions)
 if type(id)~="string"or type(definitions)~="table"then
-error("SpiffBoy: tunes are registered with a string id and a table of definitions")
+SpiffBoy.GameErrors.raise("SB-REG-TUNES","tunes are registered with a string id and a table of definitions")
 end
 local d=SpiffBoy.Cartridges.byId(id)
 if not d then
-error("SpiffBoy: tunes are registered under the id of a registered cartridge, and no cartridge has the id "..id)
+SpiffBoy.GameErrors.raise("SB-REG-TUNES","tunes are registered under the id of a registered cartridge, and no cartridge has the id "..id)
 end
 if s[id]then
-error("SpiffBoy: tunes are already registered under the id "..id.." of the cartridge of the mod "..d.mod)
+SpiffBoy.GameErrors.raise("SB-REG-TUNES","tunes are already registered under the id "..id.." of the cartridge of the mod "..d.mod)
 end
 local c={id=id,tunes={}}
 for a,e in pairs(definitions)do
 if type(a)~="string"or string.len(a)>SpiffBoy.TUNE_NAME_MAX then
-error("SpiffBoy: tune names of "..id.." are strings of at most "..SpiffBoy.TUNE_NAME_MAX.." characters")
+SpiffBoy.GameErrors.raise("SB-REG-TUNES","tune names of "..id.." are strings of at most "..SpiffBoy.TUNE_NAME_MAX.." characters")
 end
 c.tunes[a]=L(id.."."..a,e)
 end

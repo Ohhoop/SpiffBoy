@@ -1,4 +1,6 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
+require"SpiffBoy/Core/GameView"
 require"SpiffBoy/Core/Chip"
 require"SpiffBoy/Core/Tunes"
 
@@ -37,7 +39,7 @@ local d="no game"
 if self.set then
 d=self.set.id
 end
-error("SpiffBoy: "..d.." has no tune named "..tostring(name))
+SpiffBoy.GameErrors.raise("SB-TUNE",d.." has no tune named "..tostring(name))
 end
 return c
 end
@@ -232,6 +234,27 @@ end
 
 function a:isPlaying()
 return self.music~=nil
+end
+
+function a:view()
+local c=self
+return SpiffBoy.GameView.new("sequencer",{
+play=function(_,name)
+c:play(name)
+end,
+stop=function()
+c:stop()
+end,
+effect=function(_,name)
+c:effect(name)
+end,
+isPlaying=function()
+return c:isPlaying()
+end,
+setMix=function(_,music,effects)
+c:setMix(music,effects)
+end,
+},{})
 end
 
 function a:state()

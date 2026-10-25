@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Framework/Cartridges"
 
 local a=SpiffBoy.Cartridges
@@ -11,10 +12,10 @@ local c=0
 for f,b in ipairs(a.all())do
 local d=getScriptManager():FindItem(b.item)
 if not d then
-SpiffBoy.log("cartridge "..b.id.." of the mod "..b.mod.." names the item "..b.item..", which no item script defines")
+SpiffBoy.GameErrors.warn("SB-REG-ITEM","cartridge "..b.id.." of the mod "..b.mod.." names the item "..b.item..", which no item script defines")
 c=c+1
 elseif not d:hasTag(e)then
-SpiffBoy.log("cartridge "..b.id.." of the mod "..b.mod.." has the item "..b.item.." without the tag "..a.TAG..": the dismantling recipe does not take it")
+SpiffBoy.GameErrors.warn("SB-REG-TAG","cartridge "..b.id.." of the mod "..b.mod.." has the item "..b.item.." without the tag "..a.TAG..": the dismantling recipe does not take it")
 c=c+1
 end
 end

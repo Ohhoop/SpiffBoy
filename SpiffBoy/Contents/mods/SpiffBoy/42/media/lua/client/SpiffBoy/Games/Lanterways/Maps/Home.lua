@@ -17,9 +17,9 @@ nightWhen={min=16,max=16},
 npcs={
 {id="marta",sprite="marta",x=3,y=5,dir="down",talk={
 {when={max=0},say="MartaTalk0"},
-{when={min=1,max=3},say="MartaTalk1"},
+{when={min=1,max=3},script="marta_rest1"},
 {when={min=5,max=15,member="bram",notFlag="honey"},script="marta_honey"},
-{when={min=4,max=15},say="MartaTalk2"},
+{when={min=4,max=15},script="marta_rest2"},
 {when={min=16,max=16},script="marta_night"},
 {when={min=17},say="MartaTalk3"},
 }},

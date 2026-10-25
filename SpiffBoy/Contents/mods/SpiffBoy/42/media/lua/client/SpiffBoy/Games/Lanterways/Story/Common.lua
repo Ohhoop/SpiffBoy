@@ -27,6 +27,16 @@ a.bed_rest={
 {"label","leave"},
 }
 
+a.marta_rest1={
+{"say","marta","MartaTalk1"},
+{"say","marta","MartaRest"},
+}
+
+a.marta_rest2={
+{"say","marta","MartaTalk2"},
+{"say","marta","MartaRest"},
+}
+
 a.inn_talk={
 {"choice","InnAsk",{"Yes","No"},{"stay","leave"},"@innprice"},
 {"label","stay"},

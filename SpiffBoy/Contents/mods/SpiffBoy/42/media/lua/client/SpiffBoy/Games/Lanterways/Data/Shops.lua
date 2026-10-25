@@ -9,7 +9,7 @@ murksea={
 },
 tallowby={
 {item="bun"},{item="eyewash"},{item="charcoal"},{item="pepperpouch"},{item="fogwhistle"},
-{item="oilskin"},{item="stew",when={min=17}},{item="salts",when={min=17}},{item="wickoil",when={min=17}},
+{item="oilskin"},{item="stew",when={min=17}},{item="salts",when={min=17}},{item="wickoil"},
 },
 wickitems={
 {item="bun"},{item="wickoil"},{item="eyewash"},{item="charcoal"},{item="salts"},

@@ -27,7 +27,7 @@ local n={"weapon","armor","charm"}
 function c:menuEntries()
 local f={}
 for i,h in ipairs(B)do
-if h~="MenuBook"or e.hasFlag(self.state,"j_book")then
+if(h~="MenuBook"or e.hasFlag(self.state,"j_book"))and(h~="MenuBonds"or#self:bondRows()>0)then
 f[#f+1]=h
 end
 end
@@ -37,6 +37,7 @@ end
 function c:openMenu()
 self.mode=c.MODE_MENU
 self.menu={screen="main",index=1,top=1,mainTop=1,partyTop=1}
+self.menu.entries=self:menuEntries()
 self:effect("open")
 end
 
@@ -176,17 +177,24 @@ return h
 end
 
 function c:bondRows()
-local h={}
-for q,f in ipairs(j.DUOS)do
-local k=j.get(f).duo
-local i={id=f,label=a.text("Name_"..k[1]).." + "..a.text("Name_"..k[2]),right=e.bond(self.state,f).."/"..j.BOND_NEEDED}
-if e.duoReady(self.state,f)then
-i.label=a.text("Skill_"..f)
-i.right=a.text("Duo")
+local f={}
+local i=self.state.order
+for q,k in ipairs(j.DUOS)do
+local h=j.get(k).duo
+if a.indexOf(i,h[1])and a.indexOf(i,h[2])then
+f[#f+1]=self:bondRow(k,h)
 end
-h[#h+1]=i
 end
-return h
+return f
+end
+
+function c:bondRow(duoId,pair)
+local f={id=duoId,label=a.text("Name_"..pair[1]).." + "..a.text("Name_"..pair[2]),right=e.bond(self.state,duoId).."/"..j.BOND_NEEDED}
+if e.duoReady(self.state,duoId)then
+f.label=a.text("Skill_"..duoId)
+f.right=a.text("Duo")
+end
+return f
 end
 
 function c:bookRows()
@@ -278,12 +286,19 @@ f.list=1
 f.listTop=1
 end
 
+function c:visibleRows()
+if self.menu.screen=="skills"then
+return d.listRows-1
+end
+return d.listRows
+end
+
 function c:stepList(pressed)
 local f=self.menu
 local h=a.verticalStep(pressed)
 if h~=0 and#f.rows>0 then
 f.list=a.wrap(f.list+h,#f.rows)
-f.listTop=b.scroll(f.list,f.listTop,d.listRows,#f.rows)
+f.listTop=b.scroll(f.list,f.listTop,self:visibleRows(),#f.rows)
 self:effect("cursor")
 end
 end
@@ -306,7 +321,7 @@ local i=f.screen
 if i=="main"then
 local k=a.verticalStep(h)
 if k~=0 then
-local q=self:menuEntries()
+local q=f.entries
 f.index=a.wrap(f.index+k,#q)
 f.mainTop=b.scroll(f.index,f.mainTop,d.mainRows,#q)
 self:effect("cursor")
@@ -315,7 +330,7 @@ if h.b or h.start then
 self:closeMenu()
 elseif h.a then
 self:effect("confirm")
-self:openEntry(self:menuEntries()[f.index])
+self:openEntry(f.entries[f.index])
 end
 elseif i=="pick"then
 self:tickPick(h)
@@ -713,7 +728,7 @@ end
 if f=="main"or f=="pick"then
 b.frame(screen,k,d.mainX,0,d.mainW,a.HEIGHT)
 local w={}
-for i,y in ipairs(self:menuEntries())do
+for i,y in ipairs(h.entries)do
 w[i]={label=b.fit(screen,a.text(y),d.mainW-16)}
 end
 b.list(screen,k,w,2,3,d.mainW-4,d.mainRows,h.index,h.mainTop,self.clock,f=="main")
@@ -730,9 +745,9 @@ if f=="pick"then
 b.cursor(screen,k,d.partyX-5,4+(h.member-i)*d.rowH+9,self.clock)
 end
 elseif f=="items"or f=="skills"or f=="equipList"or f=="bestiary"or f=="bonds"or f=="book"or p[f]then
-local w=d.listRows*b.LINE+8
-b.frame(screen,k,0,0,a.WIDTH,w)
-b.list(screen,k,h.rows,d.listX,d.listY,d.listW,d.listRows,h.list,h.listTop,self.clock,true)
+local y=d.listRows*b.LINE+8
+b.frame(screen,k,0,0,a.WIDTH,y)
+b.list(screen,k,h.rows,d.listX,d.listY,d.listW,self:visibleRows(),h.list,h.listTop,self.clock,true)
 local i=h.rows[h.list]
 if self.dialog then
 i=nil
@@ -740,7 +755,9 @@ elseif f=="items"then
 self:drawDescription(screen,i and("ItemDesc_"..i.id))
 elseif f=="skills"then
 self:drawDescription(screen,i and("SkillDesc_"..i.id))
-b.textRight(screen,h.caster.sp.."/"..e.stats(h.caster).sp,a.WIDTH-6,d.descY+17,a.DARK)
+local w=d.listY+self:visibleRows()*b.LINE
+b.text(screen,a.text("Name_"..h.caster.id),d.listX+10,w,a.DARK)
+b.textRight(screen,h.caster.sp.."/"..e.stats(h.caster).sp,d.listX+d.listW-12,w,a.DARK)
 elseif f=="bestiary"then
 self:drawBestiaryEntry(screen,i.id)
 elseif f=="bonds"then

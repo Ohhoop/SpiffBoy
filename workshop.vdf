@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.5: the console keys work while pz3d shows its 3D view"
+	"changenote"		"0.1.6: playing eases the mood only while you really play, the Bugged Game cartridge to find, clearer error reports for cartridge makers, Lanterways and Quick Start fixes, no more missing folder errors on servers"
 }

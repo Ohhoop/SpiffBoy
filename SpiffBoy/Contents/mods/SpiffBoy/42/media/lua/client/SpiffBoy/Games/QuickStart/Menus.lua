@@ -234,16 +234,20 @@ end
 
 function a:openOptions()
 self.screen=a.SCREEN_OPTIONS
+self.optionsChanged=false
 end
 
 function a:tick_options(input)
 if e(input,"left")or e(input,"right")or e(input,"a")then
 self.data.options.music=not self.data.options.music
+self.optionsChanged=not self.optionsChanged
 self:applyMusic()
 self:effect(g.TICK)
-self:store()
 end
 if e(input,"b")or e(input,"start")then
+if self.optionsChanged then
+self:store()
+end
 self:effect(g.BACK)
 self:openTitle()
 end

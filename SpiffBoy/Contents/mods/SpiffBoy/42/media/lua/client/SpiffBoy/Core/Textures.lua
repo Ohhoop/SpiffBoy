@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 
 SpiffBoy.Textures=SpiffBoy.Textures or{}
 local a=SpiffBoy.Textures
@@ -16,7 +17,7 @@ local b=f[modId]
 if not b then
 local c=getModInfoByID(modId)
 if not c then
-error("SpiffBoy: the mod "..tostring(modId).." is not in the mod list of the game")
+SpiffBoy.GameErrors.raise("SB-ART-MOD","the mod "..tostring(modId).." is not in the mod list of the game")
 end
 b=c:getVersionDir()
 f[modId]=b
@@ -69,7 +70,7 @@ if c then
 d[b]=c
 else
 e[b]=true
-SpiffBoy.log("missing texture "..b)
+SpiffBoy.GameErrors.warn("SB-ART-MISSING","missing texture "..b)
 end
 return c
 end

@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Core/Commands"
 
 SpiffBoy.Cartridges=SpiffBoy.Cartridges or{}
@@ -27,58 +28,58 @@ end
 
 local function l(definition)
 if type(definition)~="table"or type(definition.id)~="string"then
-error("SpiffBoy: a cartridge definition needs a string id")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE","a cartridge definition needs a string id")
 end
-local b="SpiffBoy: cartridge "..definition.id.." "
+local b="cartridge "..definition.id.." "
 if not SpiffBoy.isInteger(definition.api)or definition.api<1 then
-error(b.."needs the api version of SpiffBoy it was written for, such as api = "..SpiffBoy.API_VERSION)
+SpiffBoy.GameErrors.raise("SB-REG-API",b.."needs the api version of SpiffBoy it was written for, such as api = "..SpiffBoy.API_VERSION)
 end
 if definition.api>SpiffBoy.API_VERSION then
-error(b.."needs a newer SpiffBoy (api "..tostring(definition.api)..", this SpiffBoy has "..SpiffBoy.API_VERSION..")")
+SpiffBoy.GameErrors.raise("SB-REG-API",b.."needs a newer SpiffBoy (api "..tostring(definition.api)..", this SpiffBoy has "..SpiffBoy.API_VERSION..")")
 end
 if type(definition.item)~="string"or not string.find(definition.item,".",1,true)then
-error(b.."needs the full type of its item, such as MyMod.MyCartridge")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs the full type of its item, such as MyMod.MyCartridge")
 end
 if string.len(definition.item)>SpiffBoy.CHIP_MAX_STRING then
-error(b.."has an item type of "..string.len(definition.item).." characters, at most "..SpiffBoy.CHIP_MAX_STRING.." are allowed")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."has an item type of "..string.len(definition.item).." characters, at most "..SpiffBoy.CHIP_MAX_STRING.." are allowed")
 end
 if type(definition.title)~="string"then
-error(b.."needs a title")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs a title")
 end
 if type(definition.game)~="string"then
-error(b.."needs the global name of its game class")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs the global name of its game class")
 end
 if type(definition.mod)~="string"then
-error(b.."needs the id of the mod that holds its files")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs the id of the mod that holds its files")
 end
 if not i(definition.art)then
-error(b.."needs the folder of its art in its mod, ending with a slash, such as media/ui/MyMod/MyGame/")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs the folder of its art in its mod, ending with a slash, such as media/ui/MyMod/MyGame/")
 end
 if not i(definition.texts)then
-error(b.."needs the folder of its language files in its mod, ending with a slash, such as media/lua/shared/MyMod/MyGame/Translate/")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs the folder of its language files in its mod, ending with a slash, such as media/lua/shared/MyMod/MyGame/Translate/")
 end
 local e=definition.loot
 if type(e)~="table"then
-error(b.."needs a loot table")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs a loot table")
 end
 if type(e.weight)~="number"or e.weight<0 then
-error(b.."needs a loot weight of zero or more")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs a loot weight of zero or more")
 end
 if e.lists~=nil and type(e.lists)~="table"then
-error(b.."needs a list of loot list names, or none")
+SpiffBoy.GameErrors.raise("SB-REG-CARTRIDGE",b.."needs a list of loot list names, or none")
 end
 end
 
 local function j(definition,owner,field)
 if owner~=nil and owner.id~=definition.id then
-error("SpiffBoy: cartridge "..definition.id.." of the mod "..definition.mod.." uses the "..field.." "..tostring(definition[field]).." already used by the cartridge "..owner.id.." of the mod "..owner.mod)
+SpiffBoy.GameErrors.raise("SB-REG-DUPLICATE","cartridge "..definition.id.." of the mod "..definition.mod.." uses the "..field.." "..tostring(definition[field]).." already used by the cartridge "..owner.id.." of the mod "..owner.mod)
 end
 end
 
 local function m(definition)
 local b=f[definition.id]
 if b~=nil and b.mod~=definition.mod then
-error("SpiffBoy: cartridge "..definition.id.." of the mod "..definition.mod.." uses an id already registered by the mod "..b.mod)
+SpiffBoy.GameErrors.raise("SB-REG-DUPLICATE","cartridge "..definition.id.." of the mod "..definition.mod.." uses an id already registered by the mod "..b.mod)
 end
 j(definition,d[definition.item],"item")
 j(definition,g[definition.game],"game")

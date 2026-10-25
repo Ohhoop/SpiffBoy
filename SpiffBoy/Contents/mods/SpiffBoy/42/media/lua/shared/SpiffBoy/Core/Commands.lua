@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 
 SpiffBoy.COMMAND_SAVE_HANDHELD="saveHandheld"
+SpiffBoy.COMMAND_EASE_MOOD="easeMood"
 SpiffBoy.COMMAND_CHIP="chip"
 SpiffBoy.CHIP_EVENT_ON="on"
 SpiffBoy.CHIP_EVENT_OFF="off"

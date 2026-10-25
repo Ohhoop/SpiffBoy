@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameView"
 require"SpiffBoy/Core/KeyBinds"
 
 SpiffBoy.Input=SpiffBoy.Input or{}
@@ -111,6 +112,7 @@ for h,e in ipairs(a.ACTIONS)do
 b.tapped[e]=false
 end
 b.exitThisReading=false
+b.activeMs=nil
 return b
 end
 
@@ -139,6 +141,46 @@ self.exitThisReading=e[f]
 for n,b in ipairs(a.ACTIONS)do
 l[b]=false
 end
+self:markActivity()
+end
+
+function SpiffBoyInputState:markActivity()
+local e,h=self.held,self.pressed
+for k,b in ipairs(a.ACTIONS)do
+if h[b]or e[b]then
+self.activeMs=getTimestampMs()
+return
+end
+end
+end
+
+function SpiffBoyInputState:activeWithin(ms)
+return self.activeMs~=nil and getTimestampMs()-self.activeMs<=ms
+end
+
+function SpiffBoyInputState:anyPressed()
+local b=self.pressed
+for h,e in ipairs(a.ACTIONS)do
+if b[e]then
+return true
+end
+end
+return false
+end
+
+local function k(name,flags)
+return SpiffBoy.GameView.live(name,flags,a.ACTIONS)
+end
+
+function SpiffBoyInputState:view()
+local b=self
+return SpiffBoy.GameView.new("input",{
+held=k("held table",self.held),
+pressed=k("pressed table",self.pressed),
+axes=function()
+return b:axes()
+end,
+},{})
 end
 
 function SpiffBoyInputState:axes()

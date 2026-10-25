@@ -168,6 +168,9 @@ self.screen=b.SCREEN_PODIUM
 self.boardClock=0
 self.unlockKey=nil
 self:music(f.PODIUM)
+if self.twoPlayer and not self.port:leads()then
+return
+end
 local h=g.placeOfPlayers(self.gp)
 if h<=g.PODIUM and self.gp.cup==1 and i.unlock(self.data,"knox")then
 self.unlockKey="Unlock_Knox"
@@ -178,7 +181,6 @@ if i.unlocked(self.data,"win150_spiffo")and i.unlocked(self.data,"win150_knox")a
 self.unlockKey="Unlock_Mirror"
 end
 end
-self:store()
 end
 
 function b:tick_podium(input)
@@ -191,6 +193,7 @@ return
 end
 if m(input,"a")then
 self:effect(f.CONFIRM)
+self:store()
 self.gp=nil
 if self.twoPlayer then
 self.port:sendNext(c.choice.back)
@@ -245,7 +248,6 @@ r=math.min(r,t)
 end
 self.trial={time=k.finishTick,laps=h}
 self.trial.record=i.submit(self.data,n.track.id,k.driver,k.finishTick,r,v.parts(self.recorder))
-self:store()
 if self.trial.record then
 self:silence()
 self.sequencer:play(f.RECORD)
@@ -259,6 +261,9 @@ function b:tick_trial(input)
 self.trialIndex=self:moveCursor(input,self.trialIndex,3)
 if m(input,"a")then
 self:effect(f.CONFIRM)
+if self.trial.record then
+self:store()
+end
 if self.trialIndex==1 then
 self:startSoloRace()
 elseif self.trialIndex==2 then

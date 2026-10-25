@@ -2,46 +2,51 @@ require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Core/SaveData"
 require"SpiffBoy/Handheld/Handheld"
+require"SpiffBoy/Core/Mood"
 
-local k=SpiffBoy.COMMAND_MODULE
-local l=1000
-local m=40
-local n=5000
-local o=1000
-local p=10
+local m=SpiffBoy.COMMAND_MODULE
+local n=1000
+local o=40
+local p=5000
+local q=1000
+local r=10
+local d=1000
+local s=3000
 
-local g={}
 local h={}
-local d={}
+local i={}
+local j={}
+local t=SyncPlayerStatsPacket.getBitMaskForStat(CharacterStat.BOREDOM)+SyncPlayerStatsPacket.getBitMaskForStat(CharacterStat.UNHAPPINESS)
+local e={}
 
-local function q(player,command,args)
-sendServerCommand(player,k,command,args)
+local function u(player,command,args)
+sendServerCommand(player,m,command,args)
 end
 
-local function i(value)
+local function k(value)
 if SpiffBoy.isFinite(value)then
 return value
 end
 return nil
 end
 
-local function r(player)
+local function v(player)
 local b=player:getOnlineID()
 local c=getTimestampMs()
-local a=h[b]
-if not a or c-a.startMs>=o then
+local a=i[b]
+if not a or c-a.startMs>=q then
 a={startMs=c,count=0}
-h[b]=a
+i[b]=a
 end
 a.count=a.count+1
-return a.count<=p
+return a.count<=r
 end
 
-local function s(player,args)
+local function w(player,args)
 if type(args)~="table"or not SpiffBoy.isInteger(args.itemId)then
 return
 end
-if not r(player)then
+if not v(player)then
 SpiffBoy.trace("save of player "..tostring(player:getOnlineID()).." refused by the rate")
 return
 end
@@ -56,20 +61,20 @@ local a=player:getInventory():getItemWithIDRecursiv(args.itemId)
 if not a or not SpiffBoy.Handheld.isConsole(a)then
 return
 end
-SpiffBoy.Handheld.applySaved(a,args.save,i(args.battery),i(args.volume))
+SpiffBoy.Handheld.applySaved(a,args.save,k(args.battery),k(args.volume))
 syncItemModData(player,a)
 end
 
-local function t(player)
+local function x(player)
 local b=player:getOnlineID()
 local c=getTimestampMs()
-local a=g[b]
-if not a or c-a.startMs>=l then
+local a=h[b]
+if not a or c-a.startMs>=n then
 a={startMs=c,count=0}
-g[b]=a
+h[b]=a
 end
 a.count=a.count+1
-return a.count<=m
+return a.count<=o
 end
 
 local function b(player,outcome,listeners)
@@ -77,21 +82,21 @@ if not SpiffBoy.isDevBuild()then
 return
 end
 local c=player:getOnlineID()
-local e=getTimestampMs()
-local a=d[c]
+local f=getTimestampMs()
+local a=e[c]
 if not a then
-a={startMs=e,relayed=0,listeners=0,size=0,rate=0,empty=0}
-d[c]=a
+a={startMs=f,relayed=0,listeners=0,size=0,rate=0,empty=0}
+e[c]=a
 end
 a[outcome]=a[outcome]+1
 a.listeners=a.listeners+(listeners or 0)
-if e-a.startMs>=n then
-SpiffBoy.log("chip relay: player "..tostring(c).." in "..tostring(e-a.startMs).." ms, relayed "..a.relayed.." to "..a.listeners.." listeners in all, refused size "..a.size..", rate "..a.rate..", empty "..a.empty)
-d[c]=nil
+if f-a.startMs>=p then
+SpiffBoy.log("chip relay: player "..tostring(c).." in "..tostring(f-a.startMs).." ms, relayed "..a.relayed.." to "..a.listeners.." listeners in all, refused size "..a.size..", rate "..a.rate..", empty "..a.empty)
+e[c]=nil
 end
 end
 
-local function u(player,args)
+local function y(player,args)
 if type(args)~="table"or not SpiffBoy.isInteger(args.t)then
 return
 end
@@ -100,35 +105,65 @@ if c<1 or c>SpiffBoy.CHIP_MAX_EVENTS then
 b(player,"size")
 return
 end
-if not t(player)then
+if not x(player)then
 b(player,"rate")
 return
 end
 local a={}
-for f=1,c do
-local e=SpiffBoy.cleanChipEvent(SpiffBoy.listItem(args.e,f))
-if e then
-a[#a+1]=e
+for g=1,c do
+local f=SpiffBoy.cleanChipEvent(SpiffBoy.listItem(args.e,g))
+if f then
+a[#a+1]=f
 end
 end
 if#a==0 then
 b(player,"empty")
 return
 end
-local v={id=player:getOnlineID(),t=args.t,e=SpiffBoy.wireList(a)}
-local j=getOnlinePlayers()
-local e=0
-for w=0,j:size()-1 do
-local f=j:get(w)
-if f~=player and SpiffBoy.withinHearing(f,player)then
-q(f,SpiffBoy.COMMAND_CHIP,v)
-e=e+1
+local z={id=player:getOnlineID(),t=args.t,e=SpiffBoy.wireList(a)}
+local l=getOnlinePlayers()
+local f=0
+for A=0,l:size()-1 do
+local g=l:get(A)
+if g~=player and SpiffBoy.withinHearing(g,player)then
+u(g,SpiffBoy.COMMAND_CHIP,z)
+f=f+1
 end
 end
-b(player,"relayed",e)
+b(player,"relayed",f)
 end
 
-SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_SAVE_HANDHELD,s)
-SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_CHIP,u)
+local function g(player)
+local f=player:getOnlineID()
+local c=getTimestampMs()
+local a=j[f]
+if not a then
+a={ms=d,atMs=c}
+j[f]=a
+end
+a.ms=math.min(s,a.ms+c-a.atMs)
+a.atMs=c
+if a.ms<d then
+return false
+end
+a.ms=a.ms-d
+return true
+end
+
+local function a(player)
+if not g(player)then
+return
+end
+if player:getInventory():getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM):isEmpty()then
+return
+end
+if SpiffBoy.Mood.ease(player)then
+syncPlayerStats(player,t)
+end
+end
+
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_SAVE_HANDHELD,w)
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_EASE_MOOD,a)
+SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_CHIP,y)
 
 Events.OnClientCommand.Add(SpiffBoy.Commands.onClientCommand)

@@ -1,4 +1,5 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
 require"SpiffBoy/Core/Textures"
 require"SpiffBoy/Core/FontData"
 
@@ -107,7 +108,7 @@ if B[code]then
 return
 end
 B[code]=true
-SpiffBoy.log("pixel font has no glyph for code point "..code)
+SpiffBoy.GameErrors.warn("SB-GLYPH","pixel font has no glyph for code point "..code)
 end
 
 function d.decode(str)

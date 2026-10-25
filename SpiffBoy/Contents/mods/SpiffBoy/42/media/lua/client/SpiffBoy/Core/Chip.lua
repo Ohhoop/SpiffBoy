@@ -1,4 +1,6 @@
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/GameErrors"
+require"SpiffBoy/Core/GameView"
 require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Core/ChipBank"
 
@@ -241,11 +243,11 @@ local function Z(voice,value)
 voice.length=t-value
 end
 
-local function _(voice,value)
+local function aa(voice,value)
 voice.volumeCode=c(value,5,2)
 end
 
-local function aa(voice,value)
+local function ab(voice,value)
 voice.shift=c(value,4,4)
 voice.width=u
 if d(value,3)then
@@ -254,24 +256,24 @@ end
 voice.divisor=c(value,0,3)
 end
 
-local function ab(voice,value)
+local function ac(voice,value)
 voice.lengthEnabled=d(value,6)
 if d(value,7)then
 y(voice)
 end
 end
 
-local function ac(chip,value)
+local function ad(chip,value)
 chip.master=(math.max(c(value,4,3),c(value,0,3))+1)/F
 end
 
-local function ad(chip,value)
+local function ae(chip,value)
 for b=1,a.VOICES do
 chip.pan[b]=d(value,b-1)or d(value,b+3)
 end
 end
 
-local function ae(chip,value)
+local function af(chip,value)
 chip:setPower(d(value,7))
 end
 
@@ -287,16 +289,16 @@ local z={
 [a.NR24]={voice=a.PULSE2,write=q},
 [a.NR30]={voice=a.WAVE,write=Y},
 [a.NR31]={voice=a.WAVE,write=Z},
-[a.NR32]={voice=a.WAVE,write=_},
+[a.NR32]={voice=a.WAVE,write=aa},
 [a.NR33]={voice=a.WAVE,write=p},
 [a.NR34]={voice=a.WAVE,write=q},
 [a.NR41]={voice=a.NOISE,write=n},
 [a.NR42]={voice=a.NOISE,write=o},
-[a.NR43]={voice=a.NOISE,write=aa},
-[a.NR44]={voice=a.NOISE,write=ab},
-[a.NR50]={write=ac},
-[a.NR51]={write=ad},
-[a.NR52]={write=ae},
+[a.NR43]={voice=a.NOISE,write=ab},
+[a.NR44]={voice=a.NOISE,write=ac},
+[a.NR50]={write=ad},
+[a.NR51]={write=ae},
+[a.NR52]={write=af},
 }
 
 function a.isRegister(register)
@@ -354,10 +356,10 @@ end
 
 function a:write(register,value)
 if not a.isRegister(register)then
-error("SpiffBoy: no sound register "..tostring(register))
+SpiffBoy.GameErrors.raise("SB-CHIP-REGISTER","chip:write got "..tostring(register)..", which is no sound register")
 end
 if not SpiffBoy.isInteger(value)or value<0 or value>SpiffBoy.BYTE_MAX then
-error("SpiffBoy: sound register value out of range: "..tostring(value))
+SpiffBoy.GameErrors.raise("SB-CHIP-VALUE","chip:write got the value "..tostring(value).." for a sound register, out of range")
 end
 if self.listener then
 self.listener:onChipWrite(register,value)
@@ -379,12 +381,24 @@ end
 
 function a:loadWave(name)
 if not e.WAVE[name]then
-error("SpiffBoy: no wave table named "..tostring(name))
+SpiffBoy.GameErrors.raise("SB-CHIP-WAVE","chip:loadWave got "..tostring(name)..", and no wave table has that name")
 end
 if self.listener then
 self.listener:onChipWave(name)
 end
 self:applyWave(name)
+end
+
+function a:view()
+local b=self
+return SpiffBoy.GameView.new("sound chip",{
+write=function(_,register,value)
+b:write(register,value)
+end,
+loadWave=function(_,name)
+b:loadWave(name)
+end,
+},{})
 end
 
 function a:applyWave(name)
