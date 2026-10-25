@@ -54,7 +54,7 @@ Q: Toimiiko se moninpelissä?
 A: Kyllä.
 
 Q: Tarvitseeko jokainen pelaaja sen palvelimella?
-A: Kyllä, sekä palvelin että jokainen pelaaja.
+A: Vain palvelimen täytyy lisätä se mod- ja Workshop-listoihinsa. Pelaajat lataavat sen automaattisesti liittyessään.
 
 Q: Onko se yhteensopiva muiden modien kanssa?
 A: Kyllä, kunhan ne eivät muuta pelin omaa Videopeli-esinettä.

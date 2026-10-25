@@ -54,7 +54,7 @@ Q: Funguje to v multiplayeru?
 A: Ano.
 
 Q: Musí ho mít na serveru každý hráč?
-A: Ano, server i každý hráč.
+A: Stačí, když ho má server v seznamu modů a Workshopu. Hráči si ho stáhnou automaticky při připojení.
 
 Q: Je kompatibilní s jinými mody?
 A: Ano, pokud nemění vanilla Přenosnou herní konzoli.

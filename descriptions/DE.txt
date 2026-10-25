@@ -54,7 +54,7 @@ Q: Funktioniert es im Multiplayer?
 A: Ja.
 
 Q: Braucht auf einem Server jeder Spieler den Mod?
-A: Ja, der Server und jeder Spieler.
+A: Nur der Server braucht ihn in seiner Mod- und Workshop-Liste. Die Spieler laden ihn beim Beitreten automatisch herunter.
 
 Q: Ist es mit anderen Mods kompatibel?
 A: Ja, solange sie das Vanilla-Videospiel nicht verändern.

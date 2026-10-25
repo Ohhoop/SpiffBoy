@@ -54,7 +54,7 @@ Q: Çok oyunculu modda çalışıyor mu?
 A: Evet.
 
 Q: Bir sunucuda her oyuncunun buna ihtiyacı var mı?
-A: Evet, hem sunucunun hem de her oyuncunun.
+A: Yalnızca sunucunun onu mod ve Workshop listelerine eklemesi gerekir. Oyuncular katıldıklarında otomatik olarak indirir.
 
 Q: Diğer modlarla uyumlu mu?
 A: Evet, vanilla Video Oyunu'nu değiştirmedikleri sürece.

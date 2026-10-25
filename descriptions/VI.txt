@@ -54,7 +54,7 @@ Q: Mod có hoạt động trong chế độ nhiều người chơi không?
 A: Có.
 
 Q: Trên máy chủ, mọi người chơi đều cần cài mod không?
-A: Có, cả máy chủ và mọi người chơi.
+A: Chỉ máy chủ cần thêm mod vào danh sách mod và Workshop. Người chơi sẽ tự động tải về khi tham gia.
 
 Q: Mod có tương thích với các mod khác không?
 A: Có, miễn là chúng không thay đổi Máy Chơi Game Cầm Tay gốc của trò chơi.

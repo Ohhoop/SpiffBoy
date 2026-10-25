@@ -54,7 +54,7 @@ Q: ¿Funciona en multijugador?
 A: Sí.
 
 Q: En un servidor, ¿lo necesita cada jugador?
-A: Sí, el servidor y cada jugador.
+A: Solo el servidor necesita tenerlo en sus listas de mods y del Workshop. Los jugadores lo descargan automáticamente al unirse.
 
 Q: ¿Es compatible con otros mods?
 A: Sí, siempre que no modifiquen el Videojuego vanilla.

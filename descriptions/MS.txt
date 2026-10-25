@@ -54,7 +54,7 @@ Q: Adakah ia berfungsi dalam multiplayer?
 A: Ya.
 
 Q: Adakah setiap pemain di pelayan memerlukannya?
-A: Ya, pelayan dan setiap pemain.
+A: Hanya pelayan perlu memasukkannya dalam senarai mod dan Workshop. Pemain memuat turunnya secara automatik apabila menyertai.
 
 Q: Adakah ia serasi dengan mod lain?
 A: Ya, selagi mod itu tidak mengubah Konsol Permainan Pegang Tangan vanilla.

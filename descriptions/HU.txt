@@ -54,7 +54,7 @@ Q: Működik többjátékos módban?
 A: Igen.
 
 Q: Szerveren minden játékosnak kell?
-A: Igen, a szervernek és minden játékosnak.
+A: Csak a szervernek kell a mod- és Workshop-listájában szerepeltetnie. A játékosok csatlakozáskor automatikusan letöltik.
 
 Q: Kompatibilis más modokkal?
 A: Igen, amíg nem módosítják a vanilla Videójáték tárgyat.

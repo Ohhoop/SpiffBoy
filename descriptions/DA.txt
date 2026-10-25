@@ -54,7 +54,7 @@ Q: Virker det i multiplayer?
 A: Ja.
 
 Q: Skal alle spillere have det på en server?
-A: Ja, serveren og alle spillere.
+A: Kun serveren skal have det på sine mod- og Workshop-lister. Spillerne downloader det automatisk, når de tilslutter sig.
 
 Q: Er det kompatibelt med andre mods?
 A: Ja, så længe de ikke ændrer vanilla-genstanden Håndholdt spillekonsol.

@@ -54,7 +54,7 @@ Q: Funziona in multiplayer?
 A: Sì.
 
 Q: Su un server serve a tutti i giocatori?
-A: Sì, al server e a ogni giocatore.
+A: Solo il server deve averlo nelle liste delle mod e del Workshop. I giocatori lo scaricano automaticamente quando si connettono.
 
 Q: È compatibile con altri mod?
 A: Sì, purché non modifichino il Videogioco vanilla.

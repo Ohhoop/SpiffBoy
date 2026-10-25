@@ -54,7 +54,7 @@ Q: Funciona no multiplayer?
 A: Sim.
 
 Q: Todo jogador precisa dele em um servidor?
-A: Sim, o servidor e todos os jogadores.
+A: Só o servidor precisa tê-lo nas listas de mods e da Workshop. Os jogadores baixam automaticamente ao entrar.
 
 Q: É compatível com outros mods?
 A: Sim, desde que eles não alterem o Videogame Portátil vanilla.

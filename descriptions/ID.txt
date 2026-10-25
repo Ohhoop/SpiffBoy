@@ -54,7 +54,7 @@ Q: Apakah bisa di multiplayer?
 A: Ya.
 
 Q: Apakah setiap pemain di server perlu memasangnya?
-A: Ya, server dan setiap pemain.
+A: Hanya server yang perlu memasukkannya ke daftar mod dan Workshop. Pemain mengunduhnya secara otomatis saat bergabung.
 
 Q: Apakah kompatibel dengan mod lain?
 A: Ya, selama mod itu tidak mengubah Konsol Game Genggam vanilla.

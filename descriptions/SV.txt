@@ -54,7 +54,7 @@ Q: Fungerar det i multiplayer?
 A: Ja.
 
 Q: Behöver alla spelare ha det på en server?
-A: Ja, servern och alla spelare.
+A: Bara servern behöver ha det i sina mod- och Workshop-listor. Spelarna laddar ner det automatiskt när de ansluter.
 
 Q: Är det kompatibelt med andra moddar?
 A: Ja, så länge de inte ändrar spelets egen handhållna spelkonsol.

@@ -54,7 +54,7 @@ Q : Est-ce que ça fonctionne en multijoueur ?
 A : Oui.
 
 Q : Sur un serveur, est-ce que chaque joueur doit l'avoir ?
-A : Oui, le serveur et chaque joueur.
+A : Seul le serveur doit l'avoir dans ses listes de mods et du Workshop. Les joueurs le téléchargent automatiquement en se connectant.
 
 Q : Est-ce compatible avec d'autres mods ?
 A : Oui, tant qu'ils ne modifient pas la Console de jeu portable vanilla.

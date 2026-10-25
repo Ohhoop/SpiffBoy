@@ -54,7 +54,7 @@ Q: Funcționează în multiplayer?
 A: Da.
 
 Q: Trebuie să-l aibă fiecare jucător pe un server?
-A: Da, serverul și fiecare jucător.
+A: Doar serverul trebuie să-l aibă în listele de moduri și Workshop. Jucătorii îl descarcă automat când se conectează.
 
 Q: Este compatibil cu alte moduri?
 A: Da, atâta timp cât nu modifică Consola de Jocuri Portabilă vanilla.

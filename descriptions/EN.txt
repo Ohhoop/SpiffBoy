@@ -54,7 +54,7 @@ Q: Does it work in multiplayer?
 A: Yes.
 
 Q: Does every player need it on a server?
-A: Yes, the server and every player.
+A: Only the server needs it in its mod and Workshop lists. Players download it automatically when they join.
 
 Q: Is it compatible with other mods?
 A: Yes, as long as they do not change the vanilla Handheld Game Console.

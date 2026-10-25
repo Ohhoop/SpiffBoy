@@ -54,7 +54,7 @@ Q: Czy to działa w trybie wieloosobowym?
 A: Tak.
 
 Q: Czy na serwerze każdy gracz musi go mieć?
-A: Tak, serwer i każdy gracz.
+A: Wystarczy, że serwer ma go na liście modów i Workshopu. Gracze pobierają go automatycznie przy dołączaniu.
 
 Q: Czy jest kompatybilny z innymi modami?
 A: Tak, o ile nie zmieniają vanillowego przedmiotu Konsola do gier – przenośna.

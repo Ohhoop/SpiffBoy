@@ -54,7 +54,7 @@ Q: Fungerer det i flerspiller?
 A: Ja.
 
 Q: Må alle spillerne ha det på en server?
-A: Ja, serveren og alle spillerne.
+A: Bare serveren må ha det i mod- og Workshop-listene sine. Spillerne laster det ned automatisk når de kobler til.
 
 Q: Er det kompatibelt med andre mods?
 A: Ja, så lenge de ikke endrer vanilla-gjenstanden Videospill.

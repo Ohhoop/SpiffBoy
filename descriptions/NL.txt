@@ -54,7 +54,7 @@ Q: Werkt het in multiplayer?
 A: Ja.
 
 Q: Heeft elke speler het nodig op een server?
-A: Ja, de server en elke speler.
+A: Alleen de server moet het in zijn mod- en Workshoplijst hebben. Spelers downloaden het automatisch wanneer ze verbinden.
 
 Q: Is het compatibel met andere mods?
 A: Ja, zolang ze het vanilla Computerspel niet aanpassen.
