@@ -19,7 +19,7 @@ local j={}
 local f
 
 local function d(message,pos)
-error("SpiffBoy: invalid JSON, "..message.." at character "..tostring(pos))
+error("invalid JSON, "..message.." at character "..tostring(pos),0)
 end
 
 local function c(text,pos)

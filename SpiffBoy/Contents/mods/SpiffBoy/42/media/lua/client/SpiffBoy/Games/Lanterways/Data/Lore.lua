@@ -23,6 +23,10 @@ a.QUESTS={
 {id="merchant",started="q_merchant1",done="q_merchant"},
 }
 
+a.CHAPTER_FLAGS={"ch2","ch3","ch4","ch5","ch6","ch7","ch8"}
+
+a.STORY_END=21
+
 function a.pages()
 local b={}
 for f,c in ipairs(a.SERIES)do

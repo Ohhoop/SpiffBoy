@@ -1,4 +1,4 @@
-require"SpiffBoy/Games/QuickStart/Game"
+require"SpiffBoy/Games/QuickStart/Class"
 
 local c=SpiffBoyQuickStartGame
 local a=SpiffBoy.QuickStart

@@ -198,29 +198,32 @@ return f
 end
 
 function c:bookRows()
-local f=self.state
-local q,h=a.Lore.pages(),0
-for k,i in ipairs(q)do
-if e.hasFlag(f,"p_"..i.id)then
-h=h+1
-end
-end
-local i=0
-for v,k in ipairs(a.Lore.ECHOES)do
-if e.hasFlag(f,"e_"..k)then
+local h=self.state
+local q,i=a.Lore.pages(),0
+for k,f in ipairs(q)do
+if e.hasFlag(h,"p_"..f.id)then
 i=i+1
 end
 end
 local k=0
-for w,v in ipairs(a.Lore.QUESTS)do
-if e.hasFlag(f,v.done)then
+for v,f in ipairs(a.Lore.ECHOES)do
+if e.hasFlag(h,"e_"..f)then
 k=k+1
 end
 end
+local f=0
+if self:storyEnded()then
+f=1
+end
+for w,v in ipairs(a.Lore.QUESTS)do
+if e.hasFlag(h,v.done)then
+f=f+1
+end
+end
 return{
-{id="pages",label=a.text("BookPages"),right=h.."/"..#q},
-{id="echoes",label=a.text("BookEchoes"),right=i.."/"..#a.Lore.ECHOES},
-{id="quests",label=a.text("BookQuests"),right=k.."/"..#a.Lore.QUESTS},
+{id="pages",label=a.text("BookPages"),right=i.."/"..#q},
+{id="echoes",label=a.text("BookEchoes"),right=k.."/"..#a.Lore.ECHOES},
+{id="quests",label=a.text("BookQuests"),right=f.."/"..(#a.Lore.QUESTS+1)},
 {id="map",label=a.text("BookMap")},
 }
 end
@@ -252,18 +255,44 @@ end
 return nil
 end
 
-function c:bookQuestRows()
-local f={}
-for q,h in ipairs(a.Lore.QUESTS)do
-local i=self:questState(h)
-local k={id=h.id,progress=i,label="???"}
-if i then
-k.label=a.text("QuestTitle_"..h.id)
-k.right=a.text("Quest_"..i)
+function c:storyEnded()
+return self.state.step>=a.Lore.STORY_END
 end
-f[#f+1]=k
+
+function c:storyChapter()
+local f=1
+for h,i in ipairs(a.Lore.CHAPTER_FLAGS)do
+if e.hasFlag(self.state,i)then
+f=h+1
+end
 end
 return f
+end
+
+function c:mainQuestRow()
+local f=self:storyEnded()and"done"or"started"
+return{
+id="main",
+progress=f,
+label=a.text("Chapter"..self:storyChapter().."Sub"),
+right=a.text("Quest_"..f),
+note="QuestNote_main_"..self.state.step,
+}
+end
+
+function c:bookQuestRows()
+local k={self:mainQuestRow()}
+for q,f in ipairs(a.Lore.QUESTS)do
+local h=self:questState(f)
+local i={id=f.id,progress=h,label="???"}
+if h then
+i.label=a.text("QuestTitle_"..f.id)
+i.right=a.text("Quest_"..h)
+i.note="QuestNote_"..f.id.."_"..h
+end
+k[#k+1]=i
+end
+return k
 end
 
 function c:equipRows(member,slot)
@@ -697,10 +726,7 @@ end
 function c:drawDescription(screen,key)
 b.frame(screen,self.artUi,0,d.descY,a.WIDTH,d.descH)
 if key then
-local f=screen:wrapText(a.text(key),a.WIDTH-12)
-for h=1,math.min(2,#f)do
-b.text(screen,f[h],6,d.descY+1+(h-1)*b.LINE)
-end
+b.paragraph(screen,a.text(key),6,d.descY+1,a.WIDTH-12,2,self.clock)
 end
 end
 
@@ -769,7 +795,7 @@ self:drawDescription(screen,i.found and("Series_"..i.series)or"BookUnknown")
 elseif f=="bookEchoes"then
 self:drawDescription(screen,i.found and"EchoReplay"or"BookUnknown")
 elseif f=="bookQuests"then
-self:drawDescription(screen,i.progress and("QuestNote_"..i.id.."_"..i.progress)or"BookUnknown")
+self:drawDescription(screen,i.note or"BookUnknown")
 else
 self:drawEquipCompare(screen,h.target,i and i.id)
 end
@@ -833,14 +859,9 @@ end
 
 function c:drawPairLines(screen,lines)
 b.frame(screen,self.artUi,0,d.descY,a.WIDTH,d.descH)
-for i,f in ipairs(lines)do
-local h=d.descY+1+(i-1)*b.LINE
-if f[1]then
-b.text(screen,b.fit(screen,f[1],a.WIDTH-12),6,h)
-end
-if f[2]then
-b.textRight(screen,f[2],a.WIDTH-6,h,a.DARK)
-end
+for h,f in ipairs(lines)do
+local i=d.descY+1+(h-1)*b.LINE
+b.pair(screen,f[1]or"",f[2]or"",6,i,a.WIDTH-12,self.clock,a.INK,a.DARK)
 end
 end
 
@@ -885,7 +906,7 @@ h=e.stats(f)
 end
 for w,f in ipairs(u)do
 local k=6+(w-1)*35
-b.text(screen,a.text("Stat_"..f),k,d.descY+1,a.DARK)
+b.pages(screen,self.artUi,{{text=a.text("Stat_"..f)}},k,d.descY+1,33,self.clock,a.DARK)
 local x=a.INK
 if h[f]~=i[f]then
 b.icon(screen,self.artUi,h[f]>i[f]and"arrowUp"or"arrowDown",k+24,d.descY+20,{1})

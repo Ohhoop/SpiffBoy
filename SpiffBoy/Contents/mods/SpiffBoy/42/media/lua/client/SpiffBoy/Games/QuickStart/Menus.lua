@@ -1,5 +1,5 @@
 require"SpiffBoy/Core/Runtime"
-require"SpiffBoy/Games/QuickStart/Game"
+require"SpiffBoy/Games/QuickStart/Class"
 require"SpiffBoy/Games/QuickStart/Tracks"
 require"SpiffBoy/Games/QuickStart/Road"
 
@@ -68,10 +68,7 @@ local e=j[name]
 screen:layers(self:art(name),0,e.w,e.h,x,y,e.shades)
 end
 
-local function e(input,button)
-return input~=nil and input.pressed[button]==true
-end
-a.pressed=e
+local e=a.pressed
 
 function a:moveCursor(input,index,count,allowed,back,forth)
 back,forth=back or"up",forth or"down"

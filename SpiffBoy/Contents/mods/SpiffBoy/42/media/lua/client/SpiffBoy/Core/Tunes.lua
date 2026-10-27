@@ -38,10 +38,10 @@ local X=3
 local Y=2
 local Z=1
 local o=8
-local i=1
-local j=64
-local k=1
-local l=8
+local j=1
+local k=64
+local l=1
+local m=8
 local _=20
 local aa=400
 local A=b.MAX_LEVEL
@@ -94,7 +94,7 @@ end
 return a
 end
 
-local function m(time)
+local function i(time)
 return math.floor(time*I+0.5)/I
 end
 
@@ -226,7 +226,7 @@ return a
 end
 
 local function K(state,event)
-event.t=m(state.time)
+event.t=i(state.time)
 local a=state.events
 a[#a+1]=event
 end
@@ -297,8 +297,8 @@ local function N()
 local e=M()
 local n
 if e then
-if e<i or e>j then
-d(a,"a length goes from "..i.." to "..j)
+if e<j or e>k then
+d(a,"a length goes from "..j.." to "..k)
 end
 n=x()
 else
@@ -369,8 +369,8 @@ local Q=O(e)
 if not Q then
 d(a,"a chord holds notes only")
 end
-if e<k or e>l then
-d(a,"the octave of a chord note lies outside "..k.." to "..l)
+if e<l or e>m then
+d(a,"the octave of a chord note lies outside "..l.." to "..m)
 end
 n[#n+1]=P(Q)
 if#n>E then
@@ -467,22 +467,22 @@ elseif e=="^"then
 d(a,"a tie follows a note")
 elseif e=="o"then
 a=a+1
-c.octave=g(k,l,"o")
+c.octave=g(l,m,"o")
 elseif e=="<"then
 a=a+1
-if c.octave<=k then
-d(a,"the octave cannot go below "..k)
+if c.octave<=l then
+d(a,"the octave cannot go below "..l)
 end
 c.octave=c.octave-1
 elseif e==">"then
 a=a+1
-if c.octave>=l then
-d(a,"the octave cannot go above "..l)
+if c.octave>=m then
+d(a,"the octave cannot go above "..m)
 end
 c.octave=c.octave+1
 elseif e=="l"then
 a=a+1
-c.length=g(i,j,"l")
+c.length=g(j,k,"l")
 c.dots=x()
 elseif e=="t"then
 a=a+1
@@ -561,7 +561,7 @@ end
 c.portamento=g(0,ak,"p")
 elseif e=="L"then
 a=a+1
-c.loopStart=m(c.time)
+c.loopStart=i(c.time)
 else
 d(a,"unknown command "..e)
 end
@@ -588,19 +588,19 @@ local d=states[definition.echo]
 if not J[n]or not d then
 SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo names a pulse voice written in the same tune")
 end
-if not SpiffBoy.isInteger(definition.delay)or definition.delay<i or definition.delay>j then
-SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo delay is a note length from "..i.." to "..j)
+if not SpiffBoy.isInteger(definition.delay)or definition.delay<j or definition.delay>k then
+SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo delay is a note length from "..j.." to "..k)
 end
 if not SpiffBoy.isInteger(definition.drop)or definition.drop<0 or definition.drop>G then
 SpiffBoy.GameErrors.raise("SB-REG-TUNE",c.."an echo drop goes from 0 to "..G)
 end
-local h=m(d.time)
+local h=i(d.time)
 local e={}
 local g=h
 for p=1,#d.events do
 local a=x(d.events[p])
 local L=t(a.tempo,definition.delay,0)
-a.t=m(a.t+L)
+a.t=i(a.t+L)
 if a.note then
 a.level=math.max(0,a.level-definition.drop)
 a.sweep=nil
@@ -642,7 +642,7 @@ local p=false
 for g,c in pairs(d)do
 p=true
 a.tracks[c.voice]={events=c.events,n=#c.events,loopIndex=1}
-a.length=math.max(a.length,m(c.time))
+a.length=math.max(a.length,i(c.time))
 if c.loopStart then
 if e and c.loopStart~=a.loopStart then
 SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." places its loop point at different times on "..e.." and "..g)
@@ -659,6 +659,13 @@ SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." lasts no time")
 end
 if a.loop and a.loopStart>=a.length then
 SpiffBoy.GameErrors.raise("SB-REG-TUNE","tune "..label.." loops from its end")
+end
+if a.loop then
+for g,c in pairs(d)do
+if i(c.time)~=a.length then
+SpiffBoy.GameErrors.warn("SB-REG-VOICES","tune "..label..", voice "..g.." lasts "..string.format("%.1f",i(c.time)).." ticks of the "..string.format("%.1f",a.length).." of the tune, so it falls out of step with the others at each loop")
+end
+end
 end
 for M,g in pairs(a.tracks)do
 local c=1

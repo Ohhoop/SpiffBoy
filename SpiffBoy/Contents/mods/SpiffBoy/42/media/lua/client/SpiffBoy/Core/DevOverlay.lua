@@ -1,52 +1,60 @@
 require"SpiffBoy/Core/Core"
 
 SpiffBoy.DevOverlay=SpiffBoy.DevOverlay or{}
-local k=SpiffBoy.DevOverlay
+local l=SpiffBoy.DevOverlay
 
-local h=8
-local l=14
+local i=8
+local m=14
 
 local function a(value,decimals)
 local b=10^decimals
 return tostring(math.floor(value*b)/b)
 end
 
-function k.draw(window)
+local function e(stats,stat,decimals)
+return a(stats:get(stat),decimals).."/"..tostring(stat:getMaximumValue())
+end
+
+function l.draw(window)
 if not SpiffBoy.isDevBuild()then
 return
 end
 local c=window.runtime
-local i=window.shell
-local e=window.screen.calls
-if i then
-e=e+i.calls
+local j=window.shell
+local f=window.screen.calls
+if j then
+f=f+j.calls
 end
 local b={
 "frame "..a(c.frameMs,1).." ms  ticks "..tostring(c.ticksThisFrame).."  tick "..tostring(c.tick),
-"calls "..tostring(e).."  scale "..tostring(window.screen.scale),
+"calls "..tostring(f).."  scale "..tostring(window.screen.scale),
 "mode "..tostring(c.game and c.game.mode),
 }
 if window.veil~=nil then
-local f=window.playerObj:getCurrentSquare()
+local g=window.playerObj:getCurrentSquare()
 local d="light "..a(window.light,3).."  veil "..a(window.veil,3)
-if f then
-d=d.."  darkMulti "..a(f:getDarkMulti(window.playerNum),3)
+if g then
+d=d.."  darkMulti "..a(g:getDarkMulti(window.playerNum),3)
 end
 d=d.."  daylight "..a(getClimateManager():getDayLightStrength(),3)
 b[#b+1]=d
 end
-local f=window.chip
-if f then
-for g=1,#f.voices do
-local d=f.voices[g]
-local j="voice "..tostring(g).." off"
+local g=window.chip
+if g then
+for h=1,#g.voices do
+local d=g.voices[h]
+local k="voice "..tostring(h).." off"
 if d.on then
-j="voice "..tostring(g).." "..tostring(d.sound).."  pitch "..a(d.pitch,3).."  gain "..a(d.gain,2)
+k="voice "..tostring(h).." "..tostring(d.sound).."  pitch "..a(d.pitch,3).."  gain "..a(d.gain,2)
 end
-b[#b+1]=j
+b[#b+1]=k
 end
+end
+if window:isPlaying()then
+local d=window.playerObj:getStats()
+b[#b+1]="boredom "..e(d,CharacterStat.BOREDOM,1).."  stress "..e(d,CharacterStat.STRESS,2).."  unhappiness "..e(d,CharacterStat.UNHAPPINESS,1)
 end
 for d=1,#b do
-window:drawText(b[d],h-window:getX(),h-window:getY()+(d-1)*l,0.4,1,0.4,1,UIFont.Small)
+window:drawText(b[d],i-window:getX(),i-window:getY()+(d-1)*m,0.4,1,0.4,1,UIFont.Small)
 end
 end

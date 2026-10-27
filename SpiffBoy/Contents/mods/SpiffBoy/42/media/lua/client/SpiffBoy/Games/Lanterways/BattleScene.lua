@@ -767,11 +767,8 @@ if self.phase=="command"then
 if d.mode=="skill"or d.mode=="item"then
 local f=d.rows[d.list]
 if f then
-local w=d.mode=="skill"and"SkillDesc_"or"ItemDesc_"
-local k=screen:wrapText(a.text(w..f.id),a.WIDTH-10)
-for p=1,math.min(2,#k)do
-c.text(screen,k[p],5,b.panelY+3+(p-1)*c.LINE)
-end
+local k=d.mode=="skill"and"SkillDesc_"or"ItemDesc_"
+c.paragraph(screen,a.text(k..f.id),5,b.panelY+3,a.WIDTH-10,2,self.clock)
 end
 return
 end

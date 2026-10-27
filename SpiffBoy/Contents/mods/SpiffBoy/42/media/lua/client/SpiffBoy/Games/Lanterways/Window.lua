@@ -5,8 +5,9 @@ local b=SpiffBoy.Lanterways
 local a={}
 b.Window=a
 
-local d={1}
-local i={1,2,3}
+local e={1}
+local l={1,3}
+local j={1,2,3}
 
 a.UI_HEIGHT=16
 a.CELLS={
@@ -21,6 +22,17 @@ elemFlame={283,8},elemSound={291,8},elemMurk={299,8},xp={307,7},
 heartSmall={314,7},lampSmall={321,7},slash={328,4},
 }
 a.ELEMENT_ICONS={flame="elemFlame",sound="elemSound",murk="elemMurk"}
+a.ICON_HEIGHTS={
+heart=10,lampIcon=10,bang=9,run=13,glow=9,note=8,coin=8,arrowLeft=7,arrowRight=7,arrowUp=4,arrowDown=4,
+statusBlind=7,statusSleep=7,statusSoot=7,statusStun=7,statusUp=7,statusDown=7,statusRegen=7,statusVeil=7,statusTaunt=7,
+elemFlame=7,elemSound=7,elemMurk=7,
+}
+a.FIGURE_HEIGHT=7
+
+function a.iconBeside(screen,name,y)
+local c=screen:lineHeight()-SpiffBoy.FontData.descent
+return y+math.floor(c-a.FIGURE_HEIGHT/2-a.ICON_HEIGHTS[name]/2+0.5)
+end
 
 function a.gearIcon(item)
 if item.element then
@@ -35,23 +47,23 @@ end
 a.LINE=16
 
 function a.text(screen,label,x,y,shade)
-local c,e,f=b.shade(shade or b.INK)
-screen:text(label,x,y,c,e,f,1)
+local c,d,f=b.shade(shade or b.INK)
+screen:text(label,x,y,c,d,f,1)
 end
 
 function a.textCentre(screen,label,x,y,shade)
-local c,e,f=b.shade(shade or b.INK)
-screen:textCentre(label,x,y,c,e,f,1)
+local c,d,f=b.shade(shade or b.INK)
+screen:textCentre(label,x,y,c,d,f,1)
 end
 
 function a.textRight(screen,label,x,y,shade)
-local c,e,f=b.shade(shade or b.INK)
-screen:textRight(label,x,y,c,e,f,1)
+local c,d,f=b.shade(shade or b.INK)
+screen:textRight(label,x,y,c,d,f,1)
 end
 
 function a.fill(screen,x,y,w,h,shade)
-local c,e,f=b.shade(shade)
-screen:rect(x,y,w,h,c,e,f,1)
+local c,d,f=b.shade(shade)
+screen:rect(x,y,w,h,c,d,f,1)
 end
 
 function a.icon(screen,ui,name,x,y,shades)
@@ -65,16 +77,16 @@ a.fill(screen,x+1,y+1,w-2,h-2,b.PAPER)
 a.fill(screen,x+2,y+h-3,w-4,1,b.MID)
 a.fill(screen,x+2,y+2,1,h-5,b.MID)
 if ui then
-a.icon(screen,ui,"corner",x-2,y-3,d)
-a.icon(screen,ui,"corner",x+w-5,y-3,d)
+a.icon(screen,ui,"corner",x-2,y-3,e)
+a.icon(screen,ui,"corner",x+w-5,y-3,e)
 end
 end
 
 function a.cursor(screen,ui,x,y,clock)
 if math.floor(clock/8)%2==0 then
-a.icon(screen,ui,"flame1",x,y,i)
+a.icon(screen,ui,"flame1",x,y,j)
 else
-a.icon(screen,ui,"flame2",x,y,i)
+a.icon(screen,ui,"flame2",x,y,j)
 end
 end
 
@@ -88,36 +100,90 @@ return SpiffBoy.clamp(top,1,math.max(1,count-visible+1))
 end
 
 function a.list(screen,ui,rows,x,y,w,visible,selected,top,clock,focused)
-local j=#rows
-for g=0,visible-1 do
-local c=rows[top+g]
+local k=#rows
+local g=0
+if k>visible then
+g=a.CELLS.arrowUp[2]+2
+end
+for h=0,visible-1 do
+local c=rows[top+h]
 if c then
-local e=y+g*a.LINE
+local d=y+h*a.LINE
 local f=b.INK
 if c.disabled then
 f=b.MID
 end
-if top+g==selected and focused then
-a.fill(screen,x+8,e+1,w-10,a.LINE-2,b.MID)
+if top+h==selected and focused then
+a.fill(screen,x+8,d+1,w-10,a.LINE-2,b.MID)
 if c.disabled then
 f=b.DARK
 end
-a.cursor(screen,ui,x,e+4,clock)
+a.cursor(screen,ui,x,d+4,clock)
 end
-local h=w-12
+local i=w-12-g
 if c.right then
-h=h-screen:textWidth(c.right)-4
-a.textRight(screen,c.right,x+w-2,e,f)
+i=i-screen:textWidth(c.right)-4
+a.textRight(screen,c.right,x+w-2-g,d,f)
 end
-a.text(screen,a.fit(screen,c.label,h),x+10,e,f)
+a.text(screen,a.fit(screen,c.label,i),x+10,d,f)
 end
 end
 if top>1 then
-a.icon(screen,ui,"arrowUp",x+w-8,y-6,d)
+a.icon(screen,ui,"arrowUp",x+w-8,y,e)
 end
-if top+visible-1<j then
-a.icon(screen,ui,"arrowDown",x+w-8,y+visible*a.LINE-2,d)
+if top+visible-1<k then
+a.icon(screen,ui,"arrowDown",x+w-8,y+visible*a.LINE-a.ICON_HEIGHTS.arrowDown,e)
 end
+end
+
+local function g(lines,perPage,clock)
+local c=math.max(1,math.ceil(#lines/perPage))
+return math.floor(clock/a.PAGE_TICKS)%c
+end
+
+a.PAGE_TICKS=150
+
+function a.paragraph(screen,label,x,y,width,lines,clock,shade)
+local c=screen:wrapText(label,width)
+local h=g(c,lines,clock)*lines
+for d=1,lines do
+local f=c[h+d]
+if f then
+a.text(screen,f,x,y+(d-1)*a.LINE,shade)
+end
+end
+end
+
+function a.pages(screen,ui,pages,x,y,width,clock,shade)
+local d={}
+for i,c in ipairs(pages)do
+local f=width
+if c.icon then
+f=f-a.CELLS[c.icon][2]-2
+end
+for k,h in ipairs(screen:wrapText(c.text,f))do
+d[#d+1]={text=h,icon=c.icon,shade=c.shade}
+end
+end
+if#d==0 then
+return
+end
+local c=d[g(d,1,clock)+1]
+local f=x
+if c.icon then
+a.icon(screen,ui,c.icon,x,a.iconBeside(screen,c.icon,y),l)
+f=x+a.CELLS[c.icon][2]+2
+end
+a.text(screen,c.text,f,y,c.shade or shade)
+end
+
+function a.pair(screen,left,right,x,y,width,clock,leftShade,rightShade)
+if screen:textWidth(left)+screen:textWidth(right)+6<=width then
+a.text(screen,left,x,y,leftShade)
+a.textRight(screen,right,x+width,y,rightShade)
+return
+end
+a.pages(screen,nil,{{text=left,shade=leftShade},{text=right,shade=rightShade}},x,y,width,clock)
 end
 
 function a.fit(screen,label,width)

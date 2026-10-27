@@ -53,7 +53,7 @@ end
 function ISToolTipInv:render()
 u(self)
 local d=self.item
-if not d or not SpiffBoy.Handheld.isConsole(d)then
+if not instanceof(d,"InventoryItem")or not SpiffBoy.Handheld.isConsole(d)then
 return
 end
 if ISContextMenu.instance and ISContextMenu.instance.visibleCheck then

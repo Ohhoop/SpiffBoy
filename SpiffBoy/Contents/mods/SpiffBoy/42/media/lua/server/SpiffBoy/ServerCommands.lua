@@ -167,3 +167,4 @@ SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_EASE_MOOD,a)
 SpiffBoy.Commands.fromClient(SpiffBoy.COMMAND_CHIP,y)
 
 Events.OnClientCommand.Add(SpiffBoy.Commands.onClientCommand)
+Events.OnTick.Add(SpiffBoy.Mood.releaseIdle)

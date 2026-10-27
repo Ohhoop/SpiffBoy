@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/QuickStart/Class"
 require"SpiffBoy/Games/QuickStart/Base"
 require"SpiffBoy/Games/QuickStart/Art"
 require"SpiffBoy/Games/QuickStart/Roster"
@@ -12,8 +13,6 @@ require"SpiffBoy/Games/QuickStart/Ghost"
 require"SpiffBoy/Games/QuickStart/Records"
 require"SpiffBoy/Games/QuickStart/Link"
 require"SpiffBoy/Games/QuickStart/Music"
-
-SpiffBoyQuickStartGame=SpiffBoyGameBase:derive("SpiffBoyQuickStartGame")
 
 local a=SpiffBoyQuickStartGame
 local b=SpiffBoy.QuickStart

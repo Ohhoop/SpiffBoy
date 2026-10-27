@@ -103,12 +103,12 @@ end
 return t..g
 end
 
-local function aj(code)
+local function aj(code,str)
 if B[code]then
 return
 end
 B[code]=true
-SpiffBoy.GameErrors.warn("SB-GLYPH","pixel font has no glyph for code point "..code)
+SpiffBoy.GameErrors.warn("SB-GLYPH","the text \""..str.."\" holds a character the pixel font lacks, code point "..code..", left out on the screen")
 end
 
 function d.decode(str)
@@ -132,13 +132,13 @@ end
 return f,g
 end
 
-function d.advance(code)
+function d.advance(code,str)
 if b.marks[code]or J(code)then
 return 0
 end
 local c=H(code)
 if not c then
-aj(code)
+aj(code,str)
 return 0
 end
 return c
@@ -252,7 +252,7 @@ e.y=s or 0
 j=e
 else
 q,j=e,nil
-f=f+d.advance(c)
+f=f+d.advance(c,str)
 end
 g[#g+1]=e
 end
@@ -292,7 +292,7 @@ local r=#i
 local e=1
 while e<=r do
 local s=i[e]
-local x=d.advance(s)
+local x=d.advance(s,str)
 if e>g and an(i[e-1],s)then
 q=e
 end

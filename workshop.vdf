@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.7: a new picture in the mod list"
+	"changenote"		"0.1.8: mood eased while playing in multiplayer too, Lanterways shops with tabs and an item card, long texts shown a page at a time, the main story in the Round Book, no more false [ERRORS] mark in the pause menu, and no more error flood when a tooltip opens over something that is not an inventory item, such as bathtub water"
 }

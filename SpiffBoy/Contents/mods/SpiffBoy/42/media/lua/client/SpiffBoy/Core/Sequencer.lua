@@ -35,11 +35,10 @@ end
 function a:tune(name)
 local c=b.find(self.set,name)
 if not c then
-local d="no game"
 if self.set then
-d=self.set.id
+SpiffBoy.GameErrors.raise("SB-TUNE",self.set.id.." has no tune named "..tostring(name))
 end
-SpiffBoy.GameErrors.raise("SB-TUNE",d.." has no tune named "..tostring(name))
+SpiffBoy.GameErrors.raise("SB-TUNE","the game registered no tune, so it has no tune named "..tostring(name))
 end
 return c
 end
