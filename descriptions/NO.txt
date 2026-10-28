@@ -50,6 +50,9 @@ Har du alltid drømt om å lage ditt eget spill? Enhver mod kan legge til sine e
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Fungerer det med build 42.22?
+A: Ja. Det fungerer med 42.21 og 42.22.
+
 Q: Fungerer det i flerspiller?
 A: Ja.
 

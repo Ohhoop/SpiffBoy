@@ -50,6 +50,9 @@ SpiffBoy เหมือนเครื่องเกมพกพายุค�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: ใช้กับ 42.22 ได้ไหม?
+A: ได้
+
 Q: เล่นหลายคนได้ไหม?
 A: ได้
 

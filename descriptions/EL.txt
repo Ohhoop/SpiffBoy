@@ -50,6 +50,9 @@
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Λειτουργεί με το build 42.22;
+A: Ναι. Λειτουργεί με το 42.21 και το 42.22.
+
 Q: Λειτουργεί στο multiplayer;
 A: Ναι.
 

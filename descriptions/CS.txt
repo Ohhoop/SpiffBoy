@@ -50,6 +50,9 @@ Vždycky jste snili o vlastní hře? Jakýkoli mod může do konzole SpiffBoy p�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Funguje to s buildem 42.22?
+A: Ano. Funguje s verzemi 42.21 i 42.22.
+
 Q: Funguje to v multiplayeru?
 A: Ano.
 

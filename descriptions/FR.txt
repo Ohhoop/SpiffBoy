@@ -50,6 +50,9 @@ Vous avez toujours rêvé de créer votre propre jeu ? N'importe quel mod peut a
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q : Est-ce que ça fonctionne avec la build 42.22 ?
+A : Oui. Ça fonctionne avec la 42.21 et la 42.22.
+
 Q : Est-ce que ça fonctionne en multijoueur ?
 A : Oui.
 

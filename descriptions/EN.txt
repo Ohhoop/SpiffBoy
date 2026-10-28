@@ -50,6 +50,9 @@ Always dreamed of making your own game? Any mod can add its own cartridges to th
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Does it work with build 42.22?
+A: Yes. It works with 42.21 and 42.22.
+
 Q: Does it work in multiplayer?
 A: Yes.
 

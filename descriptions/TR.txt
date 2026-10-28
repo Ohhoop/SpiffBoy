@@ -50,6 +50,9 @@ Hep kendi oyununuzu yapmayı mı hayal ettiniz? Her mod SpiffBoy'a kendi kartuş
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: 42.22 sürümüyle çalışıyor mu?
+A: Evet. 42.21 ve 42.22 ile çalışıyor.
+
 Q: Çok oyunculu modda çalışıyor mu?
 A: Evet.
 

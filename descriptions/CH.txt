@@ -50,6 +50,9 @@ SpiffBoy 的設計力求像那個年代的掌機一樣運作，連小細節都�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: 能在 42.22 版本上運行嗎？
+A: 可以。42.21 和 42.22 都能運行。
+
 Q: 多人遊戲能用嗎？
 A: 能。
 

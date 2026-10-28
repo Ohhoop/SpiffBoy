@@ -50,6 +50,9 @@ Selalu bermimpi membuat game sendiri? Mod apa pun bisa menambahkan kartridnya se
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Apakah berfungsi di build 42.22?
+A: Ya. Berfungsi di 42.21 dan 42.22.
+
 Q: Apakah bisa di multiplayer?
 A: Ya.
 

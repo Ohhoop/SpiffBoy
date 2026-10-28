@@ -50,6 +50,9 @@ Diez juegos son solo el principio. Si te gustaría crear un juego para la SpiffB
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: ¿Funciona con la build 42.22?
+A: Sí. Funciona con la 42.21 y la 42.22.
+
 Q: ¿Funciona en multijugador?
 A: Sí.
 

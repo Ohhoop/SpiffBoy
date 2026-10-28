@@ -50,6 +50,9 @@ Selalu bermimpi membuat permainan sendiri? Mana-mana mod boleh menambah kartrijn
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Adakah ia berfungsi dengan build 42.22?
+A: Ya. Ia berfungsi dengan 42.21 dan 42.22.
+
 Q: Adakah ia berfungsi dalam multiplayer?
 A: Ya.
 

@@ -50,6 +50,9 @@ SpiffBoy를 취향대로 조정하세요. 샌드박스 옵션은 사운드가 �
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: 42.22 빌드에서 작동하나요?
+A: 네. 42.21과 42.22에서 모두 작동합니다.
+
 Q: 멀티플레이에서 작동하나요?
 A: 네.
 

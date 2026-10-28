@@ -50,6 +50,9 @@ Sempre sonhou em criar seu próprio jogo? Qualquer mod pode adicionar seus próp
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Funciona na build 42.22?
+A: Sim. Funciona na 42.21 e na 42.22.
+
 Q: Funciona no multiplayer?
 A: Sim.
 

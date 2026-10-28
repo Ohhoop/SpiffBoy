@@ -50,6 +50,9 @@ Mindig is saját játékot akartál készíteni? Bármelyik mod hozzáadhat saj�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Működik a 42.22-es builddel?
+A: Igen. A 42.21-es és a 42.22-es verzióval is működik.
+
 Q: Működik többjátékos módban?
 A: Igen.
 

@@ -50,6 +50,9 @@ Altijd al gedroomd van je eigen spel? Elke mod kan zijn eigen cassettes aan de S
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Werkt het met build 42.22?
+A: Ja. Het werkt met 42.21 en 42.22.
+
 Q: Werkt het in multiplayer?
 A: Ja.
 

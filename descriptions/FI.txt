@@ -50,6 +50,9 @@ Oletko aina haaveillut oman pelin tekemisestä? Mikä tahansa modi voi lisätä 
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Toimiiko se buildissa 42.22?
+A: Kyllä. Se toimii versioissa 42.21 ja 42.22.
+
 Q: Toimiiko se moninpelissä?
 A: Kyllä.
 

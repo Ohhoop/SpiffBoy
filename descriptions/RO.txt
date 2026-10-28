@@ -50,6 +50,9 @@ Ai visat mereu să-ți faci propriul joc? Orice mod poate adăuga propriile cart
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Funcționează cu build-ul 42.22?
+A: Da. Funcționează cu 42.21 și 42.22.
+
 Q: Funcționează în multiplayer?
 A: Da.
 

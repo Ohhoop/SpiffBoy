@@ -50,6 +50,9 @@ SpiffBoyを好みに合わせて調整しましょう。サンドボックスオ
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: ビルド 42.22 で動作しますか？
+A: はい。42.21 と 42.22 の両方で動作します。
+
 Q: マルチプレイで使えますか？
 A: はい。
 

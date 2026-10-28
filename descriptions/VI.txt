@@ -50,6 +50,9 @@ Luôn mơ ước tự làm một trò chơi? Bất kỳ mod nào cũng có thể
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Có chạy được với bản build 42.22 không?
+A: Có. Chạy được với cả 42.21 và 42.22.
+
 Q: Mod có hoạt động trong chế độ nhiều người chơi không?
 A: Có.
 

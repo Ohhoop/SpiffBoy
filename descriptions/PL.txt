@@ -50,6 +50,9 @@ Zawsze marzyłeś o stworzeniu własnej gry? Każdy mod może dodać własne kar
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/qa.png[/img]
+Q: Czy działa z buildem 42.22?
+A: Tak. Działa z wersjami 42.21 i 42.22.
+
 Q: Czy to działa w trybie wieloosobowym?
 A: Tak.
 
