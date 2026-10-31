@@ -109,7 +109,7 @@ return
 end
 b[ownerId]={peer=g,console=j:getID(),seat=i}
 b[g]={peer=ownerId,console=console:getID(),seat=l}
-d(e,{k=SpiffBoy.LINK_CONNECTED,p=g,n=a.characterName(guest),s=i})
+d(e,{k=SpiffBoy.LINK_CONNECTED,p=g,n=a.characterName(guest),s=i,c=j:getID()})
 d(guest,{k=SpiffBoy.LINK_CONNECTED,p=ownerId,n=a.characterName(e),s=l,c=console:getID()})
 end
 

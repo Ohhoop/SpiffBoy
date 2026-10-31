@@ -1,5 +1,6 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Window"
+require"SpiffBoy/Games/Lanterways/Class"
 
 local c=SpiffBoyLanterwaysGame
 local a=SpiffBoy.Lanterways
@@ -9,24 +10,30 @@ local l=a.Items
 local j=a.Skills
 local m=a.Characters
 local o=a.SaveGame
-local r=a.Music
+local t=a.Music
 
-local B={"MenuItems","MenuSkills","MenuEquip","MenuStatus","MenuOrder","MenuBook","MenuBestiary","MenuBonds","MenuSave","MenuOptions"}
+local C={"MenuItems","MenuSkills","MenuEquip","MenuStatus","MenuOrder","MenuBook","MenuBestiary","MenuBonds","MenuSave","MenuOptions"}
 local p={bookPages=true,bookEchoes=true,bookQuests=true}
 local g={x=52,y=30,w=75,h=54,step=2,shades={1,2,4},outline=4}
-local s={1}
-local C={1,3}
-local t={1,2,3}
+local u={1}
+local D={1,3}
+local E={1,2,3}
+local F={1,2,3,4}
 local d={
 mainX=0,mainW=74,partyX=74,partyW=106,rowH=26,listX=2,listY=4,listW=176,listRows=5,
 descY=86,descH=34,statX=6,statY=22,slotY=4,mainRows=6,panelRows=4,
 }
-local u={"atk","def","mag","res","spd"}
+local q={"atk","def","mag","res","spd"}
 local n={"weapon","armor","charm"}
+local r=(a.WIDTH-2*d.statX)/#q
+
+local function v(index)
+return d.statX+math.floor(r*(index-0.5)+0.5)
+end
 
 function c:menuEntries()
 local f={}
-for i,h in ipairs(B)do
+for i,h in ipairs(C)do
 if(h~="MenuBook"or e.hasFlag(self.state,"j_book"))and(h~="MenuBonds"or#self:bondRows()>0)then
 f[#f+1]=h
 end
@@ -72,30 +79,30 @@ end
 
 function c:useItemOnMember(itemId,member)
 local f=l.get(itemId)
-local v=e.stats(member)
+local w=e.stats(member)
 local h=false
 local k={member}
 if f.target=="allies"then
 k=e.active(self.state)
 end
 if f.effect=="heal"then
-for w,i in ipairs(k)do
-local q=e.stats(i).hp
-if i.hp>0 and i.hp<q then
-i.hp=math.min(q,i.hp+f.power)
+for x,i in ipairs(k)do
+local s=e.stats(i).hp
+if i.hp>0 and i.hp<s then
+i.hp=math.min(s,i.hp+f.power)
 h=true
 end
 end
 elseif f.effect=="sp"then
-for w,i in ipairs(k)do
-local q=e.stats(i).sp
-if i.hp>0 and i.sp<q then
-i.sp=math.min(q,i.sp+f.power)
+for x,i in ipairs(k)do
+local s=e.stats(i).sp
+if i.hp>0 and i.sp<s then
+i.sp=math.min(s,i.sp+f.power)
 h=true
 end
 end
 elseif f.effect=="revive"and member.hp<=0 then
-member.hp=math.max(1,math.floor(v.hp*f.power))
+member.hp=math.max(1,math.floor(w.hp*f.power))
 h=true
 end
 if h then
@@ -113,16 +120,16 @@ if caster.sp<f.cost or caster.hp<=0 then
 self:effect("buzz")
 return false
 end
-local v=e.stats(caster).mag
-local q={member}
+local w=e.stats(caster).mag
+local s={member}
 if f.target=="allies"then
-q=e.active(self.state)
+s=e.active(self.state)
 end
 local i=false
-for w,h in ipairs(q)do
+for x,h in ipairs(s)do
 local k=e.stats(h).hp
 if f.kind=="heal"and h.hp>0 and h.hp<k then
-h.hp=math.min(k,h.hp+math.floor(f.power+v*0.8))
+h.hp=math.min(k,h.hp+math.floor(f.power+w*0.8))
 i=true
 elseif f.kind=="revive"and h.hp<=0 then
 h.hp=math.max(1,math.floor(k*f.power))
@@ -140,7 +147,7 @@ end
 
 function c:bagRows()
 local h={}
-for q,f in ipairs(e.bagList(self.state))do
+for s,f in ipairs(e.bagList(self.state))do
 local k=l.get(f)
 local i="x"..e.count(self.state,f)
 if k.kind=="key"then
@@ -163,12 +170,12 @@ end
 function c:bestiaryRows()
 local h={}
 local i=self.state
-for q,f in ipairs(a.Enemies.ORDER)do
+for s,f in ipairs(a.Enemies.ORDER)do
 local k={id=f,label="???"}
 if i.seen[f]then
 k.label=a.text("Enemy_"..f)
 end
-if i.known[f]then
+if e.knows(i,f,"level")then
 k.right=a.text("Level").." "..a.Enemies.get(f,e.enemyBonus(i)).level
 end
 h[#h+1]=k
@@ -179,7 +186,7 @@ end
 function c:bondRows()
 local f={}
 local i=self.state.order
-for q,k in ipairs(j.DUOS)do
+for s,k in ipairs(j.DUOS)do
 local h=j.get(k).duo
 if a.indexOf(i,h[1])and a.indexOf(i,h[2])then
 f[#f+1]=self:bondRow(k,h)
@@ -199,14 +206,14 @@ end
 
 function c:bookRows()
 local h=self.state
-local q,i=a.Lore.pages(),0
-for k,f in ipairs(q)do
+local s,i=a.Lore.pages(),0
+for k,f in ipairs(s)do
 if e.hasFlag(h,"p_"..f.id)then
 i=i+1
 end
 end
 local k=0
-for v,f in ipairs(a.Lore.ECHOES)do
+for w,f in ipairs(a.Lore.ECHOES)do
 if e.hasFlag(h,"e_"..f)then
 k=k+1
 end
@@ -215,13 +222,13 @@ local f=0
 if self:storyEnded()then
 f=1
 end
-for w,v in ipairs(a.Lore.QUESTS)do
-if e.hasFlag(h,v.done)then
+for x,w in ipairs(a.Lore.QUESTS)do
+if e.hasFlag(h,w.done)then
 f=f+1
 end
 end
 return{
-{id="pages",label=a.text("BookPages"),right=i.."/"..#q},
+{id="pages",label=a.text("BookPages"),right=i.."/"..#s},
 {id="echoes",label=a.text("BookEchoes"),right=k.."/"..#a.Lore.ECHOES},
 {id="quests",label=a.text("BookQuests"),right=f.."/"..(#a.Lore.QUESTS+1)},
 {id="map",label=a.text("BookMap")},
@@ -282,7 +289,7 @@ end
 
 function c:bookQuestRows()
 local k={self:mainQuestRow()}
-for q,f in ipairs(a.Lore.QUESTS)do
+for s,f in ipairs(a.Lore.QUESTS)do
 local h=self:questState(f)
 local i={id=f.id,progress=h,label="???"}
 if h then
@@ -350,9 +357,9 @@ local i=f.screen
 if i=="main"then
 local k=a.verticalStep(h)
 if k~=0 then
-local q=f.entries
-f.index=a.wrap(f.index+k,#q)
-f.mainTop=b.scroll(f.index,f.mainTop,d.mainRows,#q)
+local s=f.entries
+f.index=a.wrap(f.index+k,#s)
+f.mainTop=b.scroll(f.index,f.mainTop,d.mainRows,#s)
 self:effect("cursor")
 end
 if h.b or h.start then
@@ -380,13 +387,15 @@ self:openList("equipList",self:equipRows(f.target,n[f.slot]))
 end
 elseif i=="bookMap"then
 self:tickBookMap(h)
+elseif i=="bestiaryCard"then
+self:tickBestiaryCard(h)
 elseif i=="status"then
 local k=a.horizontalStep(h)+a.verticalStep(h)
-local q=self:menuMembers(true)
+local s=self:menuMembers(true)
 if k~=0 then
-f.statusIndex=a.wrap(f.statusIndex+k,#q)
+f.statusIndex=a.wrap(f.statusIndex+k,#s)
 f.member=f.statusIndex
-f.partyTop=b.scroll(f.member,f.partyTop,d.panelRows,#q)
+f.partyTop=b.scroll(f.member,f.partyTop,d.panelRows,#s)
 self:effect("cursor")
 end
 if h.b or h.a then
@@ -436,11 +445,11 @@ end
 
 function c:tickPick(pressed)
 local f=self.menu
-local q=self:menuMembers(f.pickAll)
-local v=a.verticalStep(pressed)
-if v~=0 then
-f.member=a.wrap(f.member+v,#q)
-f.partyTop=b.scroll(f.member,f.partyTop,d.panelRows,#q)
+local s=self:menuMembers(f.pickAll)
+local w=a.verticalStep(pressed)
+if w~=0 then
+f.member=a.wrap(f.member+w,#s)
+f.partyTop=b.scroll(f.member,f.partyTop,d.panelRows,#s)
 self:effect("cursor")
 end
 if pressed.b then
@@ -459,7 +468,7 @@ end
 if not pressed.a then
 return
 end
-local i=q[f.member]
+local i=s[f.member]
 local h=f.purpose
 if h=="skills"then
 f.caster=i
@@ -531,6 +540,13 @@ return
 end
 if f.screen=="book"then
 self:openBookPart(h.id)
+elseif f.screen=="bestiary"then
+if self.state.seen[h.id]then
+self:effect("confirm")
+self:openBestiaryCard()
+else
+self:effect("buzz")
+end
 elseif f.screen=="bookPages"or f.screen=="bookEchoes"then
 if h.found then
 self:effect("confirm")
@@ -649,24 +665,28 @@ if k~=0 then
 f.option=a.wrap(f.option+k,#i)
 self:effect("cursor")
 end
-local q=a.horizontalStep(pressed)
-if q~=0 then
+local s=a.horizontalStep(pressed)
+if s~=0 then
 local h=i[f.option]
-local v=SpiffBoy.clamp(self.mix[h]+q,0,r.MIX_STEPS)
-if v~=self.mix[h]then
-self.mix[h]=v
+local w=SpiffBoy.clamp(self.mix[h]+s,0,t.MIX_STEPS)
+if w~=self.mix[h]then
+self.mix[h]=w
+f.optionsChanged=true
 self:applyMix()
 self:effect("cursor")
 end
 end
 if pressed.b or pressed.a then
+if f.optionsChanged then
 self:saveOptions()
+f.optionsChanged=false
+end
 f.screen="main"
 self:effect("cancel")
 end
 end
 
-local function q(screen,x,y,w,share)
+local function s(screen,x,y,w,share)
 b.fill(screen,x,y,w,4,a.INK)
 local f=math.floor((w-2)*SpiffBoy.clamp(share,0,1))
 if f>0 then
@@ -682,21 +702,21 @@ end
 if marked then
 b.fill(screen,x+1,y,3,d.rowH-1,a.INK)
 end
-screen:layers(self:art("walk_"..member.id),0,12,16,x+3,y+4,t)
+screen:layers(self:art("walk_"..member.id),0,12,16,x+3,y+4,F)
 b.text(screen,b.fit(screen,a.text("Name_"..member.id),w-46),x+17,y-2,reserve and a.DARK or a.INK)
 local h=e.worn(member,"weapon")
 if h.element then
-b.icon(screen,self.artUi,b.ELEMENT_ICONS[h.element],x+w-22,y+1,s)
+b.icon(screen,self.artUi,b.ELEMENT_ICONS[h.element],x+w-22,y+1,u)
 end
 screen:number(member.level,x+w-3,y+2,self.artDigits,"right",0,a.INK)
-b.icon(screen,self.artUi,"heart",x+16,y+11,C)
-q(screen,x+28,y+14,34,member.hp/f.hp)
-b.icon(screen,self.artUi,"lampIcon",x+65,y+11,t)
-q(screen,x+77,y+14,w-80,member.sp/f.sp)
+b.icon(screen,self.artUi,"heart",x+16,y+11,D)
+s(screen,x+28,y+14,34,member.hp/f.hp)
+b.icon(screen,self.artUi,"lampIcon",x+65,y+11,E)
+s(screen,x+77,y+14,w-80,member.sp/f.sp)
 local k=m.toNext(member.level)
-local v=member.level>=a.LEVEL_CAP and 1 or member.xp/k
-b.icon(screen,self.artUi,"xp",x+29,y+21,s)
-local i=math.floor((w-41)*SpiffBoy.clamp(v,0,1))
+local z=member.level>=a.LEVEL_CAP and 1 or member.xp/k
+b.icon(screen,self.artUi,"xp",x+29,y+21,u)
+local i=math.floor((w-41)*SpiffBoy.clamp(z,0,1))
 if i>0 then
 b.fill(screen,x+38,y+22,i,2,a.DARK)
 end
@@ -730,7 +750,7 @@ b.paragraph(screen,a.text(key),6,d.descY+1,a.WIDTH-12,2,self.clock)
 end
 end
 
-local function v(seconds)
+local function w(seconds)
 local f=math.floor(seconds/60)
 local i=math.floor(f/60)
 f=f%60
@@ -740,12 +760,12 @@ h="0"..h
 end
 return i..":"..h
 end
-c.clockText=v
+c.clockText=w
 
 function c:drawMenu(screen)
 local h=self.menu
 local k=self.artUi
-local x=self.state
+local y=self.state
 local f=h.screen
 if self.dialog and p[f]then
 self:drawDialog(screen)
@@ -753,26 +773,26 @@ return
 end
 if f=="main"or f=="pick"then
 b.frame(screen,k,d.mainX,0,d.mainW,a.HEIGHT)
-local w={}
-for i,y in ipairs(h.entries)do
-w[i]={label=b.fit(screen,a.text(y),d.mainW-16)}
+local x={}
+for i,z in ipairs(h.entries)do
+x[i]={label=b.fit(screen,a.text(z),d.mainW-16)}
 end
-b.list(screen,k,w,2,3,d.mainW-4,d.mainRows,h.index,h.mainTop,self.clock,f=="main")
+b.list(screen,k,x,2,3,d.mainW-4,d.mainRows,h.index,h.mainTop,self.clock,f=="main")
 b.icon(screen,k,"coin",4,a.HEIGHT-9,{1,3})
-screen:number(x.gold,d.mainW-5,a.HEIGHT-8,self.artDigits,"right",0,a.INK)
-local y=self:menuMembers(f=="pick"and h.pickAll)
-local z=f=="pick"and h.member or nil
+screen:number(y.gold,d.mainW-5,a.HEIGHT-8,self.artDigits,"right",0,a.INK)
+local z=self:menuMembers(f=="pick"and h.pickAll)
+local A=f=="pick"and h.member or nil
 local i=1
 if f=="pick"then
 i=h.partyTop
 end
-self:drawPartyPanel(screen,d.partyX,d.partyW,y,z,h.swapFrom,i)
+self:drawPartyPanel(screen,d.partyX,d.partyW,z,A,h.swapFrom,i)
 if f=="pick"then
 b.cursor(screen,k,d.partyX-5,4+(h.member-i)*d.rowH+9,self.clock)
 end
 elseif f=="items"or f=="skills"or f=="equipList"or f=="bestiary"or f=="bonds"or f=="book"or p[f]then
-local y=d.listRows*b.LINE+8
-b.frame(screen,k,0,0,a.WIDTH,y)
+local z=d.listRows*b.LINE+8
+b.frame(screen,k,0,0,a.WIDTH,z)
 b.list(screen,k,h.rows,d.listX,d.listY,d.listW,self:visibleRows(),h.list,h.listTop,self.clock,true)
 local i=h.rows[h.list]
 if self.dialog then
@@ -781,9 +801,9 @@ elseif f=="items"then
 self:drawDescription(screen,i and("ItemDesc_"..i.id))
 elseif f=="skills"then
 self:drawDescription(screen,i and("SkillDesc_"..i.id))
-local w=d.listY+self:visibleRows()*b.LINE
-b.text(screen,a.text("Name_"..h.caster.id),d.listX+10,w,a.DARK)
-b.textRight(screen,h.caster.sp.."/"..e.stats(h.caster).sp,d.listX+d.listW-12,w,a.DARK)
+local x=d.listY+self:visibleRows()*b.LINE
+b.text(screen,a.text("Name_"..h.caster.id),d.listX+10,x,a.DARK)
+b.textRight(screen,h.caster.sp.."/"..e.stats(h.caster).sp,d.listX+d.listW-12,x,a.DARK)
 elseif f=="bestiary"then
 self:drawBestiaryEntry(screen,i.id)
 elseif f=="bonds"then
@@ -801,6 +821,8 @@ self:drawEquipCompare(screen,h.target,i and i.id)
 end
 elseif f=="bookMap"then
 self:drawBookMap(screen)
+elseif f=="bestiaryCard"then
+self:drawBestiaryCard(screen)
 elseif f=="slots"then
 self:drawSlots(screen,h.target,h.slot)
 elseif f=="status"then
@@ -815,35 +837,35 @@ self:drawDialog(screen)
 end
 end
 
-local D={save=true,options=true}
+local G={save=true,options=true}
 
 function c:menuCoversScreen()
-return not D[self.menu.screen]or self.dialog~=nil
+return not G[self.menu.screen]or self.dialog~=nil
 end
 
 function c:drawBookMap(screen)
-local z=self.artUi
-b.frame(screen,z,0,0,a.WIDTH,a.HEIGHT)
+local A=self.artUi
+b.frame(screen,A,0,0,a.WIDTH,a.HEIGHT)
 b.textCentre(screen,a.text("BookMap"),a.WIDTH/2,2)
 b.fill(screen,g.x-1,g.y-1,g.w+2,g.h+2,a.DARK)
 b.fill(screen,g.x,g.y,g.w,g.h,a.MID)
 local k=a.Field.prepare(a.Maps.murksea)
-local A=a.Field.wholeIslets(k,self.state)
-local w=self:art("minimap")
-local E=e.hasFlag(self.state,"q_carto")
-for H,f in ipairs(a.MurkSea.islets)do
+local B=a.Field.wholeIslets(k,self.state)
+local x=self:art("minimap")
+local H=e.hasFlag(self.state,"q_carto")
+for K,f in ipairs(a.MurkSea.islets)do
 local h,i=math.floor(f.x/g.step),math.floor(f.y/g.step)
-local x=math.floor((f.x+f.w-1)/g.step)-h+1
-local y=math.floor((f.y+f.h-1)/g.step)-i+1
-if A[f.id]then
-for F,G in ipairs(g.shades)do
-screen:sheet(w,h,(F-1)*g.h+i,x,y,g.x+h,g.y+i,1,G)
+local y=math.floor((f.x+f.w-1)/g.step)-h+1
+local z=math.floor((f.y+f.h-1)/g.step)-i+1
+if B[f.id]then
+for I,J in ipairs(g.shades)do
+screen:sheet(x,h,(I-1)*g.h+i,y,z,g.x+h,g.y+i,1,J)
 end
-elseif E then
-screen:sheet(w,h,(g.outline-1)*g.h+i,x,y,g.x+h,g.y+i,1,a.DARK)
+elseif H then
+screen:sheet(x,h,(g.outline-1)*g.h+i,y,z,g.x+h,g.y+i,1,a.DARK)
 end
 end
-for x,f in ipairs(k.objects)do
+for y,f in ipairs(k.objects)do
 if f.kind=="watchlight"and e.hasFlag(self.state,f.flag)then
 local h,i=g.x+math.floor((f.x+f.door)/g.step),g.y+math.floor((f.y+1)/g.step)
 b.fill(screen,h-2,i,5,1,a.INK)
@@ -867,7 +889,7 @@ end
 
 function c:drawBestiaryEntry(screen,enemyId)
 local h=self.state
-if not h.known[enemyId]then
+if not h.seen[enemyId]then
 local f=0
 for k,i in ipairs(a.Enemies.ORDER)do
 if h.seen[i]then
@@ -877,13 +899,10 @@ end
 self:drawPairLines(screen,{{a.text("BestiaryCount",f,#a.Enemies.ORDER)}})
 return
 end
-local f=a.Enemies.get(enemyId,e.enemyBonus(h))
-local i=f.weak and a.text("Weak_"..f.weak)
-local k=f.resist and a.text("Resist_"..f.resist)
-local w=f.drop and a.text("BestiaryDrop",a.text("Item_"..f.drop[1]))
-self:drawPairLines(screen,{{a.text("Level").." "..f.level,i},{w,k}})
-b.icon(screen,self.artUi,"heart",44,d.descY+6,{1,3})
-screen:number(f.hp,76,d.descY+6,self.artDigits,"right",0,a.INK)
+self:drawPairLines(screen,{
+{self:bestiaryElementText(enemyId,"weak"),self:bestiaryElementText(enemyId,"resist")},
+{self:bestiarySpoilText(enemyId,"drop"),a.text("BestiaryOpen")},
+})
 end
 
 function c:drawBondEntry(screen,duoId)
@@ -904,14 +923,16 @@ elseif itemId==false then
 local f={id=member.id,level=member.level,equip={weapon=member.equip.weapon,armor=member.equip.armor}}
 h=e.stats(f)
 end
-for w,f in ipairs(u)do
-local k=6+(w-1)*35
-b.pages(screen,self.artUi,{{text=a.text("Stat_"..f)}},k,d.descY+1,33,self.clock,a.DARK)
-local x=a.INK
+local x=self.artDigits:getWidth()/10
+for y,f in ipairs(q)do
+local k=v(y)
+b.pagesCentre(screen,a.text("Stat_"..f),k,d.descY+1,r-2,self.clock,a.DARK)
+local z=a.INK
 if h[f]~=i[f]then
-b.icon(screen,self.artUi,h[f]>i[f]and"arrowUp"or"arrowDown",k+24,d.descY+20,{1})
+local A=math.ceil(string.len(tostring(h[f]))*x/2)
+b.icon(screen,self.artUi,h[f]>i[f]and"arrowUp"or"arrowDown",k+A+1,d.descY+20,{1})
 end
-screen:number(h[f],k+22,d.descY+21,self.artDigits,"right",0,x)
+screen:number(h[f],k,d.descY+21,self.artDigits,"centre",0,z)
 end
 end
 
@@ -919,22 +940,22 @@ function c:drawSlots(screen,member,slotIndex)
 local h=self.artUi
 b.frame(screen,h,0,0,a.WIDTH,58)
 local i={}
-for x,k in ipairs(n)do
-local w=member.equip[k]
+for y,k in ipairs(n)do
+local x=member.equip[k]
 local f=a.text("Slot_"..k)..": "
-if w then
-f=f..a.text("Item_"..w)
+if x then
+f=f..a.text("Item_"..x)
 else
 f=f.."-"
 end
-i[x]={label=b.fit(screen,f,a.WIDTH-20)}
+i[y]={label=b.fit(screen,f,a.WIDTH-20)}
 end
 b.list(screen,h,i,2,4,a.WIDTH-4,3,slotIndex,1,self.clock,true)
-for w,x in ipairs(n)do
-local f=e.worn(member,x)
+for x,y in ipairs(n)do
+local f=e.worn(member,y)
 local k=f and b.gearIcon(f)
 if k then
-b.icon(screen,h,k,a.WIDTH-13,8+(w-1)*b.LINE,{1,2,3,4})
+b.icon(screen,h,k,a.WIDTH-13,8+(x-1)*b.LINE,{1,2,3,4})
 end
 end
 self:drawEquipCompare(screen,member,nil)
@@ -944,35 +965,34 @@ end
 
 function c:drawStatus(screen,member)
 local f=self.artUi
-local y=m.BY_ID[member.id]
+local z=m.BY_ID[member.id]
 local i=e.stats(member)
 b.frame(screen,f,0,0,a.WIDTH,a.HEIGHT)
 self:drawRegion(screen,self:art("walk_"..member.id),0,0,12,16,16,6,5,{1,2,3,4},0)
 b.text(screen,a.text("Name_"..member.id),22,2)
-b.text(screen,a.text("Class_"..y.class),22,17,a.DARK)
+b.text(screen,a.text("Class_"..z.class),22,17,a.DARK)
 b.textRight(screen,a.text("Level").." "..member.level,a.WIDTH-6,2)
-local w=m.toNext(member.level)-member.xp
+local x=m.toNext(member.level)-member.xp
 if member.level>=a.LEVEL_CAP then
-w=0
+x=0
 end
-b.textRight(screen,a.text("Next").." "..w,a.WIDTH-6,17,a.DARK)
+b.textRight(screen,a.text("Next").." "..x,a.WIDTH-6,17,a.DARK)
 b.icon(screen,f,"heart",6,37,{1,3})
 b.text(screen,member.hp.."/"..i.hp,18,32)
 b.icon(screen,f,"lampIcon",92,37,{1,2,3,4})
 b.text(screen,member.sp.."/"..i.sp,104,32)
-for z,h in ipairs(u)do
-local k=6+(z-1)*35
-local x=a.text("Stat_"..h)
-b.text(screen,x,k,46,a.DARK)
-screen:number(i[h],k+math.floor(screen:textWidth(x)/2),63,self.artDigits,"centre",0,a.INK)
+for y,h in ipairs(q)do
+local k=v(y)
+b.pagesCentre(screen,a.text("Stat_"..h),k,46,r-2,self.clock,a.DARK)
+screen:number(i[h],k,63,self.artDigits,"centre",0,a.INK)
 end
-for k,z in ipairs(n)do
-local h=member.equip[z]
-local A=h and a.text("Item_"..h)or"-"
-b.text(screen,b.fit(screen,A,a.WIDTH-24),6,70+(k-1)*15,k%2==0 and a.DARK or a.INK)
-local x=h and b.gearIcon(l.get(h))
-if x then
-b.icon(screen,f,x,a.WIDTH-16,74+(k-1)*15,{1,2,3,4})
+for k,A in ipairs(n)do
+local h=member.equip[A]
+local B=h and a.text("Item_"..h)or"-"
+b.text(screen,b.fit(screen,B,a.WIDTH-24),6,70+(k-1)*15,k%2==0 and a.DARK or a.INK)
+local y=h and b.gearIcon(l.get(h))
+if y then
+b.icon(screen,f,y,a.WIDTH-16,74+(k-1)*15,{1,2,3,4})
 end
 end
 b.icon(screen,f,"arrowLeft",2,a.HEIGHT-10,{1})
@@ -980,31 +1000,31 @@ b.icon(screen,f,"arrowRight",a.WIDTH-9,a.HEIGHT-10,{1})
 end
 
 function c:drawSlotList(screen,selected,focused,header)
-local w=self.artUi
-b.frame(screen,w,0,0,a.WIDTH,a.HEIGHT)
+local x=self.artUi
+b.frame(screen,x,0,0,a.WIDTH,a.HEIGHT)
 local k=self.save.slots
-local x,y,z=4,38,36
+local y,z,A=4,38,36
 if header then
-x,y,z=20,33,31
+y,z,A=20,33,31
 b.textCentre(screen,b.fit(screen,a.text(header),a.WIDTH-12),a.WIDTH/2,1)
 end
 for h=1,o.SLOTS do
-local f=x+(h-1)*y
+local f=y+(h-1)*z
 if h==selected then
-b.fill(screen,8,f,a.WIDTH-12,z,a.MID)
+b.fill(screen,8,f,a.WIDTH-12,A,a.MID)
 if focused then
-b.cursor(screen,w,2,f+11,self.clock)
+b.cursor(screen,x,2,f+11,self.clock)
 end
 end
 b.text(screen,a.text("Slot",h),12,f)
 local i=type(k)=="table"and k[h]and o.summary(k[h])
 if i then
-local A=a.text("Map_"..a.Maps[i.map].place)
+local B=a.text("Map_"..a.Maps[i.map].place)
 if i.cleared then
-A=a.text("SlotCleared")
+B=a.text("SlotCleared")
 end
-b.textRight(screen,v(i.time),a.WIDTH-6,f)
-b.text(screen,b.fit(screen,A,110),12,f+15,a.DARK)
+b.textRight(screen,w(i.time),a.WIDTH-6,f)
+b.text(screen,b.fit(screen,B,110),12,f+15,a.DARK)
 b.textRight(screen,a.text("Level").." "..i.level,a.WIDTH-6,f+15,a.DARK)
 else
 b.text(screen,a.text("EmptySlot"),12,f+15,a.DARK)
@@ -1016,30 +1036,30 @@ function c:drawSaveScreen(screen)
 local f=self.menu
 self:drawSlotList(screen,f.slotIndex,not f.confirm)
 if f.confirm then
-local w={{label=a.text("Yes")},{label=a.text("No")}}
+local x={{label=a.text("Yes")},{label=a.text("No")}}
 local i=a.text("Overwrite")
 local h=math.max(screen:textWidth(i)+12,70)
 local k=(a.WIDTH-h)/2
 b.frame(screen,self.artUi,k,30,h,58)
 b.textCentre(screen,i,a.WIDTH/2,33)
-b.list(screen,self.artUi,w,k+4,52,h-8,2,f.confirm,1,self.clock,true)
+b.list(screen,self.artUi,x,k+4,52,h-8,2,f.confirm,1,self.clock,true)
 end
 end
 
 function c:drawOptionsScreen(screen)
-local x=self.menu
+local y=self.menu
 local h=self.artUi
 b.frame(screen,h,0,20,a.WIDTH,70)
-local y={"music","effects"}
-for i,k in ipairs(y)do
+local z={"music","effects"}
+for i,k in ipairs(z)do
 local f=28+(i-1)*28
-if i==x.option then
+if i==y.option then
 b.cursor(screen,h,4,f+4,self.clock)
 end
 b.text(screen,a.text(k=="music"and"Music"or"Effects"),14,f)
-for w=1,r.MIX_STEPS do
-local z=w<=self.mix[k]and a.INK or a.MID
-b.fill(screen,96+(w-1)*8,f+4,6,8,z)
+for x=1,t.MIX_STEPS do
+local A=x<=self.mix[k]and a.INK or a.MID
+b.fill(screen,96+(x-1)*8,f+4,6,8,A)
 end
 end
 end

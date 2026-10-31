@@ -3,6 +3,26 @@ require"SpiffBoy/Core/Core"
 SpiffBoy.COMMAND_SAVE_HANDHELD="saveHandheld"
 SpiffBoy.COMMAND_EASE_MOOD="easeMood"
 SpiffBoy.COMMAND_CHIP="chip"
+SpiffBoy.COMMAND_CONSOLE_STATE="consoleState"
+SpiffBoy.COMMAND_CONSOLE_RESUME="consoleResume"
+SpiffBoy.COMMAND_CONSOLE_MOVED="consoleMoved"
+SpiffBoy.COMMAND_CONSOLE_GONE="consoleGone"
+SpiffBoy.COMMAND_CONSOLE_CHECK="consoleCheck"
+SpiffBoy.COMMAND_CONSOLE_LOST="consoleLost"
+SpiffBoy.COMMAND_CONSOLE_STARTED="consoleStarted"
+SpiffBoy.COMMAND_CONSOLE_STOPPED="consoleStopped"
+SpiffBoy.COMMAND_CONSOLE_CLAIM="consoleClaim"
+SpiffBoy.COMMAND_CONSOLE_OFF="consoleOff"
+SpiffBoy.COMMAND_CONSOLE_IDLE="consoleIdle"
+SpiffBoy.COMMAND_CONSOLE_VOLUME="consoleVolume"
+SpiffBoy.COMMAND_CONSOLE_RESEND="consoleResend"
+SpiffBoy.COMMAND_CONSOLE_RECEIVED="consoleReceived"
+SpiffBoy.COMMAND_CONSOLE_TAKEN="consoleTaken"
+SpiffBoy.COMMAND_CONSOLE_VERIFY="consoleVerify"
+SpiffBoy.COMMAND_CONSOLE_BUSY="consoleBusy"
+SpiffBoy.STATE_CHUNK=400
+SpiffBoy.STATE_MAX_CHUNKS=50
+SpiffBoy.VERIFY_TICKS=60
 SpiffBoy.CHIP_EVENT_ON="on"
 SpiffBoy.CHIP_EVENT_OFF="off"
 SpiffBoy.CHIP_EVENT_VOLUME="vol"
@@ -81,8 +101,8 @@ end,
 byte=function(value)
 return SpiffBoy.isInteger(value)and value>=0 and value<=SpiffBoy.BYTE_MAX
 end,
-count=function(value)
-return SpiffBoy.isInteger(value)and value>=0
+ticks=function(value)
+return SpiffBoy.isFinite(value)and value>=0
 end,
 flag=function(value)
 return type(value)=="boolean"
@@ -99,7 +119,7 @@ local k={
 [SpiffBoy.CHIP_EVENT_WRITE]={{"r","byte"},{"v","byte"}},
 [SpiffBoy.CHIP_EVENT_WAVE]={{"n","name"}},
 [SpiffBoy.CHIP_EVENT_MIX]={{"m","unit"},{"f","unit"}},
-[SpiffBoy.CHIP_EVENT_BEAT]={{"c","cartridge"},{"v","unit"},{"n","name",true},{"p","count"},{"m","unit"},{"f","unit"},{"z","flag"}},
+[SpiffBoy.CHIP_EVENT_BEAT]={{"c","cartridge"},{"v","unit"},{"n","name",true},{"p","ticks"},{"m","unit"},{"f","unit"},{"z","flag"}},
 [SpiffBoy.CHIP_EVENT_FREEZE]={},
 }
 

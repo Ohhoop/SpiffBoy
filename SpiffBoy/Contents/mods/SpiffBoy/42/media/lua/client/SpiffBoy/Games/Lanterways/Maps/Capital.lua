@@ -102,7 +102,6 @@ enter={
 warps={
 {x=0,y=17,to="murksea",tx=a.MurkSea.sites.capitalWest.x,ty=a.MurkSea.sites.capitalWest.y,dir="left"},
 {x=21,y=30,to="vault",tx=20,ty=29,dir="up",when={min=11}},
-{x=43,y=17,to="murksea",tx=a.MurkSea.sites.capitalEast.x,ty=a.MurkSea.sites.capitalEast.y,dir="up"},
 },
 }
 

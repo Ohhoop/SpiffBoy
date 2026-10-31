@@ -348,11 +348,7 @@ end
 
 function SpiffBoyRuntime:start(gameClass,context)
 self:setGame(nil)
-self.cartridgeId=context.definition and context.definition.id
-self.acting=false
-context.acting=function()
-return self.acting
-end
+self:attach(context)
 local b,a=pcall(gameClass.new,gameClass,self,context)
 if b then
 self:setGame(a)
@@ -360,6 +356,14 @@ return true
 end
 self:fail("init",gameClass.Type,a)
 return false
+end
+
+function SpiffBoyRuntime:attach(context)
+self.cartridgeId=context.definition and context.definition.id
+self.acting=false
+context.acting=function()
+return self.acting
+end
 end
 
 function SpiffBoyRuntime:guard(stage,method,...)
@@ -387,32 +391,52 @@ return a
 end
 
 function SpiffBoyRuntime:advance(inputs,paused,rate)
-local b=UIManager.getMillisSinceLastRender()
-self.frameMs=b
+local a=UIManager.getMillisSinceLastRender()
+self.frameMs=a
 self.ticksThisFrame=0
 if not self.game or paused or self.crash then
 return
 end
-local h=self.clock:advance(b,rate)
-local g=self.devices
-local j=self:viewsOf(inputs)
-for m=1,h do
+local b=self.clock:advance(a,rate)
+local g=self:viewsOf(inputs)
+for h=1,b do
+if not self:stepOnce(inputs,g)then
+return
+end
+self.ticksThisFrame=self.ticksThisFrame+1
+end
+end
+
+function SpiffBoyRuntime:stepOnce(inputs,views)
 self.tick=self.tick+1
 local a=inputs[1]
 if a then
 a:latch()
 end
 self.acting=a~=nil and a:anyPressed()
-local k=self:guard("tick",self.game.tick,j,self.tick)
+local g=self:guard("tick",self.game.tick,views,self.tick)
 self.acting=false
-if not k then
-return
+if not g then
+return false
 end
-for l=1,#g do
-g[l]:step()
+local b=self.devices
+for h=1,#b do
+b[h]:step()
 end
-self.ticksThisFrame=self.ticksThisFrame+1
+return true
 end
+
+function SpiffBoyRuntime:stepTicks(inputs,count)
+if not self.game or self.crash then
+return self.crash==nil
+end
+local a=self:viewsOf(inputs)
+for b=1,count do
+if not self:stepOnce(inputs,a)then
+return false
+end
+end
+return true
 end
 
 function SpiffBoyRuntime:draw()

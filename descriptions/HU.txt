@@ -37,7 +37,7 @@ Csatlakoztasd a SpiffBoy linkkábelt két konzol közé, és hívd ki egy barát
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Hangold a SpiffBoy konzolt a saját ízlésedre: a sandbox opciók döntik el, hogyan illik a világodba, a hangja által vonzott tömegtől a jókedvig, amit hoz, az irányítási beállításokban kiválaszthatod a gombjaidat, a mod opciói pedig azt alakítják, hogyan néz ki a képernyődön.
+Hangold a SpiffBoy konzolt a saját ízlésedre: a sandbox opciók döntik el, hogyan illik a világodba, a hangja által vonzott tömegtől a jókedvig, amit hoz, a billentyűidet a beállítások Billentyű parancsok részében, a SpiffBoy szakaszban találod, és kontrollerrel is ugyanolyan jól játszható, a mod opciói pedig azt alakítják, hogyan néz ki a képernyődön.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

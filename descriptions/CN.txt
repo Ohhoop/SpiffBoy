@@ -37,7 +37,7 @@ SpiffBoy 的设计力求像那个年代的掌机一样运作，连小细节也�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-随心调校你的 SpiffBoy：沙盒选项决定它如何融入你的世界，从它的声音招来的人群到它带来的好心情；按键设置让你选择自己的按键；模组选项则决定它在屏幕上的样子。
+随心调校你的 SpiffBoy：沙盒选项决定它如何融入你的世界，从它的声音招来的人群到它带来的好心情；键盘按键位于选项“按键设置”中的 SpiffBoy 分类，也可以用手柄畅玩；模组选项则决定它在屏幕上的样子。
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

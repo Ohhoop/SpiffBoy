@@ -1,5 +1,6 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Window"
+require"SpiffBoy/Games/Lanterways/Class"
 
 local b=SpiffBoyLanterwaysGame
 local a=SpiffBoy.Lanterways
@@ -13,12 +14,12 @@ local g={lampDark=0,lampLit=1,chestClosed=3,chestOpen=4,gate=5,bellpost=7,note=8
 local h={span=8,grid=16,frames=2,frameTicks=40,shades={3,4}}
 local i={w=48,h=24,frames=4,ticks=8,rise=34}
 local e={y=66,h=54,textX=7,textY=69,tagX=4,tagY=51,tagH=16}
-local D=110
+local A=110
 local E=5
 local F={1}
 local G={1,2}
 local H={1,4}
-local A={3,4}
+local B={3,4}
 local I={1,2,3}
 local J={2,3,4}
 local z={1,2,3,4}
@@ -56,11 +57,11 @@ for x=math.floor(math.max(0,k)/f),math.floor((k+a.HEIGHT-1)/f)do
 for y=math.floor(math.max(0,j)/q),math.floor((j+a.WIDTH-1)/q)do
 local r,s=y*q,x*f
 local t,u=math.max(0,j-r),math.max(0,k-s)
-local B=math.min(q-t,j+a.WIDTH-r-t)
-local C=math.min(f-u,k+a.HEIGHT-s-u)
-if B>0 and C>0 and r<p.width*c and s<p.height*c then
+local C=math.min(q-t,j+a.WIDTH-r-t)
+local D=math.min(f-u,k+a.HEIGHT-s-u)
+if C>0 and D>0 and r<p.width*c and s<p.height*c then
 local K=self:art(layer.."_"..l.id.."_"..y.."_"..x)
-self:drawRegion(screen,K,t,u,B,C,f,r+t-j,s+u-k,rows,darkness)
+self:drawRegion(screen,K,t,u,C,D,f,r+t-j,s+u-k,rows,darkness)
 end
 end
 end
@@ -80,8 +81,8 @@ local r=j.map
 local s,l=j.camera.x+self:shakeOffset(),j.camera.y
 local y=self:art("veil")
 local t=h.span*c
-local B=256/h.grid*c
-local C=math.floor(self.clock/h.frameTicks)%h.frames
+local C=256/h.grid*c
+local D=math.floor(self.clock/h.frameTicks)%h.frames
 local u=math.floor(s/c)
 for k=math.floor(l/c),math.floor((l+a.HEIGHT-1)/c)do
 for x=0,1 do
@@ -97,8 +98,8 @@ if f>0 then
 local q=(u+x*h.span)*c-s
 local K=k*c-l
 for L,M in ipairs(h.shades)do
-local N=C*#h.shades+L-1
-screen:sheet(y,f%h.grid*t,N*B+math.floor(f/h.grid)*c,t,c,q,K,1,self:darkShade(M,darkness))
+local N=D*#h.shades+L-1
+screen:sheet(y,f%h.grid*t,N*C+math.floor(f/h.grid)*c,t,c,q,K,1,self:darkShade(M,darkness))
 end
 end
 end
@@ -127,7 +128,7 @@ if f.kind=="watchlight"and m.hasFlag(self.state,f.flag)then
 local k=f.x*c+f.w*c/2-i.w/2-j.camera.x+self:shakeOffset()
 local l=f.y*c-i.rise-j.camera.y
 if k>-i.w and k<a.WIDTH and l>-i.h and l<a.HEIGHT then
-self:drawRegion(screen,self:art("beam"),p*i.w,0,i.w,i.h,i.h,k,l,A,darkness)
+self:drawRegion(screen,self:art("beam"),p*i.w,0,i.w,i.h,i.h,k,l,B,darkness)
 end
 end
 end
@@ -193,7 +194,7 @@ local k=f.gate
 if k then
 for q=k.y,k.y+k.h-1 do
 for r=k.x,k.x+k.w-1 do
-self:drawObject(screen,g.gate+(r+q+p)%2,r,q,darkness,A)
+self:drawObject(screen,g.gate+(r+q+p)%2,r,q,darkness,B)
 end
 end
 end
@@ -310,8 +311,12 @@ end
 function b:showBanner()
 local f=self.field.map
 if f.banner then
-self.banner={text=a.text("Map_"..f.banner),timer=D}
+self.banner={text=a.text("Map_"..f.banner),timer=A}
 end
+end
+
+function b:showIsletBanner(isletId)
+self.banner={text=a.text("Islet_"..isletId),timer=A}
 end
 
 local function r(line,count)

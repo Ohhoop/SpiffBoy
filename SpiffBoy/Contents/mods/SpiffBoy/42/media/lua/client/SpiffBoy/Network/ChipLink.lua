@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Sandbox"
 require"SpiffBoy/Core/Commands"
+require"SpiffBoy/Handheld/ConsoleLocator"
 
 SpiffBoyChipLink={}
 SpiffBoyChipLink.__index=SpiffBoyChipLink
@@ -12,9 +13,15 @@ local d=SpiffBoy.CHIP_MAX_EVENTS
 local c=1
 local m=5000
 
-function a.new(playerObj)
+function a.new(playerObj,consoleId)
 local b=setmetatable({},a)
 b.playerObj=playerObj
+b.consoleId=consoleId
+b.place=nil
+b.enclosures=0
+b.reach=0
+b.openReach=0
+b.openEnclosures=0
 b.networked=isClient()and SpiffBoy.Sandbox.othersHearConsole()
 b.tick=0
 b.events={}
@@ -27,6 +34,10 @@ b.private=false
 b.traceStartMs=0
 b.tracedBatches=0
 return b
+end
+
+function a:setPlayer(playerObj)
+self.playerObj=playerObj
 end
 
 function a:push(event)
@@ -56,8 +67,28 @@ self.tracedBatches=0
 end
 end
 
+function a:setPlace(place,enclosures)
+self.place=place
+self.enclosures=enclosures
+end
+
+function a:setEnclosures(enclosures)
+self.enclosures=enclosures
+end
+
+function a:setReach(reach)
+self.reach=reach
+end
+
+function a:setOpen(reach,enclosures)
+self.openReach=reach
+self.openEnclosures=enclosures
+end
+
 function a:send()
-sendClientCommand(self.playerObj,SpiffBoy.COMMAND_MODULE,SpiffBoy.COMMAND_CHIP,{t=self.tick,e=SpiffBoy.wireList(self.events)})
+local b={i=self.consoleId,t=self.tick,e=SpiffBoy.wireList(self.events),m=self.enclosures,r=self.reach,b=self.openReach,n=self.openEnclosures}
+SpiffBoy.ConsoleLocator.writePlace(b,self.place)
+sendClientCommand(self.playerObj,SpiffBoy.COMMAND_MODULE,SpiffBoy.COMMAND_CHIP,b)
 self.events={}
 self.lastSendMs=getTimestampMs()
 self:traceSend(self.lastSendMs)

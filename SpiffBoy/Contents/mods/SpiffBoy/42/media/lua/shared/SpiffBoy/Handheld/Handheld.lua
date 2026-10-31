@@ -16,19 +16,19 @@ c.HEADPHONES={
 ["Base.Earbuds"]={worn="SpiffBoy.EarbudsWorn",kind="earbuds"},
 }
 
-local e=SpiffBoy.MOD_DATA_KEY
+local d=SpiffBoy.MOD_DATA_KEY
 local j=0.0001
 
 function c.data(item)
 local a=item:getModData()
-if a[e]==nil then
-a[e]={}
+if a[d]==nil then
+a[d]={}
 end
-return a[e]
+return a[d]
 end
 
-local function d(console,field,kind)
-local a=console:getModData()[e]
+local function e(console,field,kind)
+local a=console:getModData()[d]
 local b=a and a[field]
 if type(b)~=kind then
 return nil
@@ -45,7 +45,7 @@ return item~=nil and item:getFullType()==SpiffBoy.BATTERY_ITEM
 end
 
 function c.getCartridge(console)
-local a=d(console,"cartridge","table")
+local a=e(console,"cartridge","table")
 if not a or type(a.type)~="string"then
 return nil
 end
@@ -58,11 +58,39 @@ c.refreshWeight(console)
 end
 
 function c.getBattery(console)
-return d(console,"battery","number")
+return e(console,"battery","number")
 end
 
 function c.setBattery(console,value)
 c.data(console).battery=value
+end
+
+function c.getHost(console)
+local a=nil
+local b=console:getWorldItem()
+local f=b and b:getModData()[d]
+if type(f)=="table"then
+a=f.host
+else
+a=e(console,"host","number")
+end
+if not SpiffBoy.isInteger(a)then
+return nil
+end
+return a
+end
+
+function c.setHost(console,onlineId)
+c.data(console).host=onlineId
+end
+
+function c.publishPlacedHost(console,onlineId)
+local a=console:getWorldItem()
+if not a then
+return
+end
+a:getModData()[d]={host=onlineId}
+a:transmitModData()
 end
 
 function c.isHeadphones(item)
@@ -70,7 +98,7 @@ return item~=nil and c.HEADPHONES[item:getFullType()]~=nil
 end
 
 function c.getHeadphones(console)
-local a=d(console,"headphones","string")
+local a=e(console,"headphones","string")
 if not a or not c.HEADPHONES[a]then
 return nil
 end
@@ -78,7 +106,7 @@ return a
 end
 
 function c.getHeadphonesName(console)
-return d(console,"headphonesName","string")
+return e(console,"headphonesName","string")
 end
 
 function c.setHeadphones(console,itemType,customName)
@@ -93,7 +121,7 @@ return item~=nil and item:getFullType()==SpiffBoy.CABLE_ITEM
 end
 
 function c.hasCable(console)
-return d(console,"cable","boolean")==true
+return e(console,"cable","boolean")==true
 end
 
 function c.setCable(console,plugged)
@@ -236,7 +264,7 @@ return character:getDescriptor():getForename()
 end
 
 function c.getVolume(console)
-return d(console,"volume","number")
+return e(console,"volume","number")
 end
 
 function c.setVolume(console,value)
@@ -259,7 +287,7 @@ end
 end
 
 function c.cartridgeSave(cartridge)
-return SpiffBoy.SaveData.fromStore(cartridge:getModData()[e])
+return SpiffBoy.SaveData.fromStore(cartridge:getModData()[d])
 end
 
 function c.setCartridgeSave(cartridge,save)

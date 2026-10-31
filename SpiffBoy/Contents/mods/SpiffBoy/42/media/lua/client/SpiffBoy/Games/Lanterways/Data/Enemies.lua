@@ -1,10 +1,10 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Data/Characters"
 
-local d=SpiffBoy.Lanterways
+local c=SpiffBoy.Lanterways
 
 local a={}
-d.Enemies=a
+c.Enemies=a
 
 a.SIZES={s={24,24},m={32,32},l={48,44},b={64,56}}
 a.LEVEL_CAP=99
@@ -77,8 +77,8 @@ a.ORDER={
 
 local function f(id,entry,bonus)
 local b=SpiffBoy.clamp(entry.level+bonus,1,a.LEVEL_CAP)
-local c=entry.boss or 1
-local e=math.floor((4+3*b+0.3*b*b)*(c>1 and a.BOSS_GOLD or 1))
+local d=entry.boss or 1
+local e=math.floor((4+3*b+0.3*b*b)*(d>1 and a.BOSS_GOLD or 1))
 if entry.gold then
 e=entry.gold
 elseif entry.beast then
@@ -88,13 +88,13 @@ return{
 id=id,
 level=b,
 size=entry.size,
-hp=math.floor((12+7*b+0.18*b*b)*(entry.hp or 1)*c),
+hp=math.floor((12+7*b+0.18*b*b)*(entry.hp or 1)*d),
 atk=math.floor((5+2.4*b)*(entry.atk or 1)),
 def=math.floor((2+1.5*b)*(entry.def or 1)),
 mag=math.floor((2+1.6*b)*(entry.mag or 1)),
 res=math.floor((2+1.3*b)*(entry.res or 1)),
 spd=math.floor((5+1.2*b)*(entry.spd or 1)),
-xp=math.floor(d.Characters.toNext(b)/10*(c>1 and 6 or 1)),
+xp=math.floor(c.Characters.toNext(b)/10*(d>1 and 6 or 1)),
 gold=e,
 acts=entry.acts,
 acts2=entry.acts2,
@@ -103,15 +103,15 @@ resist=entry.resist,
 drop=entry.drop,
 rare=entry.rare,
 parts=entry.parts,
-boss=c>1,
+boss=d>1,
 }
 end
 
 a.STATS={}
 
 function a.get(id,bonus)
-local c=a.LIST[id]
-if not c then
+local d=a.LIST[id]
+if not d then
 return nil
 end
 local b=a.STATS[bonus]
@@ -120,11 +120,31 @@ b={}
 a.STATS[bonus]=b
 end
 if not b[id]then
-b[id]=f(id,c,bonus)
+b[id]=f(id,d,bonus)
 end
 return b[id]
 end
 
 function a.indexOf(id)
-return d.indexOf(a.ORDER,id)
+return c.indexOf(a.ORDER,id)
+end
+
+a.TECHNIQUES={}
+
+function a.techniques(id)
+local b=a.TECHNIQUES[id]
+if b then
+return b
+end
+b={}
+local e=a.LIST[id]
+for h,g in ipairs({e.acts,e.acts2 or{}})do
+for i,d in ipairs(g)do
+if d[1]~="attack"and d[1]~="flee"and not c.indexOf(b,d[1])then
+b[#b+1]=d[1]
+end
+end
+end
+a.TECHNIQUES[id]=b
+return b
 end

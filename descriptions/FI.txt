@@ -37,7 +37,7 @@ Kytke SpiffBoy-linkkikaapeli kahden konsolin väliin ja haasta kaveri, kunhan h�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Säädä SpiffBoy mieleiseksesi: sandbox-asetukset päättävät, miten se sopii maailmaasi, sen äänen houkuttelemasta väkijoukosta sen tuomaan hyvään mielialaan, ohjausasetuksilla valitset omat painikkeesi, ja modin asetukset määräävät, miltä se näyttää näytölläsi.
+Säädä SpiffBoy mieleiseksesi: sandbox-asetukset päättävät, miten se sopii maailmaasi, sen äänen houkuttelemasta väkijoukosta sen tuomaan hyvään mielialaan, näppäimesi löydät asetusten kohdasta AVAINSITOJA, osiosta SpiffBoy, ja se toimii yhtä hyvin ohjaimella, ja modin asetukset määräävät, miltä se näyttää näytölläsi.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

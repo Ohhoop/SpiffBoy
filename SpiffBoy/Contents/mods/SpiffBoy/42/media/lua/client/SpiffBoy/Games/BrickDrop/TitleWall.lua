@@ -69,7 +69,7 @@ return f*q-h*r-i*s-j*t+self.random:float()*u
 end
 
 function a:spawn()
-local b=self.bag.draw()
+local b=self.bag:draw()
 local h=self.well
 local d,k,m,i=nil,nil,nil,nil
 for e=1,c.rotationCount(b)do

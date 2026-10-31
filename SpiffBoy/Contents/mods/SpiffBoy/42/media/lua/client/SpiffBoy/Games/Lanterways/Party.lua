@@ -14,6 +14,10 @@ a.SLOTS={"weapon","armor","charm"}
 a.RESERVE_SHARE=0.75
 a.GOLD_CAP=999999
 a.STATS={"hp","sp","atk","def","mag","res","spd"}
+a.STUDY_KILLS_CAP=5
+a.STUDY_KILLS={level=1,hp=3,leanings=5}
+
+local i={kills=0,acts={},parts={}}
 
 function a.newMember(id,level)
 local f=e.BY_ID[id]
@@ -30,16 +34,16 @@ return c
 end
 
 function a.stats(member)
-local i=e.BY_ID[member.id]
+local j=e.BY_ID[member.id]
 local c={}
 for g,f in ipairs(a.STATS)do
-c[f]=e.statAt(i,f,member.level)
+c[f]=e.statAt(j,f,member.level)
 end
-for k,j in ipairs(a.SLOTS)do
-local h=member.equip[j]
+for l,k in ipairs(a.SLOTS)do
+local h=member.equip[k]
 local g=h and d.get(h)
 if g then
-for l,f in ipairs(a.STATS)do
+for m,f in ipairs(a.STATS)do
 if g[f]then
 c[f]=c[f]+g[f]
 end
@@ -115,6 +119,7 @@ time=0,
 inn=nil,
 seen={},
 known={},
+study={},
 bonds={},
 ng=0,
 carry={},
@@ -129,6 +134,7 @@ c.gold=finished.gold
 c.items=finished.items
 c.seen=finished.seen
 c.known=finished.known
+c.study=finished.study
 c.bonds=finished.bonds
 for f,g in pairs(finished.members)do
 c.carry[f]=g
@@ -348,7 +354,7 @@ end
 
 function a.strengthenBonds(state)
 local f={}
-for i,c in ipairs(b.Skills.DUOS)do
+for j,c in ipairs(b.Skills.DUOS)do
 local g=b.Skills.get(c).duo
 if a.isActive(state,g[1])and a.isActive(state,g[2])then
 local h=a.duoReady(state,c)
@@ -386,4 +392,50 @@ end
 function a.markKnown(state,enemyId)
 state.seen[enemyId]=true
 state.known[enemyId]=true
+end
+
+local function c(state,enemyId)
+local f=state.study[enemyId]
+if not f then
+f={kills=0,acts={},parts={}}
+state.study[enemyId]=f
+end
+return f
+end
+
+function a.studied(state,enemyId)
+return state.study[enemyId]or i
+end
+
+function a.noteDefeat(state,enemyId)
+local f=c(state,enemyId)
+f.kills=math.min(a.STUDY_KILLS_CAP,f.kills+1)
+end
+
+function a.noteAct(state,enemyId,act)
+c(state,enemyId).acts[act]=true
+end
+
+function a.notePart(state,enemyId,kind)
+c(state,enemyId).parts[kind]=true
+end
+
+function a.noteFact(state,enemyId,fact)
+c(state,enemyId)[fact]=true
+end
+
+function a.knows(state,enemyId,fact,key)
+if state.known[enemyId]then
+return true
+end
+local f=a.studied(state,enemyId)
+local g=a.STUDY_KILLS[fact]
+if g then
+return f.kills>=g
+elseif fact=="act"then
+return f.acts[key]==true
+elseif fact=="part"then
+return f.parts[key]==true
+end
+return f[fact]==true
 end

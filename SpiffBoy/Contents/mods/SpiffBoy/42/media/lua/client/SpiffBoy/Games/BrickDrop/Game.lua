@@ -720,7 +720,7 @@ self.level=self.startLevel
 self.lines=0
 self.score=0
 self.piece={kind=1,rotation=1,x=Z,y=_}
-self.nextKind=self.bag.draw()
+self.nextKind=self.bag:draw()
 self.holdKind=nil
 self.holdUsed=false
 self.repeatTimer=0
@@ -735,7 +735,7 @@ self.sequencer:stop()
 self.sequencer:play(b.START)
 self:resetTrack(self.setup.music)
 self:spawn(self.nextKind)
-self.nextKind=self.bag.draw()
+self.nextKind=self.bag:draw()
 end
 
 function SpiffBoyBrickDropGame:linesLeft()
@@ -757,7 +757,7 @@ end
 
 function SpiffBoyBrickDropGame:spawnNext()
 self:spawn(self.nextKind)
-self.nextKind=self.bag.draw()
+self.nextKind=self.bag:draw()
 self.holdUsed=false
 end
 
@@ -770,7 +770,7 @@ if self.holdKind then
 self:spawn(self.holdKind)
 else
 self:spawn(self.nextKind)
-self.nextKind=self.bag.draw()
+self.nextKind=self.bag:draw()
 end
 self.holdKind=f
 self.holdUsed=true

@@ -32,7 +32,7 @@ c.queue(playerObj,console,{{action=SpiffBoyInsertBatteryAction,item=battery}})
 end
 
 local function o(playerObj,console)
-local a=SpiffBoyHandheldWindow.runningOn(console)
+local a=SpiffBoyConsoleInstance.runningOn(console)
 if a then
 a:persistHardware()
 end
@@ -66,19 +66,19 @@ end
 
 local function t(context,playerObj,console)
 local b=e(context,getText("UI_SpiffBoy_PlayHandheld"),playerObj,m,console)
-local a=SpiffBoyHandheldWindow.playability(console,playerObj:getPlayerNum())
+local a=SpiffBoyConsoleInstance.playability(console,playerObj:getPlayerNum())
 if a then
 l(b,"UI_SpiffBoy_"..a)
 end
 end
 
-local function u(window)
-window:turnOff()
+local function u(instance)
+instance:turnOff()
 end
 
 local function v(context,console)
 if SpiffBoy.ConsoleStatus.isSwitchedOn(console)then
-e(context,getText("ContextMenu_Turn_Off"),SpiffBoyHandheldWindow.runningOn(console),u)
+e(context,getText("ContextMenu_Turn_Off"),SpiffBoyConsoleInstance.runningOn(console),u)
 end
 end
 

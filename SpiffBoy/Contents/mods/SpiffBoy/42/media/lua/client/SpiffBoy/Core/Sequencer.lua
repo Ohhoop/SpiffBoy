@@ -11,9 +11,9 @@ local g=SpiffBoyChip
 local b=SpiffBoy.Tunes
 
 local h=1
-local k=0
-local l=0.25
-local m=0.75
+local l=0
+local m=0.25
+local n=0.75
 
 function a.new(chip,set)
 local c=setmetatable({},a)
@@ -112,15 +112,15 @@ self.chip:apply(c[1],c[2])
 self.channels[voice].note=nil
 end
 
-local function n(vibrato,frame)
+local function o(vibrato,frame)
 if not vibrato or frame<vibrato.delay then
 return 0
 end
 local c=((frame-vibrato.delay)%vibrato.speed)/vibrato.speed
 local d
-if c<l then
+if c<m then
 d=4*c
-elseif c<m then
+elseif c<n then
 d=2-4*c
 else
 d=4*c-4
@@ -143,10 +143,10 @@ end
 if d.from and f<c.portamento then
 e=math.floor(d.from+(e-d.from)*f/c.portamento+0.5)
 end
-e=SpiffBoy.clamp(e+n(c.vibrato,f),0,g.MAX_PERIOD)
+e=SpiffBoy.clamp(e+o(c.vibrato,f),0,g.MAX_PERIOD)
 if e~=d.period then
 d.period=e
-self:writePeriod(i,e,k)
+self:writePeriod(i,e,l)
 end
 end
 if#c.duties>1 then
@@ -264,11 +264,11 @@ return self.music.name,self.music.position
 end
 
 function a:applyDue(playback,owner,gain)
-local o=playback.position
+local k=playback.position
 for d,e in pairs(playback.tune.tracks)do
 local c=playback.indexes[d]
 local f=e.events
-while c<=e.n and f[c].t<=o do
+while c<=e.n and f[c].t<=k do
 local j=f[c]
 playback.last[d]=j
 if self.owners[d]==owner then
@@ -327,6 +327,99 @@ table.remove(e,d)
 else
 d=d+1
 end
+end
+end
+
+local function p(set)
+local c={}
+if not set then
+return c
+end
+for f,j in pairs(set.tunes)do
+for k,d in pairs(j.tracks)do
+for e=1,d.n do
+c[d.events[e]]={n=f,v=k,i=e}
+end
+end
+end
+return c
+end
+
+function a:eventAt(place)
+if not place then
+return nil
+end
+local d=self:tune(place.n)
+local c=d.tracks[place.v]
+return c and c.events[place.i]
+end
+
+local function f(playback,places)
+local c={}
+for d,e in pairs(playback.last)do
+c[d]=places[e]
+end
+local d={}
+for e,j in pairs(playback.indexes)do
+d[e]=j
+end
+return{name=playback.name,position=playback.position,indexes=d,last=c}
+end
+
+function a:playbackOf(data)
+local c={name=data.name,tune=self:tune(data.name),position=data.position,indexes={},last={}}
+for d,e in pairs(data.indexes)do
+c.indexes[d]=e
+end
+for d,e in pairs(data.last)do
+c.last[d]=self:eventAt(e)
+end
+return c
+end
+
+function a:snapshot()
+local e=p(self.set)
+local d={musicLevel=self.musicLevel,effectLevel=self.effectLevel,effects={},owners={},channels={}}
+if self.music then
+d.music=f(self.music,e)
+end
+local j={}
+for c,k in ipairs(self.effects)do
+d.effects[c]=f(k,e)
+j[k]=c
+end
+for c,k in pairs(self.owners)do
+d.owners[c]=j[k]
+end
+for k,c in pairs(self.channels)do
+d.channels[k]={note=e[c.note],frame=c.frame,period=c.period,from=c.from,duty=c.duty,code=c.code}
+end
+return d
+end
+
+function a:restoreSnapshot(data)
+self.musicLevel=data.musicLevel
+self.effectLevel=data.effectLevel
+self.music=nil
+if data.music then
+self.music=self:playbackOf(data.music)
+end
+self.effects={}
+for c,d in ipairs(data.effects)do
+self.effects[c]=self:playbackOf(d)
+end
+self.owners={}
+for c,d in pairs(data.owners)do
+self.owners[c]=self.effects[d]
+end
+for e,c in pairs(data.channels)do
+local d=self.channels[e]
+d.note=self:eventAt(c.note)
+d.frame=c.frame
+d.period=c.period
+d.from=c.from
+d.duty=c.duty
+d.code=c.code
 end
 end
 

@@ -37,7 +37,7 @@ Sluit de SpiffBoy-linkkabel aan tussen twee consoles en daag een vriend uit, zol
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Stel de SpiffBoy in naar jouw smaak: de sandbox-opties bepalen hoe hij in je wereld past, van de menigte die zijn geluid aantrekt tot het goede humeur dat hij brengt, met de besturingsinstellingen kies je je knoppen, en de modopties bepalen hoe hij er op je scherm uitziet.
+Stel de SpiffBoy in naar jouw smaak: de sandbox-opties bepalen hoe hij in je wereld past, van de menigte die zijn geluid aantrekt tot het goede humeur dat hij brengt, je toetsen vind je in de opties onder Toetsen configuratie, in de sectie SpiffBoy, en hij speelt net zo goed met een controller, en de modopties bepalen hoe hij er op je scherm uitziet.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

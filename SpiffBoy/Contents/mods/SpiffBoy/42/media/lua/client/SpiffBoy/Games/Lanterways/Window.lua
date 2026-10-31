@@ -136,7 +136,7 @@ a.icon(screen,ui,"arrowDown",x+w-8,y+visible*a.LINE-a.ICON_HEIGHTS.arrowDown,e)
 end
 end
 
-local function g(lines,perPage,clock)
+local function f(lines,perPage,clock)
 local c=math.max(1,math.ceil(#lines/perPage))
 return math.floor(clock/a.PAGE_TICKS)%c
 end
@@ -145,11 +145,11 @@ a.PAGE_TICKS=150
 
 function a.paragraph(screen,label,x,y,width,lines,clock,shade)
 local c=screen:wrapText(label,width)
-local h=g(c,lines,clock)*lines
+local h=f(c,lines,clock)*lines
 for d=1,lines do
-local f=c[h+d]
-if f then
-a.text(screen,f,x,y+(d-1)*a.LINE,shade)
+local g=c[h+d]
+if g then
+a.text(screen,g,x,y+(d-1)*a.LINE,shade)
 end
 end
 end
@@ -157,24 +157,32 @@ end
 function a.pages(screen,ui,pages,x,y,width,clock,shade)
 local d={}
 for i,c in ipairs(pages)do
-local f=width
+local g=width
 if c.icon then
-f=f-a.CELLS[c.icon][2]-2
+g=g-a.CELLS[c.icon][2]-2
 end
-for k,h in ipairs(screen:wrapText(c.text,f))do
+for k,h in ipairs(screen:wrapText(c.text,g))do
 d[#d+1]={text=h,icon=c.icon,shade=c.shade}
 end
 end
 if#d==0 then
 return
 end
-local c=d[g(d,1,clock)+1]
-local f=x
+local c=d[f(d,1,clock)+1]
+local g=x
 if c.icon then
 a.icon(screen,ui,c.icon,x,a.iconBeside(screen,c.icon,y),l)
-f=x+a.CELLS[c.icon][2]+2
+g=x+a.CELLS[c.icon][2]+2
 end
-a.text(screen,c.text,f,y,c.shade or shade)
+a.text(screen,c.text,g,y,c.shade or shade)
+end
+
+function a.pagesCentre(screen,label,centreX,y,width,clock,shade)
+local c=screen:wrapText(label,width)
+if#c==0 then
+return
+end
+a.textCentre(screen,c[f(c,1,clock)+1],centreX,y,shade)
 end
 
 function a.pair(screen,left,right,x,y,width,clock,leftShade,rightShade)

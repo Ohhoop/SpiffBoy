@@ -37,7 +37,7 @@ Cắm Cáp Kết Nối SpiffBoy giữa hai máy và thách đấu bạn bè, mi�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Tùy chỉnh SpiffBoy theo ý thích: các tùy chọn sandbox quyết định cách nó hòa vào thế giới của bạn, từ đám đông mà âm thanh của nó thu hút đến tâm trạng vui vẻ mà nó mang lại, phần cài đặt điều khiển cho phép bạn chọn nút, và các tùy chọn mod định hình vẻ ngoài của nó trên màn hình.
+Tùy chỉnh SpiffBoy theo ý thích: các tùy chọn sandbox quyết định cách nó hòa vào thế giới của bạn, từ đám đông mà âm thanh của nó thu hút đến tâm trạng vui vẻ mà nó mang lại, phím bàn phím nằm trong tùy chọn KEY BINDINGS, mục SpiffBoy, và chơi bằng tay cầm cũng tốt không kém, và các tùy chọn mod định hình vẻ ngoài của nó trên màn hình.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

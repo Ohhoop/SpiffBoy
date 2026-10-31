@@ -84,7 +84,7 @@ a.quest_wisp={
 {"say","wispchild","Wisp1"},
 {"say","pell","Wisp2"},
 {"say","wispchild","Wisp3"},
-{"walkoff","wispchild","tallowbyNorth"},
+{"walkoff","wispchild","tallowbyEast"},
 {"despawn","wispchild"},
 {"flag","q_wisp1"},
 {"refresh"},

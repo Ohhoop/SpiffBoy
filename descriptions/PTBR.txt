@@ -37,7 +37,7 @@ Conecte o Cabo link SpiffBoy entre dois consoles e desafie um amigo, desde que e
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Ajuste o SpiffBoy do seu jeito: as opções de sandbox decidem como ele se encaixa no seu mundo, da multidão que o som atrai ao bom humor que ele traz, as configurações de controles deixam você escolher seus botões, e as opções do mod definem como ele aparece na sua tela.
+Ajuste o SpiffBoy do seu jeito: as opções de sandbox decidem como ele se encaixa no seu mundo, da multidão que o som atrai ao bom humor que ele traz, suas teclas ficam nas opções, em ATRIBUIÇÃO DE TECLAS, seção SpiffBoy, e ele funciona tão bem no controle quanto no teclado, e as opções do mod definem como ele aparece na sua tela.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

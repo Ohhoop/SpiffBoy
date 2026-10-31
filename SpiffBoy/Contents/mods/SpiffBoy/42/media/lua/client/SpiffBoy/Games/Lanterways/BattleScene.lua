@@ -6,11 +6,11 @@ require"SpiffBoy/Games/Lanterways/Music"
 local a=SpiffBoy.Lanterways
 local q=a.Battle
 local g=a.Party
-local v=a.Skills
-local z=a.Items
-local G=a.Enemies
+local z=a.Skills
+local A=a.Items
+local I=a.Enemies
 local c=a.Window
-local A=a.Music
+local B=a.Music
 
 local e={}
 e.__index=e
@@ -27,22 +27,22 @@ digitW=4,digitH=6,partHalf=5,
 }
 local j={intro=50,announce=26,impact=46,message=70,fade=30,flee=40}
 local m={"attack","skill","item","guard","run"}
-local B=3
+local C=3
 local n=24
-local H={"hit","flame","heal","ring","murk","moth","dust","flash","buff"}
+local J={"hit","flame","heal","ring","murk","moth","dust","flash","buff"}
 local i=8
-local s,C=12,16
+local s,D=12,16
 local l={stand=9,attack=12,cast=13,hurt=14,down=15,victory=16}
-local D={{40,56},{22,42},{40,28},{22,14}}
+local E={{40,56},{22,42},{40,28},{22,14}}
 local o={1}
-local I={1,3}
+local K={1,3}
 local r={1,4}
-local J={3,4}
-local E={1,2,3}
-local K={1,2,4}
+local L={3,4}
+local F={1,2,3}
+local M={1,2,4}
 local t={2,3,4}
-local L={1,2,3,4}
-local M={{"blind","statusBlind"},{"sleep","statusSleep"},{"soot","statusSoot"},{"stun","statusStun"}}
+local G={1,2,3,4}
+local N={{"blind","statusBlind"},{"sleep","statusSleep"},{"soot","statusSoot"},{"stun","statusStun"}}
 
 function e.new(game,troop,options)
 local d=setmetatable({},e)
@@ -65,34 +65,34 @@ function e:layoutEnemies()
 local f=self.battle.enemies
 local h=0
 for p,d in ipairs(f)do
-local k=G.SIZES[d.enemy.size]
+local k=I.SIZES[d.enemy.size]
 d.w,d.h=k[1],k[2]
 h=h+k[1]
 end
 local u=b.enemyRight-b.enemyLeft
-local x=4
+local w=4
 local k=0
 if#f>1 then
-k=math.min(x,(u-h)/(#f-1))
+k=math.min(w,(u-h)/(#f-1))
 end
 local p=b.enemyLeft+math.max(0,(u-h-k*(#f-1))/2)
-for y,d in ipairs(f)do
-local w=0
-if#f>1 and y%2==0 then
-w=b.enemyBack
+for x,d in ipairs(f)do
+local v=0
+if#f>1 and x%2==0 then
+v=b.enemyBack
 end
 d.x=math.floor(p)
-d.y=b.enemyBase-d.h-w
+d.y=b.enemyBase-d.h-v
 p=p+d.w+k
 end
-for w,d in ipairs(self.battle.parts)do
+for v,d in ipairs(self.battle.parts)do
 d.x=d.owner.x+d.owner.w-d.offset.x-b.partHalf
 d.y=d.owner.y+d.offset.y-b.partHalf
 d.w,d.h=b.partHalf*2,b.partHalf*2
 end
-for w,d in ipairs(self.battle.party)do
-d.x,d.y=D[w][1],D[w][2]
-d.w,d.h=s,C
+for v,d in ipairs(self.battle.party)do
+d.x,d.y=E[v][1],E[v][2]
+d.w,d.h=s,D
 end
 end
 
@@ -100,12 +100,12 @@ function e:say(text)
 self.message=text
 end
 
-local function F(fighter)
+local function H(fighter)
 return fighter.x+fighter.w/2,fighter.y+fighter.h/2
 end
 
 function e:popup(fighter,kind,value,delay)
-local d,f=F(fighter)
+local d,f=H(fighter)
 self.popups[#self.popups+1]={x=d,y=f-4,kind=kind,value=value,timer=j.impact,delay=delay or 0}
 end
 
@@ -139,7 +139,7 @@ if d.spGained then
 self:popup(f,"heal",d.spGained,k)
 end
 if d.statuses then
-for w,p in ipairs(d.statuses)do
+for v,p in ipairs(d.statuses)do
 self:popup(f,"status",p,k+8)
 end
 if#d.statuses>0 then
@@ -249,7 +249,7 @@ if k.bright or k.duo then
 self.game:effect("bright")
 end
 elseif d.kind=="item"then
-local k=z.get(d.item)
+local k=A.get(d.item)
 if k.effect=="escape"then
 self:flee()
 return
@@ -261,9 +261,9 @@ if k.effect=="damage"then
 p=k.element=="flame"and"flame"or"ring"
 end
 end
-local w=h:useItem(f,d.item,d.target)
-self:showOutcomes(w,p)
-self:tellOutcomes(f,w)
+local v=h:useItem(f,d.item,d.target)
+self:showOutcomes(v,p)
+self:tellOutcomes(f,v)
 elseif d.kind=="guard"then
 f.guarding=true
 u=0.6
@@ -326,7 +326,7 @@ elseif d=="lose"then
 self.battle:syncParty()
 self.phase="defeat"
 self:say(a.text("BattleDefeat"))
-self.game:playJingle(A.DEFEAT)
+self.game:playJingle(B.DEFEAT)
 self.timer=j.message*2
 else
 self:nextTurn()
@@ -334,18 +334,19 @@ end
 end
 
 function e:victory()
-local w=self.battle
+local u=self.battle
 local f=self.game.state
-w:syncParty()
-local N=g.strengthenBonds(f)
-local p,u,O=w:spoils()
-g.addGold(f,u)
-local d={a.text("BattleWin"),a.text("BattleSpoils",p,u)}
-for x,h in ipairs(N)do
+u:syncParty()
+local O=g.strengthenBonds(f)
+local p,v,w=u:spoils()
+u:noteVictory(w)
+g.addGold(f,v)
+local d={a.text("BattleWin"),a.text("BattleSpoils",p,v)}
+for x,h in ipairs(O)do
 local k=a.Skills.get(h).duo[2]
 d[#d+1]=a.text("DuoReadyLine",a.text("Name_"..k),a.text("DuoReady_"..h))
 end
-for k,h in ipairs(O)do
+for k,h in ipairs(w)do
 g.addItem(f,h,1)
 d[#d+1]=a.text("BattleFound",a.text("Item_"..h))
 end
@@ -377,8 +378,8 @@ self.lineIndex=1
 self:say(d[1])
 self.phase="victory"
 self.timer=20
-self.game:playJingle(A.VICTORY)
-a.trace("battle won: "..p.." xp, "..u.." glints")
+self.game:playJingle(B.VICTORY)
+a.trace("battle won: "..p.." xp, "..v.." glints")
 end
 
 function e.skillLabel(skill)
@@ -397,10 +398,10 @@ local h=f:brightOf(fighter)
 d[#d+1]={id=h.id,skill=h,label=e.skillLabel(h),right=a.text("Bright")}
 end
 for k,h in ipairs(f:duosOf(fighter))do
-d[#d+1]={id=h.id,skill=h,label=e.skillLabel(h),right=a.text("Duo"),disabled=self.game.state.glow<v.DUO_GLOW}
+d[#d+1]={id=h.id,skill=h,label=e.skillLabel(h),right=a.text("Duo"),disabled=self.game.state.glow<z.DUO_GLOW}
 end
 for p,h in ipairs(g.skills(self.game.state,fighter.member))do
-local k=v.get(h)
+local k=z.get(h)
 d[#d+1]={id=h,skill=k,label=a.text("Skill_"..h),right=tostring(k.cost),disabled=k.cost>fighter.sp}
 end
 return d
@@ -495,13 +496,13 @@ local p=d.rows[d.list]
 if p.disabled then
 f:effect("buzz")
 elseif d.mode=="skill"then
-local w=p.skill
+local v=p.skill
 f:effect("confirm")
-self:chooseTarget({kind="skill",skill=w},w.target)
+self:chooseTarget({kind="skill",skill=v},v.target)
 else
-local w=z.get(p.id)
+local v=A.get(p.id)
 f:effect("confirm")
-self:chooseTarget({kind="item",item=p.id},w.target)
+self:chooseTarget({kind="item",item=p.id},v.target)
 end
 end
 elseif d.mode=="target"then
@@ -635,7 +636,7 @@ local d=fighter.x
 if fighter.acting then
 d=d-b.enemyLunge
 end
-screen:layers(self.game:art(f),0,fighter.w,fighter.h,d,fighter.y,L)
+screen:layers(self.game:art(f),0,fighter.w,fighter.h,d,fighter.y,G)
 end
 
 function e:drawMember(screen,fighter)
@@ -657,12 +658,16 @@ elseif self.phase=="command"and self.actor==fighter then
 f=f+b.stepForward
 d=l.stand+(math.floor(self.clock/16)%2)
 end
-local p=self.game:art("walk_"..fighter.id)
-screen:layers(p,d*s,s,C,f,fighter.y,E)
+local v=self.game:art("walk_"..fighter.id)
+local k=G
+if a.Characters.BY_ID[fighter.id].ghost then
+k=F
+end
+screen:layers(v,d*s,s,D,f,fighter.y,k)
 local h=f
-for w,k in ipairs(M)do
-if fighter.statuses[k[1]]then
-c.icon(screen,self.game.artUi,k[2],h,fighter.y-7,o)
+for w,p in ipairs(N)do
+if fighter.statuses[p[1]]then
+c.icon(screen,self.game.artUi,p[2],h,fighter.y-7,o)
 h=h+7
 end
 end
@@ -684,9 +689,9 @@ c.fill(screen,b.rowX-1,d-1,b.divideX-b.rowX-1,b.rowH,a.MID)
 end
 c.fill(screen,b.rowX,d-1,i,i,a.INK)
 screen:layers(self.game.artHeads,(a.Characters.BY_ID[f.id].index-1)*i,i,i-1,b.rowX,d-1,t)
-c.icon(screen,h,"heartSmall",b.healthX,d,I)
+c.icon(screen,h,"heartSmall",b.healthX,d,K)
 self:drawFraction(screen,f.hp,f.maxHp,b.healthSlash,d)
-c.icon(screen,h,"lampSmall",b.pointsX,d,E)
+c.icon(screen,h,"lampSmall",b.pointsX,d,F)
 self:drawFraction(screen,f.sp,f.maxSp,b.pointsSlash,d)
 end
 c.fill(screen,b.divideX,b.panelY+3,1,b.panelH-6,a.DARK)
@@ -697,10 +702,10 @@ local d=fighter.fx
 if not d or d.delay>0 then
 return
 end
-local f=a.indexOf(H,d.name)or 1
-local h=math.min(B-1,math.floor((18-d.timer)/6))
-local k,p=F(fighter)
-screen:layers(self.game.artFx,((f-1)*B+h)*n,n,n,k-n/2,p-n/2,r)
+local f=a.indexOf(J,d.name)or 1
+local h=math.min(C-1,math.floor((18-d.timer)/6))
+local k,p=H(fighter)
+screen:layers(self.game.artFx,((f-1)*C+h)*n,n,n,k-n/2,p-n/2,r)
 end
 
 function e:drawPopups(screen)
@@ -752,7 +757,7 @@ end
 if not g.glowKnown(self.game.state)then
 return
 end
-c.icon(screen,self.game.artUi,"glow",b.glowX-11,b.glowY-2,J)
+c.icon(screen,self.game.artUi,"glow",b.glowX-11,b.glowY-2,L)
 u(screen,b.glowX,b.glowY,b.glowW,5,self.game.state.glow/q.GLOW_MAX)
 if self.game.state.glow>=q.GLOW_MAX and math.floor(self.clock/10)%2==0 then
 c.fill(screen,b.glowX+1,b.glowY+1,b.glowW-2,3,a.MID)
@@ -779,7 +784,7 @@ local k=b.iconX+(f-1)*b.iconStep
 if f==d.command then
 c.fill(screen,k-1,b.iconY-1,b.iconStep,b.iconStep,a.MID)
 end
-c.icon(screen,h,p,k,b.iconY,K)
+c.icon(screen,h,p,k,b.iconY,M)
 end
 local f=self.message or a.text("Command"..string.upper(string.sub(m[d.command],1,1))..string.sub(m[d.command],2))
 c.text(screen,c.fit(screen,f,b.sideW),b.labelX,b.labelY)

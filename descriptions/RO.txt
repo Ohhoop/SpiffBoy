@@ -37,7 +37,7 @@ Conectează Cablul link SpiffBoy între două console și provoacă un prieten, 
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Reglează SpiffBoy după gustul tău: opțiunile sandbox decid cum se potrivește în lumea ta, de la mulțimea pe care o atrage sunetul lui până la buna dispoziție pe care o aduce, setările de control te lasă să-ți alegi butoanele, iar opțiunile modului stabilesc cum arată pe ecranul tău.
+Reglează SpiffBoy după gustul tău: opțiunile sandbox decid cum se potrivește în lumea ta, de la mulțimea pe care o atrage sunetul lui până la buna dispoziție pe care o aduce, tastele le găsești în opțiuni, la CONFIGURARE BUTOANE, secțiunea SpiffBoy, și se joacă la fel de bine cu un controller, iar opțiunile modului stabilesc cum arată pe ecranul tău.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

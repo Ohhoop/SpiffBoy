@@ -74,7 +74,6 @@ npcs={
 }},
 },
 warps={
-{x=0,y=14,to="murksea",tx=a.MurkSea.sites.wickWest.x,ty=a.MurkSea.sites.wickWest.y,dir="left"},
 {x=32,y=1,to="caves",tx=20,ty=28,dir="up",when={min=5}},
 {x=20,y=27,to="murksea",tx=a.MurkSea.sites.wickSouth.x,ty=a.MurkSea.sites.wickSouth.y,dir="down"},
 },

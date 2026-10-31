@@ -29,7 +29,7 @@ encounters={rate=14,troops={
 {"palehound","glarewisp"},{"lostwarden"},{"driftmaw","palehound"},{"glarewisp","glarewisp"},
 },rares={{"gildedmite"}}},
 warps={
-{x=0,y=7,to="murksea",tx=a.MurkSea.sites.sunkenBack.x,ty=a.MurkSea.sites.sunkenBack.y,dir="down"},
+{x=4,y=13,to="murksea",tx=a.MurkSea.sites.sunkenBack.x,ty=a.MurkSea.sites.sunkenBack.y,dir="down"},
 },
 }
 
@@ -76,7 +76,7 @@ encounters={rate=14,troops={
 {"driftmaw","shoal"},{"tidecrab","driftmaw"},{"gullwraith","gullwraith","shoal"},
 },rares={{"gildedmite"},{"lostwarden"}}},
 warps={
-{x=14,y=0,to="murksea",tx=a.MurkSea.sites.surveyBack.x,ty=a.MurkSea.sites.surveyBack.y,dir="left"},
+{x=14,y=0,to="murksea",tx=a.MurkSea.sites.surveyBack.x,ty=a.MurkSea.sites.surveyBack.y,dir="up"},
 },
 }
 
@@ -202,11 +202,11 @@ objects={
 {kind="house",x=4,y=4,w=5,h=4,door=2,style="thatch"},
 {kind="house",x=18,y=4,w=6,h=4,door=3,style="timber"},
 {kind="house",x=4,y=13,w=5,h=4,door=2,style="thatch"},
-{kind="signpost",x=3,y=9,w=1,h=1},
+{kind="signpost",x=13,y=18,w=1,h=1},
 },
 lamps={{x=13,y=9},{x=15,y=11}},
 signs={
-{x=3,y=9,text="SignFarrow"},
+{x=13,y=18,text="SignFarrow"},
 },
 bellpost={x=8,y=11,when={flag="bellposts"}},
 npcs={
@@ -221,6 +221,6 @@ npcs={
 }},
 },
 warps={
-{x=0,y=10,to="murksea",tx=a.MurkSea.sites.farrowBack.x,ty=a.MurkSea.sites.farrowBack.y,dir="left"},
+{x=14,y=21,to="murksea",tx=a.MurkSea.sites.farrowBack.x,ty=a.MurkSea.sites.farrowBack.y,dir="down"},
 },
 }

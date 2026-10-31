@@ -91,7 +91,6 @@ enter={
 },
 warps={
 {x=0,y=20,to="murksea",tx=a.MurkSea.sites.brassWest.x,ty=a.MurkSea.sites.brassWest.y,dir="left"},
-{x=43,y=12,to="murksea",tx=a.MurkSea.sites.brassEast.x,ty=a.MurkSea.sites.brassEast.y,dir="right"},
 },
 }
 

@@ -37,7 +37,7 @@ SpiffBoy bağlantı kablosunu iki konsol arasına takın ve yakınınızda kald�
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-SpiffBoy'u zevkinize göre ayarlayın: sandbox seçenekleri, sesinin topladığı kalabalıktan getirdiği keyfe kadar onun dünyanıza nasıl uyacağını belirler, kontrol ayarları tuşlarınızı seçmenizi sağlar ve mod seçenekleri ekranınızda nasıl görüneceğini şekillendirir.
+SpiffBoy'u zevkinize göre ayarlayın: sandbox seçenekleri, sesinin topladığı kalabalıktan getirdiği keyfe kadar onun dünyanıza nasıl uyacağını belirler, klavye tuşlarınızı ayarlardaki TUŞ AYARLARI bölümünde, SpiffBoy kısmında bulursunuz ve oyun kumandasıyla da aynı rahatlıkta oynanır ve mod seçenekleri ekranınızda nasıl görüneceğini şekillendirir.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

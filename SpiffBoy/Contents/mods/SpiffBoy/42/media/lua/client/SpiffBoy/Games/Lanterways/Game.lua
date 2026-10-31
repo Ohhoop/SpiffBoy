@@ -21,16 +21,19 @@ require"SpiffBoy/Games/Lanterways/Battle"
 require"SpiffBoy/Games/Lanterways/BattleScene"
 require"SpiffBoy/Games/Lanterways/Window"
 require"SpiffBoy/Games/Lanterways/Music"
-
-SpiffBoyLanterwaysGame=SpiffBoyGameBase:derive("SpiffBoyLanterwaysGame")
+require"SpiffBoy/Games/Lanterways/Class"
 
 local a=SpiffBoyLanterwaysGame
 local b=SpiffBoy.Lanterways
 local d=b.Party
-local n=b.Field
+local l=b.Field
 local i=b.Script
 local e=b.Music
-local o=b.SaveGame
+local p=b.SaveGame
+
+for f,c in pairs(b.Maps)do
+l.prepare(c)
+end
 
 a.MODE_TITLE="title"
 a.MODE_FIELD="field"
@@ -42,7 +45,7 @@ a.MODE_ENDING="ending"
 a.MODE_CARD="card"
 
 local h={fade=20,swirl=42,typeSpeed=2,emote=40}
-local l=SpiffBoy.TICK_RATE
+local m=SpiffBoy.TICK_RATE
 local j={width=168,lines=3}
 
 function a:init()
@@ -139,10 +142,10 @@ end
 self:tickFade()
 local f=self.mode
 if f==a.MODE_FIELD then
-self.state.time=self.state.time+1/l
+self.state.time=self.state.time+1/m
 self:tickField(c)
 elseif f==a.MODE_BATTLE then
-self.state.time=self.state.time+1/l
+self.state.time=self.state.time+1/m
 self:tickBattleMode(c)
 elseif f==a.MODE_MENU then
 self:tickMenu(c)
@@ -207,14 +210,14 @@ self.state.x,self.state.y,self.state.dir=c.x,c.y,c.dir
 if type(self.save.slots)~="table"then
 self.save.slots={}
 end
-self.save.slots[slot]=o.encode(self.state)
+self.save.slots[slot]=p.encode(self.state)
 self:persist()
 self.slot=slot
 b.trace("journey saved in slot "..slot.." at step "..self.state.step.." on "..self.state.map)
 end
 
 function a:enterField(mapId,x,y,dir)
-self.field=n.new(self,mapId,x,y,dir)
+self.field=l.new(self,mapId,x,y,dir)
 self.state.map=mapId
 self.mode=a.MODE_FIELD
 self.dialog=nil
@@ -296,8 +299,8 @@ local c=self.screen:wrapText(text,j.width)
 local f={}
 for k=1,#c,j.lines do
 local g={}
-for m=k,math.min(#c,k+j.lines-1)do
-g[#g+1]=c[m]
+for n=k,math.min(#c,k+j.lines-1)do
+g[#g+1]=c[n]
 end
 f[#f+1]=g
 end
@@ -350,7 +353,7 @@ function a:tickDialog(input)
 local c=self.dialog
 local g=c.pages[c.page]
 local f=0
-for m,k in ipairs(g or{})do
+for n,k in ipairs(g or{})do
 f=f+string.len(k)
 end
 if c.shown<f then
@@ -466,8 +469,8 @@ end
 
 function a:tickPlayer(input)
 local g=self.field
-local m=g.player
-if m.moving then
+local n=g.player
+if n.moving then
 local c=g:advanceActors()
 if c then
 self:arrived()
@@ -505,12 +508,12 @@ end
 end
 
 function a:arrived()
-local g=self.field
-local f=g.player
-local c=g:warpAt(f.x,f.y)
+local f=self.field
+local g=f.player
+local c=f:warpAt(g.x,g.y)
 if c then
 if c.to=="@inn"then
-self.state.inn={map=g.id,x=f.x,y=f.y+1}
+self.state.inn={map=f.id,x=g.x,y=g.y+1}
 self.innPrice=c.price
 self:warp("inn",4,6,"up")
 elseif c.to=="@back"then
@@ -521,14 +524,18 @@ self:warp(c.to,c.tx,c.ty,c.dir)
 end
 return
 end
-local k=g:eventAt(f.x,f.y)
-if k then
-self:runScene(k.script)
+local k=f:reachedIslet()
+if k and f.map.namedIslets[k.id]then
+self:showIsletBanner(k.id)
+end
+local n=f:eventAt(g.x,g.y)
+if n then
+self:runScene(n.script)
 return
 end
-local m=g:countStep()
-if m then
-self:startBattle(m,{})
+local o=f:countStep()
+if o then
+self:startBattle(o,{})
 end
 end
 
@@ -537,8 +544,8 @@ local g=self.field
 local f,c=g:interactionAhead()
 if f=="npc"then
 local k=c.definition
-local m=g.player
-c.dir=({2,1,4,3})[m.dir]
+local n=g.player
+c.dir=({2,1,4,3})[n.dir]
 if k then
 self:talkTo(k)
 end
@@ -672,5 +679,6 @@ end
 
 require"SpiffBoy/Games/Lanterways/View"
 require"SpiffBoy/Games/Lanterways/Menu"
+require"SpiffBoy/Games/Lanterways/Bestiary"
 require"SpiffBoy/Games/Lanterways/Shop"
 require"SpiffBoy/Games/Lanterways/Title"

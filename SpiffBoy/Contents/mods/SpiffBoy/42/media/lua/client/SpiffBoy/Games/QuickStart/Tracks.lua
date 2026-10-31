@@ -2,13 +2,13 @@ require"SpiffBoy/Games/QuickStart/Base"
 require"SpiffBoy/Games/QuickStart/Maps/Circuits"
 require"SpiffBoy/Games/QuickStart/Art"
 
-local n=SpiffBoy.QuickStart
+local j=SpiffBoy.QuickStart
 
 local a={}
-n.Tracks=a
+j.Tracks=a
 
-local k=n.TILE
-local l=string.byte
+local l=j.TILE
+local m=string.byte
 local b=math.floor
 
 a.ROAD="road"
@@ -30,20 +30,20 @@ a.STRIPES=-2
 local g=a.CHECKER
 local d=a.STRIPES
 
-local j,q,v,w,r,z,A=a.ROAD,a.OFFROAD,a.MUD,a.WATER,a.WALL,a.BOOST,a.RAMP
+local k,q,v,w,r,z,A=a.ROAD,a.OFFROAD,a.MUD,a.WATER,a.WALL,a.BOOST,a.RAMP
 
 local function e(clear,sky,shades,surfaces)
 local c,f={},{}
 for h,i in pairs(shades)do
-c[l(h)]=i
+c[m(h)]=i
 end
 for h,i in pairs(surfaces)do
-f[l(h)]=i
+f[m(h)]=i
 end
-return{clear=l(clear),sky=sky,shades=c,surfaces=f}
+return{clear=m(clear),sky=sky,shades=c,surfaces=f}
 end
 
-local B={["#"]=j,c=j,k=j,f=j,w=j,s=j,b=z,r=A,o=v,["~"]=w,["="]=r,["."]=q}
+local B={["#"]=k,c=k,k=k,f=k,w=k,s=k,b=z,r=A,o=v,["~"]=w,["="]=r,["."]=q}
 
 local function f(changes)
 local c={}
@@ -145,21 +145,21 @@ dumpster={art="dumpster",radius=5},
 local function C(objects,extent)
 local i=a.DECOR_CELL
 local c=math.ceil(extent/i)
-local m={}
+local n={}
 for h=1,c*c do
-m[h]={}
+n[h]={}
 end
 for x,h in ipairs(objects)do
 if a.DECOR[h.kind]then
 local o="decor_"..h.kind
-local s={art=o,entry=n.Atlas[o],x=h.x,y=h.y}
+local s={art=o,entry=j.Atlas[o],x=h.x,y=h.y}
 local t=math.min(c-1,math.max(0,b(h.x/i)))
 local u=math.min(c-1,math.max(0,b(h.y/i)))
-local p=m[u*c+t+1]
+local p=n[u*c+t+1]
 p[#p+1]=s
 end
 end
-return m,c
+return n,c
 end
 
 local function D(objects,extent)
@@ -170,10 +170,10 @@ for c=1,h*h do
 p[c]={}
 end
 for H,c in ipairs(objects)do
-local m=a.DECOR[c.kind]
-if m and m.radius>0 then
-local t={x=c.x*a.UNIT,y=c.y*a.UNIT,radius=m.radius*a.UNIT}
-local o=m.radius+a.SOLID_MARGIN+1
+local n=a.DECOR[c.kind]
+if n and n.radius>0 then
+local t={x=c.x*a.UNIT,y=c.y*a.UNIT,radius=n.radius*a.UNIT}
+local o=n.radius+a.SOLID_MARGIN+1
 local u,x=math.max(0,b((c.x-o)/i)),math.min(h-1,b((c.x+o)/i))
 local y,E=math.max(0,b((c.y-o)/i)),math.min(h-1,b((c.y+o)/i))
 for F=y,E do
@@ -188,8 +188,8 @@ return p,h
 end
 
 function a.solidsNear(track,x,y)
-local m=a.SOLID_CELL*a.UNIT
-local c,h=b(x/m),b(y/m)
+local n=a.SOLID_CELL*a.UNIT
+local c,h=b(x/n),b(y/n)
 local i=track.solidCount
 if c<0 or h<0 or c>=i or h>=i then
 return track.noSolids
@@ -201,23 +201,23 @@ local function E(row,cells,base,size,mirrored,id)
 local c=0
 local i,p=1,#row
 while i<=p do
-local s=l(row,i)
+local s=m(row,i)
 local h=i+1
-local m=0
+local n=0
 while h<=p do
-local o=l(row,h)-48
+local o=m(row,h)-48
 if o<0 or o>9 then
 break
 end
-m=m*10+o
+n=n*10+o
 h=h+1
 end
-for t=1,m do
+for t=1,n do
 local o=c+t-1
 local u=mirrored and(size-1-o)or o
 cells[base+u+1]=s
 end
-c=c+m
+c=c+n
 i=h
 end
 if c~=size then
@@ -241,8 +241,8 @@ end
 return h
 end
 
-function a.load(id,mirrored)
-local c=n.Maps[id]
+local function G(id,mirrored)
+local c=j.Maps[id]
 if not c then
 error("QuickStart: no map named "..tostring(id))
 end
@@ -251,32 +251,55 @@ local s={}
 for h=1,i do
 E(c.rows[h],s,(h-1)*i,i,mirrored,id)
 end
-local h=i*k
+local h=i*l
 local p={}
-for t,m in ipairs(c.objects)do
-p[t]={kind=m[1],x=mirrored and(h-m[2])or m[2],y=m[3]}
+for t,n in ipairs(c.objects)do
+p[t]={kind=n[1],x=mirrored and(h-n[2])or n[2],y=n[3]}
 end
-local m=a.STYLES[c.style]
-if not m then
+local n=a.STYLES[c.style]
+if not n then
 error("QuickStart: map "..id.." has no style "..tostring(c.style))
 end
 local x,y=C(p,h)
-local G,H=D(p,h)
+local H,I=D(p,h)
 local t={}
-local I=m.shades[m.clear]
+local J=n.shades[n.clear]
 for u=1,i*i do
-t[u]=m.shades[s[u]]or I
+t[u]=n.shades[s[u]]or J
 end
 return{
-id=id,kind=c.kind,mirrored=mirrored,size=i,extent=h,cells=s,style=m,shadeGrid=t,
-decorCells=x,decorCount=y,solidCells=G,solidCount=H,noSolids={},
+id=id,kind=c.kind,mirrored=mirrored,size=i,extent=h,cells=s,style=n,shadeGrid=t,
+decorCells=x,decorCount=y,solidCells=H,solidCount=I,noSolids={},
 waypoints=o(c.waypoints,h,mirrored),spawns=o(c.spawns,h,mirrored),
 targets=o(c.targets,h,mirrored),paths=F(c.paths,h,mirrored),objects=p,
 }
 end
 
+local n="m"
+local p="n"
+
+j.LoadedTracks=setmetatable({},{
+__index=function(loaded,key)
+local c,i=string.match(key,"^(.*)|([mn])$")
+if not c then
+return nil
+end
+local h=G(c,i==n)
+rawset(loaded,key,h)
+return h
+end,
+})
+
+function a.load(id,mirrored)
+local c=p
+if mirrored then
+c=n
+end
+return j.LoadedTracks[id.."|"..c]
+end
+
 function a.at(track,x,y)
-local c,h=b(x/k),b(y/k)
+local c,h=b(x/l),b(y/l)
 local i=track.size
 if c<0 or h<0 or c>=i or h>=i then
 return track.style.clear
@@ -285,7 +308,7 @@ return track.cells[h*i+c+1]
 end
 
 function a.surfaceAt(track,x,y)
-local c,h=b(x/k),b(y/k)
+local c,h=b(x/l),b(y/l)
 local i=track.size
 if c<0 or h<0 or c>=i or h>=i then
 return r

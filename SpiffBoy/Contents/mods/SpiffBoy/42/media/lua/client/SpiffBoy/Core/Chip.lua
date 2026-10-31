@@ -478,6 +478,16 @@ i.pitch=math.min(v,f/(k*2^h))
 i.gain=j*self.master
 end
 
+function a:isSounding()
+for f=1,a.VOICES do
+local b=self.voices[f]
+if b.on and b.gain>0 then
+return true
+end
+end
+return false
+end
+
 function a:step()
 if self.power then
 self.frameAccumulator=self.frameAccumulator+B

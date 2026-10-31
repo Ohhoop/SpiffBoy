@@ -37,7 +37,7 @@ Sambungkan Kabel Pautan SpiffBoy di antara dua konsol dan cabar rakan anda, sela
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Laraskan SpiffBoy mengikut citarasa anda: pilihan sandbox menentukan bagaimana ia sesuai dengan dunia anda, daripada orang ramai yang ditarik oleh bunyinya hingga suasana ceria yang dibawanya, tetapan kawalan membolehkan anda memilih butang, dan pilihan mod menentukan rupanya pada skrin anda.
+Laraskan SpiffBoy mengikut citarasa anda: pilihan sandbox menentukan bagaimana ia sesuai dengan dunia anda, daripada orang ramai yang ditarik oleh bunyinya hingga suasana ceria yang dibawanya, kekunci papan kekunci ada dalam pilihan KEY BINDINGS, bahagian SpiffBoy, dan ia sama seronok dimainkan dengan alat kawalan, dan pilihan mod menentukan rupanya pada skrin anda.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

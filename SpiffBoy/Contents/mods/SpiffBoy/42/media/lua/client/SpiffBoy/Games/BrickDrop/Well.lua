@@ -190,22 +190,26 @@ end
 end
 end
 
+local b={}
+b.__index=b
+a.Bag=b
+
 function a.newBag(random)
-local b={items={},index=a.KIND_COUNT+1}
-function b.draw()
-if b.index>a.KIND_COUNT then
+return setmetatable({items={},index=a.KIND_COUNT+1,random=random},b)
+end
+
+function b:draw()
+if self.index>a.KIND_COUNT then
 for c=1,a.KIND_COUNT do
-b.items[c]=c
+self.items[c]=c
 end
 for c=a.KIND_COUNT,2,-1 do
-local d=random:int(1,c)
-b.items[c],b.items[d]=b.items[d],b.items[c]
+local d=self.random:int(1,c)
+self.items[c],self.items[d]=self.items[d],self.items[c]
 end
-b.index=1
+self.index=1
 end
-local c=b.items[b.index]
-b.index=b.index+1
+local c=self.items[self.index]
+self.index=self.index+1
 return c
-end
-return b
 end

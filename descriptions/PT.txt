@@ -37,7 +37,7 @@ Liga o Cabo link SpiffBoy entre duas consolas e desafia um amigo, desde que ele 
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Ajusta a SpiffBoy ao teu gosto: as opções sandbox decidem como se encaixa no teu mundo, da multidão que o seu som atrai ao bom humor que traz; as definições de controlos deixam-te escolher os teus botões, e as opções do mod definem o seu aspeto no ecrã.
+Ajusta a SpiffBoy ao teu gosto: as opções sandbox decidem como se encaixa no teu mundo, da multidão que o seu som atrai ao bom humor que traz; as tuas teclas estão nas opções, em CONTROLOS, secção SpiffBoy, e joga-se igualmente bem com comando, e as opções do mod definem o seu aspeto no ecrã.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

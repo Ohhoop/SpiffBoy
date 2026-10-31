@@ -9,33 +9,35 @@ local d=SpiffBoy.LocalLink
 local b=SpiffBoy.Handheld
 local g=SpiffBoy.LinkState
 
-local o=1000
-local i=1
-local j=2
+local p=1000
+local j=1
+local k=2
 
 local a={}
-local k=0
+local l=0
 
-local function f(playerNum)
-return SpiffBoyHandheldWindow.forPlayer(playerNum)
+local function f(consoleId)
+return SpiffBoyConsoleInstance.instances[consoleId]
 end
 
 local function c(player,reason,name)
 HaloTextHelper.addText(player,getText("UI_SpiffBoy_"..reason,name),"",HaloTextHelper.getColorRed())
 end
 
-local function l(playerNum)
+local function m(playerNum)
 local e=a[playerNum]
 if not e then
 return
 end
+local i=a[e.peer]
+local n={[playerNum]=e.console,[e.peer]=i and i.console}
 a[playerNum]=nil
 a[e.peer]=nil
-for n,h in ipairs({playerNum,e.peer})do
+for q,h in ipairs({playerNum,e.peer})do
 g.clear(h)
-local m=f(h)
-if m then
-m.channel:onDisconnected()
+local o=n[h]and f(n[h])
+if o then
+o.channel:onDisconnected()
 end
 end
 end
@@ -82,8 +84,8 @@ if a[ownerNum]then
 c(guest,"CableTaken")
 return
 end
-local m=b.consoleWithCable(h)
-if not m then
+local i=b.consoleWithCable(h)
+if not i then
 c(guest,"NoCable")
 return
 end
@@ -91,17 +93,17 @@ if not b.withinCableReach(guest,h)then
 c(guest,"CableTooFar")
 return
 end
-a[ownerNum]={peer=e,console=m:getID(),seat=i}
-a[e]={peer=ownerNum,console=console:getID(),seat=j}
-g.set(ownerNum,b.characterName(guest),i,nil,e)
-g.set(e,b.characterName(h),j,nil,ownerNum)
-for q,p in ipairs({ownerNum,e})do
-local n=f(p)
+a[ownerNum]={peer=e,console=i:getID(),seat=j}
+a[e]={peer=ownerNum,console=console:getID(),seat=k}
+g.set(ownerNum,b.characterName(guest),j,nil,e,i:getID())
+g.set(e,b.characterName(h),k,nil,ownerNum,console:getID())
+for q,o in ipairs({i:getID(),console:getID()})do
+local n=f(o)
 if n then
 n.channel:onConnected()
 end
 end
-if not f(e)then
+if not f(console:getID())then
 SpiffBoyHandheldWindow.open(guest,console)
 end
 end
@@ -110,23 +112,25 @@ function d.disconnect(character,console)
 local e=character:getPlayerNum()
 local h=a[e]
 if h and h.console==console:getID()then
-l(e)
+m(e)
 end
 end
 
 function d.sendData(playerObj,sequence,messages)
 local e=a[playerObj:getPlayerNum()]
-local h=e and f(e.peer)
-if h then
-h.channel:onData(sequence,messages)
+local h=e and a[e.peer]
+local i=h and f(h.console)
+if i then
+i.channel:onData(sequence,messages)
 end
 end
 
 function d.sendState(playerObj,cartridge,on)
 local e=a[playerObj:getPlayerNum()]
-local h=e and f(e.peer)
-if h then
-h.channel:onState(cartridge,on)
+local h=e and a[e.peer]
+local i=h and f(h.console)
+if i then
+i.channel:onState(cartridge,on)
 end
 end
 
@@ -136,29 +140,29 @@ local h=getSpecificPlayer(link.peer)
 if not e or not h or e:isDead()or h:isDead()or not b.withinCableReach(e,h)then
 return false
 end
-local m=e:getInventory():getItemWithIDRecursiv(link.console)
-if not m then
+local i=e:getInventory():getItemWithIDRecursiv(link.console)
+if not i then
 return false
 end
-return link.seat~=i or b.hasCable(m)
+return link.seat~=j or b.hasCable(i)
 end
 
-local function p()
+local function o()
 local h=getTimestampMs()
-if h<k then
+if h<l then
 return
 end
-k=h+o
+l=h+p
 local e=nil
-for m,q in pairs(a)do
-if not n(m,q)then
+for i,q in pairs(a)do
+if not n(i,q)then
 e=e or{}
-e[#e+1]=m
+e[#e+1]=i
 end
 end
 if e then
-for m=1,#e do
-l(e[m])
+for i=1,#e do
+m(e[i])
 end
 end
 end
@@ -174,5 +178,5 @@ if not isClient()then
 SpiffBoy.Links.install(d)
 end
 
-Events.OnTick.Add(p)
+Events.OnTick.Add(o)
 Events.OnGameStart.Add(e)

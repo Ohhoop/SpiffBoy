@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.8: mood eased while playing in multiplayer too, Lanterways shops with tabs and an item card, long texts shown a page at a time, the main story in the Round Book, no more false [ERRORS] mark in the pause menu, and no more error flood when a tooltip opens over something that is not an inventory item, such as bathtub water"
+	"changenote"		"0.1.9: hand your running console to a friend in multiplayer and the game travels with it, picking up exactly where you left off, with RECEIVING GAME on its screen while it arrives; a switched on console keeps playing wherever it lies, on the floor, in a crate or in a vehicle, heard from there, louder further; a building or a closed vehicle keeps its sound, walls muffle it both ways; up to three consoles run at once, the oldest paused; a console left on at quit comes back off"
 }

@@ -1,47 +1,57 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Handheld/Handheld"
+require"SpiffBoy/Core/LocalPlayers"
+require"SpiffBoy/Network/ConsoleHandover"
 
 SpiffBoy.ConsoleStatus=SpiffBoy.ConsoleStatus or{}
 local a=SpiffBoy.ConsoleStatus
 
 local g=1000
 
-local b=0
+local c=0
 
 function a.charge(console)
-local c=SpiffBoyHandheldWindow.runningOn(console)
-if c then
-return math.max(0,c.battery or 0)
+local b=SpiffBoyConsoleInstance.runningOn(console)
+if b then
+return math.max(0,b.battery or 0)
 end
 return SpiffBoy.Handheld.getBattery(console)or 0
 end
 
 function a.isSwitchedOn(console)
-local c=SpiffBoyHandheldWindow.runningOn(console)
-return c~=nil and c.switchOn
+local b=SpiffBoyConsoleInstance.runningOn(console)
+return b~=nil and b.switchOn
+end
+
+function a.runsElsewhere(console)
+if SpiffBoyConsoleInstance.runningOn(console)~=nil then
+return false
+end
+local b=SpiffBoy.Handheld.getHost(console)
+return b~=nil and SpiffBoy.LocalPlayers.byOnlineId(b)==nil
 end
 
 function a.displayName(console)
-local c=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
-if not a.isSwitchedOn(console)then
-return c
+local b=getItemNameFromFullType(SpiffBoy.CONSOLE_ITEM)
+if not a.isSwitchedOn(console)and not a.runsElsewhere(console)then
+return b
 end
-return getText("IGUI_ClothingNaming",getText("Tooltip_activated"),c)
+return getText("IGUI_ClothingNaming",getText("Tooltip_activated"),b)
 end
 
 function a.refreshName(console)
-local c=a.displayName(console)
-if console:getName()~=c then
-console:setName(c)
+local b=a.displayName(console)
+if console:getName()~=b then
+console:setName(b)
 end
 end
 
 local function h()
-local c=getTimestampMs()
-if c<b then
+local b=getTimestampMs()
+if b<c then
 return
 end
-b=c+g
+c=b+g
 for i=0,getNumActivePlayers()-1 do
 local d=getSpecificPlayer(i)
 if d then
@@ -55,4 +65,21 @@ end
 end
 end
 
+local function e(page,stage)
+if stage~="buttonsAdded"then
+return
+end
+for j,f in ipairs(page.backpacks)do
+local d=f.inventory:getAllTypeRecurse(SpiffBoy.CONSOLE_ITEM)
+for i=0,d:size()-1 do
+local b=d:get(i)
+a.refreshName(b)
+if a.runsElsewhere(b)then
+SpiffBoy.ConsoleHandover.verifyHost(b)
+end
+end
+end
+end
+
 Events.OnTickEvenPaused.Add(h)
+Events.OnRefreshInventoryWindowContainers.Add(e)

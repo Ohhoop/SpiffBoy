@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Link/LinkState"
+require"SpiffBoy/Core/LocalPlayers"
 
 SpiffBoy.NetworkLink=SpiffBoy.NetworkLink or{}
 local d=SpiffBoy.NetworkLink
@@ -8,15 +9,11 @@ local f=SpiffBoy.LinkState
 
 local i=SpiffBoy.COMMAND_MODULE
 local j={[1]=true,[2]=true}
+local k=2
 
-local function k(onlineId)
-for b=0,getNumActivePlayers()-1 do
-local a=getSpecificPlayer(b)
-if a and a:getOnlineID()==onlineId then
+local function l(onlineId)
+local a,b=SpiffBoy.LocalPlayers.byOnlineId(onlineId)
 return b,a
-end
-end
-return nil
 end
 
 local function e(playerObj,args)
@@ -39,8 +36,8 @@ function d.sendState(playerObj,cartridge,on)
 e(playerObj,{k=SpiffBoy.LINK_STATE,c=cartridge,o=on})
 end
 
-local function l(player,playerNum,consoleId)
-if SpiffBoyHandheldWindow.forPlayer(playerNum)or not SpiffBoy.isInteger(consoleId)then
+local function m(player,playerNum,consoleId)
+if not SpiffBoy.isInteger(consoleId)or SpiffBoyConsoleInstance.instances[consoleId]then
 return
 end
 local a=player:getInventory():getItemWithIDRecursiv(consoleId)
@@ -49,15 +46,15 @@ SpiffBoyHandheldWindow.open(player,a)
 end
 end
 
-local function m(args)
+local function n(args)
 if type(args)~="table"or not SpiffBoy.isInteger(args.me)then
 return
 end
-local b,g=k(args.me)
+local b,g=l(args.me)
 if not b then
 return
 end
-local a=SpiffBoyHandheldWindow.forPlayer(b)
+local a=SpiffBoyConsoleInstance.linkedFor(b)
 local c=args.k
 if c==SpiffBoy.LINK_OFFER then
 if SpiffBoy.isInteger(args.p)and type(args.n)=="string"then
@@ -67,12 +64,15 @@ SpiffBoy.LinkMenu.ask(g,h)
 end
 end
 elseif c==SpiffBoy.LINK_CONNECTED then
-if SpiffBoy.isInteger(args.p)and j[args.s]and type(args.n)=="string"then
-f.set(b,args.n,args.s,args.p,nil)
+if SpiffBoy.isInteger(args.p)and j[args.s]and type(args.n)=="string"and SpiffBoy.isInteger(args.c)then
+f.set(b,args.n,args.s,args.p,nil,args.c)
+a=SpiffBoyConsoleInstance.linkedFor(b)
 if a then
 a.channel:onConnected()
 end
-l(g,b,args.c)
+if args.s==k then
+m(g,b,args.c)
+end
 end
 elseif c==SpiffBoy.LINK_DISCONNECTED then
 f.clear(b)
@@ -99,4 +99,4 @@ end
 end
 end
 
-SpiffBoy.Commands.fromServer(SpiffBoy.COMMAND_LINK,m)
+SpiffBoy.Commands.fromServer(SpiffBoy.COMMAND_LINK,n)

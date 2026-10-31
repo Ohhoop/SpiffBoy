@@ -37,7 +37,7 @@ Plug the SpiffBoy Link Cable between two consoles and challenge a friend, as lon
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Tune the SpiffBoy to your liking: the sandbox options decide how it fits in your world, from the crowd its sound draws to the good mood it brings, the controls settings let you pick your buttons, and the mod options shape how it looks on your screen.
+Tune the SpiffBoy to your liking: the sandbox options decide how it fits in your world, from the crowd its sound draws to the good mood it brings, your keyboard keys are in the KEY BINDINGS options, in the SpiffBoy section, and it plays just as well on a controller, and the mod options shape how it looks on your screen.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

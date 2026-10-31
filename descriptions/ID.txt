@@ -37,7 +37,7 @@ Colokkan Kabel Link SpiffBoy di antara dua konsol dan tantang temanmu, selama di
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Atur SpiffBoy sesuai seleramu: opsi sandbox menentukan bagaimana ia menyatu dengan duniamu, dari kerumunan yang ditarik suaranya hingga suasana hati baik yang dibawanya, pengaturan kontrol memungkinkanmu memilih tombol, dan opsi mod menentukan tampilannya di layarmu.
+Atur SpiffBoy sesuai seleramu: opsi sandbox menentukan bagaimana ia menyatu dengan duniamu, dari kerumunan yang ditarik suaranya hingga suasana hati baik yang dibawanya, tombol keyboard ada di opsi KEY BINDINGS, bagian SpiffBoy, dan sama enaknya dimainkan dengan kontroler, dan opsi mod menentukan tampilannya di layarmu.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

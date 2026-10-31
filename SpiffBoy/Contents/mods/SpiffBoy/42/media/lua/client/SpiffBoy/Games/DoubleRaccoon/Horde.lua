@@ -11,6 +11,7 @@ SpiffBoy.DoubleRaccoon.Horde=d
 
 local c={}
 c.__index=c
+SpiffBoy.DoubleRaccoon.Zombie=c
 
 d.KINDS={
 shambler={hp=8,speed=0.35,damage=2,score=100},

@@ -37,7 +37,7 @@ Branchez le Câble de liaison SpiffBoy entre deux consoles et défiez un ami, ta
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Réglez la SpiffBoy à votre goût : les options sandbox décident de sa place dans votre monde, de la foule que son son attire à la bonne humeur qu'elle apporte, les réglages des commandes vous laissent choisir vos boutons, et les options du mod façonnent son apparence à l'écran.
+Réglez la SpiffBoy à votre goût : les options sandbox décident de sa place dans votre monde, de la foule que son son attire à la bonne humeur qu'elle apporte, vos touches de clavier sont dans l'onglet CONFIGURATION DES TOUCHES des options, section SpiffBoy, et elle se joue tout aussi bien à la manette, et les options du mod façonnent son apparence à l'écran.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

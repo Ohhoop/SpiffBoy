@@ -5,7 +5,27 @@ local c=SpiffBoy.Lanterways
 local a=c.Scripts
 local b=c.MurkSea.sites
 
-a.intro={
+local function f()
+local d={}
+for g,e in ipairs(c.MurkSea.extraLamps)do
+if e.lit then
+d[#d+1]={"flag",e.flag}
+end
+end
+return d
+end
+
+local function e(...)
+local d={}
+for i,g in ipairs({...})do
+for j,h in ipairs(g)do
+d[#d+1]=h
+end
+end
+return d
+end
+
+a.intro=e({
 {"fade","out",1},
 {"say",nil,"Intro1"},
 {"say",nil,"Intro2"},
@@ -17,10 +37,10 @@ a.intro={
 {"say","marta","Intro5"},
 {"say","pell","Intro6"},
 {"say","marta","Intro7"},
-{"flag","l_landing"},
+},f(),{
 {"flag","l_spur2"},
 {"step",1},
-}
+})
 
 a.spur_notyet={
 {"say","pell","SpurNotYet"},

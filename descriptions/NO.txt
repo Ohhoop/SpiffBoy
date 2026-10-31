@@ -37,7 +37,7 @@ Koble en SpiffBoy-linkkabel mellom to konsoller og utfordre en venn, så lenge v
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Still inn SpiffBoy slik du vil ha den: sandbox-innstillingene bestemmer hvordan den passer inn i verdenen din, fra publikummet lyden trekker til det gode humøret den gir, kontrollinnstillingene lar deg velge knappene dine, og mod-innstillingene bestemmer hvordan den ser ut på skjermen.
+Still inn SpiffBoy slik du vil ha den: sandbox-innstillingene bestemmer hvordan den passer inn i verdenen din, fra publikummet lyden trekker til det gode humøret den gir, tastene dine finner du i innstillingene under TASTEBINDINGER, i delen SpiffBoy, og den spilles like godt med kontroller, og mod-innstillingene bestemmer hvordan den ser ut på skjermen.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

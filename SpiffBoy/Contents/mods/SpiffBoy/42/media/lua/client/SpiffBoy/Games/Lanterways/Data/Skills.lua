@@ -8,7 +8,7 @@ c.Skills=a
 a.LIST={
 kindle={cost=3,target="enemy",kind="magic",power=16,element="flame",fx="flame"},
 flare={cost=4,target="enemies",kind="status",status="blind",chance=0.6,fx="flash"},
-warmglow={cost=4,target="ally",kind="heal",power=34,fx="heal"},
+laybare={cost=4,target="enemy",kind="status",status="defDown",chance=0.9,fx="flash"},
 wicklash={cost=5,target="enemy",kind="physical",power=1.5,element="flame",fx="flame"},
 steadyflame={cost=8,target="allies",kind="buff",status="atkUp",fx="buff"},
 blazeroad={cost=12,target="enemies",kind="magic",power=44,element="flame",fx="flame"},

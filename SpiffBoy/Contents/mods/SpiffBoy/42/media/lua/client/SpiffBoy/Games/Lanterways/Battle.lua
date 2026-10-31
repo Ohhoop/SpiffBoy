@@ -2,15 +2,15 @@ require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Party"
 require"SpiffBoy/Games/Lanterways/Data/Enemies"
 
-local f=SpiffBoy.Lanterways
-local d=f.Party
-local h=f.Skills
-local p=f.Items
-local q=f.Enemies
+local e=SpiffBoy.Lanterways
+local b=e.Party
+local h=e.Skills
+local q=e.Items
+local n=e.Enemies
 
 local a={}
 a.__index=a
-f.Battle=a
+e.Battle=a
 
 a.GLOW_MAX=100
 a.GLOW_ACT=10
@@ -58,133 +58,134 @@ return 1000/(speed+15)
 end
 
 function a.new(state,troop,random,options)
-local b=setmetatable({},a)
-b.state=state
-b.random=random
-b.options=options
-b.combatants={}
-b.party={}
-b.enemies={}
+local c=setmetatable({},a)
+c.state=state
+c.random=random
+c.options=options
+c.combatants={}
+c.party={}
+c.enemies={}
 state.glow=math.floor(state.glow/a.GLOW_KEPT)
-for k,c in ipairs(d.active(state))do
+for k,d in ipairs(b.active(state))do
 if not options.seats or k<=options.seats then
-local i=d.stats(c)
-local e=d.worn(c,"charm")
+local i=b.stats(d)
+local f=b.worn(d,"charm")
 local g={
-side="party",id=c.id,member=c,name=f.text("Name_"..c.id),
-base=i,hp=c.hp,maxHp=i.hp,sp=c.sp,maxSp=i.sp,
-statuses={},guard=d.guardOf(c),weapon=d.worn(c,"weapon"),wards=d.wardsOf(c),charm=e,
+side="party",id=d.id,member=d,name=e.text("Name_"..d.id),
+base=i,hp=d.hp,maxHp=i.hp,sp=d.sp,maxSp=i.sp,
+statuses={},guard=b.guardOf(d),weapon=b.worn(d,"weapon"),wards=b.wardsOf(d),charm=f,
 }
-if e and e.glowStart and g.hp>0 and d.glowKnown(state)then
-state.glow=math.min(a.GLOW_MAX,state.glow+e.glowStart)
+if f and f.glowStart and g.hp>0 and b.glowKnown(state)then
+state.glow=math.min(a.GLOW_MAX,state.glow+f.glowStart)
 end
-if e and e.regenStart and g.hp>0 then
+if f and f.regenStart and g.hp>0 then
 g.statuses.regen=a.DURATION.regen
 end
-b.party[#b.party+1]=g
-b.combatants[#b.combatants+1]=g
+c.party[#c.party+1]=g
+c.combatants[#c.combatants+1]=g
 end
 end
 local g={}
-local i=d.enemyBonus(state)
+local i=b.enemyBonus(state)
 if options.levels then
 i=i+options.levels
 end
-for l,c in ipairs(troop)do
-local e=q.get(c,i)
-if not e then
-error("Lanterways: unknown enemy "..tostring(c))
+for l,d in ipairs(troop)do
+local f=n.get(d,i)
+if not f then
+error("Lanterways: unknown enemy "..tostring(d))
 end
-d.markSeen(state,c)
-g[c]=(g[c]or 0)+1
+b.markSeen(state,d)
+g[d]=(g[d]or 0)+1
 local k={
-side="enemy",id=c,enemy=e,name=f.text("Enemy_"..c),
-base=e,hp=e.hp,maxHp=e.hp,sp=0,maxSp=0,statuses={},boss=e.boss,
-surveyed=state.known[c]==true,
+side="enemy",id=d,enemy=f,name=e.text("Enemy_"..d),
+base=f,hp=f.hp,maxHp=f.hp,sp=0,maxSp=0,statuses={},boss=f.boss,
+surveyed=state.known[d]==true,
 }
-b.enemies[#b.enemies+1]=k
-b.combatants[#b.combatants+1]=k
+c.enemies[#c.enemies+1]=k
+c.combatants[#c.combatants+1]=k
 end
-b.parts={}
-for n,c in ipairs(b.enemies)do
-if c.enemy.parts then
-c.broken={}
-c.partFighters={}
-for m,e in ipairs(c.enemy.parts)do
-local k=math.floor(c.maxHp*a.PART_SHARE)
+c.parts={}
+for o,d in ipairs(c.enemies)do
+if d.enemy.parts then
+d.broken={}
+d.partFighters={}
+for m,f in ipairs(d.enemy.parts)do
+local k=math.floor(d.maxHp*a.PART_SHARE)
 local l={
-side="enemy",part=e.kind,index=m,owner=c,id=c.id,enemy=c.enemy,
-name=f.text("BattleUses",c.name,f.text("Part_"..e.kind)),
-base=c.base,hp=k,maxHp=k,sp=0,maxSp=0,statuses={},boss=true,
-offset={x=e.x,y=e.y},surveyed=c.surveyed,
+side="enemy",part=f.kind,index=m,owner=d,id=d.id,enemy=d.enemy,
+name=e.text("BattleUses",d.name,e.text("Part_"..f.kind)),
+base=d.base,hp=k,maxHp=k,sp=0,maxSp=0,statuses={},boss=true,
+offset={x=f.x,y=f.y},surveyed=d.surveyed,
 }
-c.partFighters[#c.partFighters+1]=l
-b.parts[#b.parts+1]=l
+d.partFighters[#d.partFighters+1]=l
+c.parts[#c.parts+1]=l
 end
 end
 end
-for l,c in ipairs(b.enemies)do
-if g[c.id]>1 then
-local e=0
-for m,k in ipairs(b.enemies)do
-if k.id==c.id then
-e=e+1
-if k==c then
+for l,d in ipairs(c.enemies)do
+if g[d.id]>1 then
+local f=0
+for m,k in ipairs(c.enemies)do
+if k.id==d.id then
+f=f+1
+if k==d then
 break
 end
 end
 end
-c.name=c.name.." "..string.sub("ABCD",e,e)
+d.name=d.name.." "..string.sub("ABCD",f,f)
 end
 end
-for e,c in ipairs(b.combatants)do
-c.ct=j(b:stat(c,"spd"))*(0.3+random:float()*0.7)
-if c.charm and c.charm.early then
-c.ct=c.ct*a.EARLY_START
+for f,d in ipairs(c.combatants)do
+d.ct=j(c:stat(d,"spd"))*(0.3+random:float()*0.7)
+if d.charm and d.charm.early then
+d.ct=d.ct*a.EARLY_START
 end
 end
-return b
+return c
 end
 
 function a:stat(fighter,name)
-local b=fighter.base[name]
-for e,c in pairs(a.MODIFIERS)do
-if c[1]==name and fighter.statuses[e]then
-b=b*c[2]
+local c=fighter.base[name]
+for f,d in pairs(a.MODIFIERS)do
+if d[1]==name and fighter.statuses[f]then
+c=c*d[2]
 end
 end
 if fighter.broken then
-for e,c in pairs(a.BROKEN)do
-if c[1]==name and fighter.broken[e]then
-b=b*c[2]
+for f,d in pairs(a.BROKEN)do
+if d[1]==name and fighter.broken[f]then
+c=c*d[2]
 end
 end
 end
-return b
+return c
 end
 
 function a:enemyTargets()
-local b={}
-for g,c in ipairs(self:standing("enemy"))do
-b[#b+1]=c
-for i,e in ipairs(c.partFighters or{})do
-if e.hp>0 then
-b[#b+1]=e
+local c={}
+for g,d in ipairs(self:standing("enemy"))do
+c[#c+1]=d
+for i,f in ipairs(d.partFighters or{})do
+if f.hp>0 then
+c[#c+1]=f
 end
 end
 end
-return b
+return c
 end
 
 function a:breakPart(piece,outcome)
-local b=piece.owner
-b.broken[piece.part]=true
+local c=piece.owner
+c.broken[piece.part]=true
+b.notePart(self.state,c.id,piece.part)
 outcome.broken=piece
-local c=math.floor(piece.maxHp*a.PART_BREAK_SHARE)
-b.hp=math.max(0,b.hp-c)
-outcome.ownerDamage=c
-if b.hp<=0 then
-b.statuses={}
+local d=math.floor(piece.maxHp*a.PART_BREAK_SHARE)
+c.hp=math.max(0,c.hp-d)
+outcome.ownerDamage=d
+if c.hp<=0 then
+c.statuses={}
 outcome.ownerKo=true
 end
 end
@@ -194,43 +195,43 @@ return fighter.hp>0
 end
 
 function a:standing(side)
-local b={}
-local c=self.party
+local c={}
+local d=self.party
 if side=="enemy"then
-c=self.enemies
+d=self.enemies
 end
-for g,e in ipairs(c)do
-if e.hp>0 then
-b[#b+1]=e
+for g,f in ipairs(d)do
+if f.hp>0 then
+c[#c+1]=f
 end
 end
-return b
+return c
 end
 
 function a:fallen()
-local b={}
-for e,c in ipairs(self.party)do
-if c.hp<=0 then
-b[#b+1]=c
+local c={}
+for f,d in ipairs(self.party)do
+if d.hp<=0 then
+c[#c+1]=d
 end
 end
-return b
+return c
 end
 
 function a:nextActor()
-local b=nil
-for e,c in ipairs(self.combatants)do
-if c.hp>0 and(not b or c.ct<b.ct)then
-b=c
+local c=nil
+for f,d in ipairs(self.combatants)do
+if d.hp>0 and(not c or d.ct<c.ct)then
+c=d
 end
 end
-local e=b.ct
-for g,c in ipairs(self.combatants)do
-if c.hp>0 then
-c.ct=c.ct-e
+local f=c.ct
+for g,d in ipairs(self.combatants)do
+if d.hp>0 then
+d.ct=d.ct-f
 end
 end
-return b
+return c
 end
 
 function a:requeue(fighter,weight)
@@ -238,28 +239,28 @@ fighter.ct=fighter.ct+j(self:stat(fighter,"spd"))*weight
 end
 
 function a:timeline(count)
-local b={}
-for e,c in ipairs(self.combatants)do
-if c.hp>0 then
-b[#b+1]={fighter=c,ct=c.ct}
+local c={}
+for f,d in ipairs(self.combatants)do
+if d.hp>0 then
+c[#c+1]={fighter=d,ct=d.ct}
 end
 end
-local e={}
-while#e<count and#b>0 do
-local c=b[1]
-for g=2,#b do
-if b[g].ct<c.ct then
-c=b[g]
+local f={}
+while#f<count and#c>0 do
+local d=c[1]
+for g=2,#c do
+if c[g].ct<d.ct then
+d=c[g]
 end
 end
-e[#e+1]=c.fighter
-c.ct=c.ct+j(self:stat(c.fighter,"spd"))
+f[#f+1]=d.fighter
+d.ct=d.ct+j(self:stat(d.fighter,"spd"))
 end
-return e
+return f
 end
 
 function a:addGlow(amount)
-if not d.glowKnown(self.state)then
+if not b.glowKnown(self.state)then
 return
 end
 self.state.glow=math.min(a.GLOW_MAX,self.state.glow+amount)
@@ -272,8 +273,8 @@ return a.WARD_MULT
 end
 return 1
 end
-local b=self.options.onlyElement
-if b and element~=b then
+local c=self.options.onlyElement
+if c and element~=c then
 return a.OFF_ELEMENT_MULT
 end
 if not element then
@@ -287,13 +288,49 @@ end
 return 1
 end
 
+function a:noteElement(target,element)
+if target.side~="enemy"or not element then
+return
+end
+local c=self.options.onlyElement
+if c and element~=c then
+return
+end
+if target.enemy.weak==element then
+b.noteFact(self.state,target.id,"weak")
+elseif target.enemy.resist==element then
+b.noteFact(self.state,target.id,"resist")
+end
+end
+
+function a:noteSpoil(fighter,itemId)
+local c=fighter.enemy
+if c.drop and c.drop[1]==itemId then
+b.noteFact(self.state,fighter.id,"drop")
+end
+if c.rare and c.rare[1]==itemId then
+b.noteFact(self.state,fighter.id,"rare")
+end
+end
+
+function a:noteVictory(drops)
+for f,c in ipairs(self.enemies)do
+if not c.fled then
+b.noteDefeat(self.state,c.id)
+for g,d in ipairs(drops)do
+self:noteSpoil(c,d)
+end
+end
+end
+end
+
 local function r(target,element)
 return target.side=="enemy"and element~=nil and target.enemy.weak==element and(target.statuses.defDown~=nil or target.statuses.resDown~=nil)
 end
 
-local function n(target,element,damage)
-local b=r(target,element)
-if b then
+local function o(target,element,damage)
+local c=r(target,element)
+if c then
 damage=damage*a.SHARP_MULT
 end
 if target.statuses.veil then
@@ -302,29 +339,29 @@ end
 if target.guarding then
 damage=damage*0.5
 end
-return math.max(1,math.floor(damage)),b
+return math.max(1,math.floor(damage)),c
 end
 
 function a:physicalDamage(user,target,power,element,critChance)
-local e=self:stat(user,"atk")
+local f=self:stat(user,"atk")
 local g=self:stat(target,"def")
-local b=e*power-g*0.5
-b=b*(0.9+self.random:float()*0.2)
-local c=self.random:chance(critChance)
-if c then
-b=b*a.CRIT_MULT
+local c=f*power-g*0.5
+c=c*(0.9+self.random:float()*0.2)
+local d=self.random:chance(critChance)
+if d then
+c=c*a.CRIT_MULT
 end
-b=b*self:elementMultiplier(target,element or"phys")
-local i,k=n(target,element,b)
-return i,c,k
+c=c*self:elementMultiplier(target,element or"phys")
+local i,k=o(target,element,c)
+return i,d,k
 end
 
 function a:magicDamage(user,target,power,element)
-local c=self:stat(user,"mag")
-local e=self:stat(target,"res")
-local b=(power+c)*(0.9+self.random:float()*0.2)-e*0.5
-b=b*self:elementMultiplier(target,element)
-return n(target,element,b)
+local d=self:stat(user,"mag")
+local f=self:stat(target,"res")
+local c=(power+d)*(0.9+self.random:float()*0.2)-f*0.5
+c=c*self:elementMultiplier(target,element)
+return o(target,element,c)
 end
 
 function a:healAmount(user,target,power,ratio)
@@ -335,11 +372,11 @@ return math.floor(power+self:stat(user,"mag")*0.8)
 end
 
 function a:hurt(target,damage,outcome)
-local b=0
+local c=0
 if self.options.fleeBelow and target.side=="enemy"then
-b=1
+c=1
 end
-target.hp=math.max(b,target.hp-damage)
+target.hp=math.max(c,target.hp-damage)
 outcome.damage=(outcome.damage or 0)+damage
 if target.statuses.sleep then
 target.statuses.sleep=nil
@@ -359,9 +396,9 @@ return outcome
 end
 
 function a:heal(target,amount,outcome)
-local b=target.hp
+local c=target.hp
 target.hp=math.min(target.maxHp,target.hp+amount)
-outcome.heal=(outcome.heal or 0)+(target.hp-b)
+outcome.heal=(outcome.heal or 0)+(target.hp-c)
 return outcome
 end
 
@@ -372,225 +409,234 @@ end
 if target.guard==status then
 return false
 end
-local c=f.indexOf(a.AILMENTS,status)~=nil
-if c then
-local b=chance
+local d=e.indexOf(a.AILMENTS,status)~=nil
+if d then
+local c=chance
 if target.boss then
 if status=="sleep"or status=="stun"then
-b=b*a.BOSS_STATUS
+c=c*a.BOSS_STATUS
 else
-b=b*a.BOSS_DEBUFF
+c=c*a.BOSS_DEBUFF
 end
 end
-if not self.random:chance(b)then
+if not self.random:chance(c)then
 return false
 end
 end
-local b=a.OPPOSITE[status]
-if b and target.statuses[b]then
-target.statuses[b]=nil
+local c=a.OPPOSITE[status]
+if c and target.statuses[c]then
+target.statuses[c]=nil
 return true
 end
-local e=a.DURATION[status]or a.BUFF_DURATION
-target.statuses[status]=e
+local f=a.DURATION[status]or a.BUFF_DURATION
+target.statuses[status]=f
 return true
 end
 
 function a:cure(target,only)
-for c,b in ipairs(a.AILMENTS)do
-if not only or only==b then
-target.statuses[b]=nil
+for d,c in ipairs(a.AILMENTS)do
+if not only or only==c then
+target.statuses[c]=nil
 end
 end
 end
 
 function a:targetsOf(user,kind,chosen)
-local b,e="enemy","party"
+local c,f="enemy","party"
 if user.side=="enemy"then
-b,e="party","enemy"
+c,f="party","enemy"
 end
 if kind=="enemies"then
-return self:standing(b)
+return self:standing(c)
 elseif kind=="allies"then
-return self:standing(e)
+return self:standing(f)
 elseif kind=="self"then
 return{user}
 elseif kind=="random"then
-return self:standing(b)
+return self:standing(c)
 elseif chosen and(chosen.hp>0 or kind=="fallen")then
 return{chosen}
 end
-local c=self:standing(b)
+local d=self:standing(c)
 if kind=="ally"then
-c=self:standing(e)
+d=self:standing(f)
 elseif kind=="fallen"then
-c=self:fallen()
+d=self:fallen()
 end
-if#c==0 then
+if#d==0 then
 return{}
 end
-return{c[1]}
+return{d[1]}
 end
 
 function a:steal(target)
 if target.side~="enemy"or target.part or target.stolen then
 return nil
 end
-local b=target.enemy
-if not b.drop and not b.rare then
+local c=target.enemy
+if not c.drop and not c.rare then
 return nil
 end
-local c=a.STEAL_CHANCE
+local d=a.STEAL_CHANCE
 if target.boss then
-c=c*a.BOSS_DEBUFF
+d=d*a.BOSS_DEBUFF
 end
-if not self.random:chance(c)then
+if not self.random:chance(d)then
 return nil
 end
 target.stolen=true
-if b.rare and(not b.drop or self.random:chance(a.STEAL_RARE))then
-return b.rare[1]
+if c.rare and(not c.drop or self.random:chance(a.STEAL_RARE))then
+return c.rare[1]
 end
-return b.drop[1]
+return c.drop[1]
 end
 
 function a:strike(user,skill,target,element,outcome)
 if skill.kind=="physical"then
-local c=user.statuses.blind or(user.broken and user.broken.eye)
-if(c and self.random:chance(a.BLIND_MISS))or self.random:chance(a.MISS_CHANCE)then
+local d=user.statuses.blind or(user.broken and user.broken.eye)
+if(d and self.random:chance(a.BLIND_MISS))or self.random:chance(a.MISS_CHANCE)then
 outcome.miss=true
 return
 end
-local b=a.CRIT_CHANCE
+local c=a.CRIT_CHANCE
 if skill.crit then
-b=1
+c=1
 elseif skill.critChance then
-b=b+skill.critChance
+c=c+skill.critChance
 end
-local e,g,i=self:physicalDamage(user,target,skill.power,element,b)
+local f,g,i=self:physicalDamage(user,target,skill.power,element,c)
 outcome.crit=outcome.crit or g
 outcome.sharp=outcome.sharp or i
-self:hurt(target,e,outcome)
+self:hurt(target,f,outcome)
 else
-local b,c=self:magicDamage(user,target,skill.power,element)
-outcome.sharp=outcome.sharp or c
-self:hurt(target,b,outcome)
+local c,d=self:magicDamage(user,target,skill.power,element)
+outcome.sharp=outcome.sharp or d
+self:hurt(target,c,outcome)
 if skill.drain then
-self:heal(user,math.floor(b/2),{target=user})
-outcome.drained=math.floor(b/2)
+self:heal(user,math.floor(c/2),{target=user})
+outcome.drained=math.floor(c/2)
 end
 end
 if target.side=="enemy"and element and target.enemy.weak==element then
 outcome.weak=true
 end
+if skill.kind=="physical"then
+self:noteElement(target,element or"phys")
+else
+self:noteElement(target,element)
+end
 end
 
 function a:applySkill(user,skill,target)
-local b={target=target}
-local c=skill.kind
-if c=="physical"or c=="magic"then
-for g,e in ipairs(skill.elements or{skill.element or false})do
-if target.hp>0 and not b.miss then
-self:strike(user,skill,target,e or nil,b)
+local c={target=target}
+local d=skill.kind
+if d=="physical"or d=="magic"then
+for g,f in ipairs(skill.elements or{skill.element or false})do
+if target.hp>0 and not c.miss then
+self:strike(user,skill,target,f or nil,c)
 end
 end
-elseif c=="heal"then
+elseif d=="heal"then
 if target.hp>0 or skill.revive then
 if target.hp<=0 then
-b.revived=true
+c.revived=true
 end
-self:heal(target,self:healAmount(user,target,skill.power,skill.ratio),b)
+self:heal(target,self:healAmount(user,target,skill.power,skill.ratio),c)
 end
-elseif c=="revive"then
+elseif d=="revive"then
 if target.hp<=0 then
-b.revived=true
-self:heal(target,math.max(1,math.floor(target.maxHp*skill.power)),b)
+c.revived=true
+self:heal(target,math.max(1,math.floor(target.maxHp*skill.power)),c)
 end
-elseif c=="cure"then
+elseif d=="cure"then
 self:cure(target)
-b.cured=true
-elseif c=="survey"then
+c.cured=true
+elseif d=="survey"then
 target.surveyed=true
-b.surveyed=true
-d.markKnown(self.state,target.id)
-elseif c=="drainSp"then
-local e=math.min(target.sp,skill.power+math.floor(user.base.level or 0)/4)
-target.sp=target.sp-math.floor(e)
-b.spLost=math.floor(e)
-elseif c=="steal"then
-local e=self:steal(target)
-if e then
-d.addItem(self.state,e,1)
-b.stole=e
+c.surveyed=true
+b.markKnown(self.state,target.id)
+elseif d=="drainSp"then
+local f=math.min(target.sp,skill.power+math.floor(user.base.level or 0)/4)
+target.sp=target.sp-math.floor(f)
+c.spLost=math.floor(f)
+elseif d=="steal"then
+local f=self:steal(target)
+if f then
+b.addItem(self.state,f,1)
+self:noteSpoil(target,f)
+c.stole=f
 else
-b.miss=true
-b.stealMissed=true
+c.miss=true
+c.stealMissed=true
 end
-elseif c=="flee"then
+elseif d=="flee"then
 target.hp=0
 target.fled=true
-b.fled=true
+c.fled=true
 end
-local e=target.owner or target
-if skill.cure and e.hp>0 then
-self:cure(e)
-b.cured=true
+local f=target.owner or target
+if skill.cure and f.hp>0 then
+self:cure(f)
+c.cured=true
 end
-if skill.status and e.hp>0 and not b.miss then
+if skill.status and f.hp>0 and not c.miss then
 local i={skill.status,skill.also}
-b.statuses={}
+c.statuses={}
 for k,g in ipairs(i)do
-if self:inflict(e,g,skill.chance)then
-b.statuses[#b.statuses+1]=g
+if self:inflict(f,g,skill.chance)then
+c.statuses[#c.statuses+1]=g
 end
 end
 end
-return b
+return c
 end
 
 function a:brightOf(fighter)
-local e=f.Characters.BY_ID[fighter.id]
-local c=h.get(e.bright)
-if not d.hasFlag(self.state,"t_"..fighter.id)then
+local f=e.Characters.BY_ID[fighter.id]
+local d=h.get(f.bright)
+if not b.hasFlag(self.state,"t_"..fighter.id)then
+return d
+end
+local c={}
+for g,i in pairs(d)do
+c[g]=i
+end
+c.power=d.power*a.BRIGHT_UP
+c.upgraded=true
 return c
-end
-local b={}
-for g,i in pairs(c)do
-b[g]=i
-end
-b.power=c.power*a.BRIGHT_UP
-b.upgraded=true
-return b
 end
 
 function a:brightReady(fighter)
-return d.hasFlag(self.state,"b_"..fighter.id)and self.state.glow>=a.GLOW_MAX
+return b.hasFlag(self.state,"b_"..fighter.id)and self.state.glow>=a.GLOW_MAX
 end
 
 function a:duosOf(fighter)
-local e={}
+local f={}
 for l,g in ipairs(h.DUOS)do
 local i=h.get(g)
-local b=i.duo
-local c=nil
-if b[1]==fighter.id then
-c=b[2]
-elseif b[2]==fighter.id then
-c=b[1]
+local c=i.duo
+local d=nil
+if c[1]==fighter.id then
+d=c[2]
+elseif c[2]==fighter.id then
+d=c[1]
 end
-if c and d.duoReady(self.state,g)then
+if d and b.duoReady(self.state,g)then
 for m,k in ipairs(self.party)do
-if k.id==c and k.hp>0 then
-e[#e+1]=i
+if k.id==d and k.hp>0 then
+f[#f+1]=i
 end
 end
 end
 end
-return e
+return f
 end
 
 function a:useSkill(user,skill,chosen)
-local b={}
+local c={}
+if user.side=="enemy"and e.indexOf(n.techniques(user.id),skill.id)then
+b.noteAct(self.state,user.id,skill.id)
+end
 if skill.bright then
 self.state.glow=0
 elseif skill.duo then
@@ -600,138 +646,139 @@ user.sp=user.sp-skill.cost
 end
 if skill.target=="random"then
 for g=1,skill.hits or 1 do
-local c=self:targetsOf(user,"enemies")
-if#c==0 then
+local d=self:targetsOf(user,"enemies")
+if#d==0 then
 break
 end
-local e=c[self.random:int(1,#c)]
-b[#b+1]=self:applySkill(user,skill,e)
+local f=d[self.random:int(1,#d)]
+c[#c+1]=self:applySkill(user,skill,f)
 end
 else
-local c=self:targetsOf(user,skill.target,chosen)
+local d=self:targetsOf(user,skill.target,chosen)
 if skill.revive and skill.target=="allies"then
-c=user.side=="party"and self.party or self.enemies
+d=user.side=="party"and self.party or self.enemies
 end
-for g,e in ipairs(c)do
+for g,f in ipairs(d)do
 for i=1,skill.hits or 1 do
-if e.hp>0 or skill.target=="fallen"or skill.revive then
-b[#b+1]=self:applySkill(user,skill,e)
+if f.hp>0 or skill.target=="fallen"or skill.revive then
+c[#c+1]=self:applySkill(user,skill,f)
 end
 end
 end
 end
 if skill.healParty then
-for e,c in ipairs(self:standing(user.side))do
-b[#b+1]=self:heal(c,math.floor(c.maxHp*skill.healParty),{target=c})
+for f,d in ipairs(self:standing(user.side))do
+c[#c+1]=self:heal(d,math.floor(d.maxHp*skill.healParty),{target=d})
 end
 end
 if skill.reviveParty then
-for e,c in ipairs(self:fallen())do
-b[#b+1]=self:heal(c,math.floor(c.maxHp*skill.reviveParty),{target=c,revived=true})
+for f,d in ipairs(self:fallen())do
+c[#c+1]=self:heal(d,math.floor(d.maxHp*skill.reviveParty),{target=d,revived=true})
 end
 end
 if skill.partyStatus then
-for i,e in ipairs(self:standing(user.side))do
-local c={}
+for i,f in ipairs(self:standing(user.side))do
+local d={}
 for k,g in ipairs({skill.partyStatus,skill.partyAlso})do
-self:inflict(e,g,1)
-c[#c+1]=g
+self:inflict(f,g,1)
+d[#d+1]=g
 end
-b[#b+1]={target=e,statuses=c}
+c[#c+1]={target=f,statuses=d}
 end
 end
 if user.side=="party"and not skill.bright and not skill.duo then
-self:glowFrom(user,b)
+self:glowFrom(user,c)
 end
-return b
+return c
 end
 
 function a:glowFrom(user,outcomes)
-local i,c,e,g=false,false,false,0
-for k,b in ipairs(outcomes)do
-if b.damage and b.target.side=="enemy"then
+local i,d,f,g=false,false,false,0
+for k,c in ipairs(outcomes)do
+if c.damage and c.target.side=="enemy"then
 i=true
 g=g+1
-c=c or b.weak==true
-e=e or b.sharp==true
+d=d or c.weak==true
+f=f or c.sharp==true
 end
 end
 if not i then
 return
 end
-local b=a.GLOW_ACT
-if c then
-b=b+a.GLOW_WEAK
+local c=a.GLOW_ACT
+if d then
+c=c+a.GLOW_WEAK
 end
-if e then
-b=b+a.GLOW_SHARP
+if f then
+c=c+a.GLOW_SHARP
 end
 if user.charm and user.charm.glowHit then
-b=b+user.charm.glowHit*g
+c=c+user.charm.glowHit*g
 end
-self:addGlow(b)
+self:addGlow(c)
 end
 
 function a.attackSkill(fighter)
-local c={id="attack",cost=0,target="enemy",kind="physical",power=1,fx="hit"}
-local b=fighter.side=="party"and fighter.weapon
-if b then
-c.element=b.element
-c.critChance=b.crit
-if b.onHit then
-c.status=b.onHit[1]
-c.chance=b.onHit[2]
+local d={id="attack",cost=0,target="enemy",kind="physical",power=1,fx="hit"}
+local c=fighter.side=="party"and fighter.weapon
+if c then
+d.element=c.element
+d.critChance=c.crit
+if c.onHit then
+d.status=c.onHit[1]
+d.chance=c.onHit[2]
 end
-if b.element=="flame"then
-c.fx="flame"
-elseif b.element=="sound"then
-c.fx="ring"
-elseif b.element=="murk"then
-c.fx="murk"
+if c.element=="flame"then
+d.fx="flame"
+elseif c.element=="sound"then
+d.fx="ring"
+elseif c.element=="murk"then
+d.fx="murk"
 end
 end
-return c
+return d
 end
 
 function a:useItem(user,itemId,chosen)
-local c=p.get(itemId)
-d.takeItem(self.state,itemId,1)
+local d=q.get(itemId)
+b.takeItem(self.state,itemId,1)
 local i={}
-local k=self:targetsOf(user,c.target,chosen)
-for o,b in ipairs(k)do
-local e={target=b}
-local g=c.effect
-if g=="heal"and b.hp>0 then
-self:heal(b,c.power,e)
-elseif g=="sp"and b.hp>0 then
-local l=b.sp
-b.sp=math.min(b.maxSp,b.sp+c.power)
-e.spGained=b.sp-l
-elseif g=="revive"and b.hp<=0 then
-e.revived=true
-self:heal(b,math.max(1,math.floor(b.maxHp*c.power)),e)
+local k=self:targetsOf(user,d.target,chosen)
+for p,c in ipairs(k)do
+local f={target=c}
+local g=d.effect
+if g=="heal"and c.hp>0 then
+self:heal(c,d.power,f)
+elseif g=="sp"and c.hp>0 then
+local l=c.sp
+c.sp=math.min(c.maxSp,c.sp+d.power)
+f.spGained=c.sp-l
+elseif g=="revive"and c.hp<=0 then
+f.revived=true
+self:heal(c,math.max(1,math.floor(c.maxHp*d.power)),f)
 elseif g=="cure"then
-self:cure(b,c.status)
-e.cured=true
+self:cure(c,d.status)
+f.cured=true
 elseif g=="glow"then
-self:addGlow(c.power)
-e.glow=c.power
+self:addGlow(d.power)
+f.glow=d.power
 elseif g=="buff"or g=="debuff"then
-e.statuses={}
-if self:inflict(b,c.status,c.chance)then
-e.statuses[1]=c.status
+f.statuses={}
+if self:inflict(c,d.status,d.chance)then
+f.statuses[1]=d.status
 else
-e.resisted=true
+f.resisted=true
 end
 elseif g=="damage"then
-local l,m=self:magicDamage(user,b,c.power,c.element)
-e.sharp=m
-self:hurt(b,l,e)
-if c.status and b.hp>0 and self:inflict(b,c.status,c.chance)then
-e.statuses={c.status}
+local l,m=self:magicDamage(user,c,d.power,d.element)
+f.sharp=m
+self:hurt(c,l,f)
+self:noteElement(c,d.element)
+if d.status and c.hp>0 and self:inflict(c,d.status,d.chance)then
+f.statuses={d.status}
 end
 end
-i[#i+1]=e
+i[#i+1]=f
 end
 return i
 end
@@ -740,143 +787,143 @@ function a:tryEscape()
 if self.options.noEscape then
 return false
 end
-local function c(list)
-local b=0
-for g,e in ipairs(list)do
-b=b+self:stat(e,"spd")
+local function d(list)
+local c=0
+for g,f in ipairs(list)do
+c=c+self:stat(f,"spd")
 end
-return b/math.max(1,#list)
+return c/math.max(1,#list)
 end
-local b=0.55+0.02*(c(self:standing("party"))-c(self:standing("enemy")))
-return self.random:chance(SpiffBoy.clamp(b,0.2,0.95))
+local c=0.55+0.02*(d(self:standing("party"))-d(self:standing("enemy")))
+return self.random:chance(SpiffBoy.clamp(c,0.2,0.95))
 end
 
 function a:actFits(fighter,act)
-local b=act[3]
-if not b then
+local c=act[3]
+if not c then
 return true
 end
-if b.below and fighter.hp/fighter.maxHp>=b.below then
+if c.below and fighter.hp/fighter.maxHp>=c.below then
 return false
 end
-if b.unless then
-if b.foe then
-for e,c in ipairs(self:standing("party"))do
-if not c.statuses[b.unless]then
+if c.unless then
+if c.foe then
+for f,d in ipairs(self:standing("party"))do
+if not d.statuses[c.unless]then
 return true
 end
 end
 return false
 end
-return not fighter.statuses[b.unless]
+return not fighter.statuses[c.unless]
 end
 return true
 end
 
 function a:actLost(fighter,act,acts)
-local b=fighter.broken
-if not b or act[1]=="attack"then
+local c=fighter.broken
+if not c or act[1]=="attack"then
 return false
 end
-local e=h.get(act[1])
-if b.arm and e.kind=="physical"then
+local f=h.get(act[1])
+if c.arm and f.kind=="physical"then
 return true
 end
-if b.jaw and a.JAW_ACTS[act[1]]then
+if c.jaw and a.JAW_ACTS[act[1]]then
 return true
 end
-if b.core and e.kind=="magic"then
+if c.core and f.kind=="magic"then
 local g=0
 for k,i in ipairs(acts)do
-local c=i[1]~="attack"and h.get(i[1])
-if c and c.kind=="magic"and c.power>g then
-g=c.power
+local d=i[1]~="attack"and h.get(i[1])
+if d and d.kind=="magic"and d.power>g then
+g=d.power
 end
 end
-return e.power>=g
+return f.power>=g
 end
 return false
 end
 
 function a:enemyAction(fighter)
-local e=fighter.enemy.acts
+local f=fighter.enemy.acts
 if fighter.enemy.acts2 and fighter.hp<fighter.maxHp*a.PHASE_SHARE then
-e=fighter.enemy.acts2
+f=fighter.enemy.acts2
 end
 if self.options.fleeBelow and fighter.hp<fighter.maxHp*self.options.fleeBelow then
-e={{"flee",1}}
+f={{"flee",1}}
 end
-local b=f.filter(e,function(act)return self:actFits(fighter,act)and not self:actLost(fighter,act,e)end)
-if#b==0 then
-b={{"attack",1}}
+local c=e.filter(f,function(act)return self:actFits(fighter,act)and not self:actLost(fighter,act,f)end)
+if#c==0 then
+c={{"attack",1}}
 end
 local k=0
-for g,c in ipairs(b)do
-k=k+c[2]
+for g,d in ipairs(c)do
+k=k+d[2]
 end
 local l=self.random:int(1,k)
-local m=b[1][1]
-for g,c in ipairs(b)do
-l=l-c[2]
+local m=c[1][1]
+for g,d in ipairs(c)do
+l=l-d[2]
 if l<=0 then
-m=c[1]
+m=d[1]
 break
 end
 end
-local c
+local d
 if m=="attack"then
-c=a.attackSkill(fighter)
+d=a.attackSkill(fighter)
 else
-c=h.get(m)
+d=h.get(m)
 end
-if c.kind=="flee"then
-return{kind="skill",skill=c,target=fighter}
+if d.kind=="flee"then
+return{kind="skill",skill=d,target=fighter}
 end
 local g=self:standing("party")
 local i=g[self.random:int(1,#g)]
 if self.random:chance(a.AIM_WEAKEST)then
-for s,o in ipairs(g)do
-if o.hp<i.hp then
-i=o
+for s,p in ipairs(g)do
+if p.hp<i.hp then
+i=p
 end
 end
 end
-for s,o in ipairs(g)do
-if o.statuses.taunt then
-i=o
+for s,p in ipairs(g)do
+if p.statuses.taunt then
+i=p
 end
 end
-return{kind="skill",skill=c,target=i}
+return{kind="skill",skill=d,target=i}
 end
 
 function a:endTurn(fighter)
-local b=nil
+local c=nil
 if fighter.hp>0 and fighter.statuses.soot then
-b={target=fighter}
-self:hurt(fighter,math.max(1,math.floor(fighter.maxHp*a.SOOT_SHARE*(fighter.boss and 0.25 or 1))),b)
+c={target=fighter}
+self:hurt(fighter,math.max(1,math.floor(fighter.maxHp*a.SOOT_SHARE*(fighter.boss and 0.25 or 1))),c)
 end
 if fighter.hp>0 and fighter.statuses.regen then
-b=b or{target=fighter}
-self:heal(fighter,math.max(1,math.floor(fighter.maxHp*a.REGEN_SHARE)),b)
+c=c or{target=fighter}
+self:heal(fighter,math.max(1,math.floor(fighter.maxHp*a.REGEN_SHARE)),c)
 end
-for c,e in pairs(fighter.statuses)do
-if c~="stun"and c~="sleep"then
-if e<=1 then
-fighter.statuses[c]=nil
+for d,f in pairs(fighter.statuses)do
+if d~="stun"and d~="sleep"then
+if f<=1 then
+fighter.statuses[d]=nil
 else
-fighter.statuses[c]=e-1
+fighter.statuses[d]=f-1
 end
 end
 end
-return b
+return c
 end
 
 function a:tickSleep(fighter)
-local b=fighter.statuses.sleep
-if b<=1 then
+local c=fighter.statuses.sleep
+if c<=1 then
 fighter.statuses.sleep=nil
 else
-fighter.statuses.sleep=b-1
+fighter.statuses.sleep=c-1
 end
 end
 
@@ -891,29 +938,29 @@ return nil
 end
 
 function a:syncParty()
-for c,b in ipairs(self.party)do
-b.member.hp=math.max(0,b.hp)
-b.member.sp=math.max(0,b.sp)
+for d,c in ipairs(self.party)do
+c.member.hp=math.max(0,c.hp)
+c.member.sp=math.max(0,c.sp)
 end
 end
 
 function a:spoils()
-local c,g,e=0,0,{}
-for l,b in ipairs(self.enemies)do
-if not b.fled then
-c=c+b.enemy.xp
-for i in pairs(b.broken or{})do
-c=c+math.floor(b.enemy.xp*a.PART_XP)
+local d,g,f=0,0,{}
+for l,c in ipairs(self.enemies)do
+if not c.fled then
+d=d+c.enemy.xp
+for i in pairs(c.broken or{})do
+d=d+math.floor(c.enemy.xp*a.PART_XP)
 end
-g=g+b.enemy.gold
-local i=b.enemy.drop
-local k=b.enemy.rare
+g=g+c.enemy.gold
+local i=c.enemy.drop
+local k=c.enemy.rare
 if k and self.random:chance(k[2])then
-e[#e+1]=k[1]
-elseif i and not b.stolen and self.random:chance(i[2])then
-e[#e+1]=i[1]
+f[#f+1]=k[1]
+elseif i and not c.stolen and self.random:chance(i[2])then
+f[#f+1]=i[1]
 end
 end
 end
-return c,g,e
+return d,g,f
 end

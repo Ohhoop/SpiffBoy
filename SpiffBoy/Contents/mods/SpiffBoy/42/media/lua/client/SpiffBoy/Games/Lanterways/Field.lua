@@ -172,6 +172,7 @@ j.lights[#j.lights+1]=a.flag
 end
 end
 map.islets=i
+map.isletByCode=h
 map.regionRows=b.regionRows
 map.regions=b.regions
 map.walls=b.walls
@@ -185,13 +186,15 @@ return string.sub(map.rows[y+1],x+1,x+1)
 end
 
 function c.new(game,mapId,x,y,dir)
-local b=c.prepare(d.Maps[mapId])
+local h=c.prepare(d.Maps[mapId])
 local a=setmetatable({},c)
 a.game=game
-a.map=b
+a.map=h
 a.id=mapId
 a.actors={}
 a.player=a:newActor("player","pell",x,y,dir)
+local b=a:isletAt(x,y)
+a.isletId=b and b.id
 a.followers={}
 a:refreshParty()
 a.npcs={}
@@ -398,6 +401,23 @@ return true
 end
 local a,b=x-self.player.x,y-self.player.y
 return a*a+b*b<=c.HALO
+end
+
+function c:isletAt(x,y)
+local a=self.map.isletByCode
+if not a or x<0 or y<0 or x>=self.map.width or y>=self.map.height then
+return nil
+end
+return a[string.sub(d.MurkSea.isletRows[y+1],x+1,x+1)]
+end
+
+function c:reachedIslet()
+local a=self:isletAt(self.player.x,self.player.y)
+if not a or a.id==self.isletId then
+return nil
+end
+self.isletId=a.id
+return a
 end
 
 function c:regionAt(x,y)

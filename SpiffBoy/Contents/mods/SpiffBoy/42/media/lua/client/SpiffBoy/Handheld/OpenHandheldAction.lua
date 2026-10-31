@@ -7,11 +7,6 @@ require"SpiffBoy/UI/HandheldWindow"
 SpiffBoyOpenHandheldAction=ISBaseTimedAction:derive("SpiffBoyOpenHandheldAction")
 
 local function b(playerObj,console)
-local a=SpiffBoyHandheldWindow.hiddenOn(console)
-if a then
-a:reveal()
-return
-end
 SpiffBoyHandheldWindow.open(playerObj,console)
 end
 

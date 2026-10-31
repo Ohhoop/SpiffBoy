@@ -17,9 +17,9 @@ local g=256
 local h=SpiffBoy.LINK_MESSAGES_PER_TICK
 local i=SpiffBoy.LINK_BATCH_MAX
 
-function a.new(window)
+function a.new(instance)
 local b=setmetatable({},a)
-b.window=window
+b.instance=instance
 if isClient()then
 b.carrier=SpiffBoy.NetworkLink
 else
@@ -38,11 +38,15 @@ return b
 end
 
 function a:link()
-return d.of(self.window.playerNum)
+local b=d.of(self.instance.playerNum)
+if b and b.consoleId==self.instance.consoleId then
+return b
+end
+return nil
 end
 
 function a:isConnected()
-local b=self.window
+local b=self.instance
 return self:link()~=nil and b.powered and self.peerOn and b.definition~=nil and self.peerCartridge==b.definition.item
 end
 
@@ -92,19 +96,22 @@ local c=getTimestampMs()
 if b<i and c-self.lastSendMs<e then
 return
 end
-self.carrier.sendData(self.window.playerObj,self.sequence,self.outgoing)
+self.carrier.sendData(self.instance.playerObj,self.sequence,self.outgoing)
 self.sequence=self.sequence+1
 self.outgoing={}
 self.lastSendMs=c
 end
 
 function a:announce()
-local b=self.window.definition
+if not self:link()then
+return
+end
+local b=self.instance.definition
 local c=nil
 if b then
 c=b.item
 end
-self.carrier.sendState(self.window.playerObj,c,self.window.powered)
+self.carrier.sendState(self.instance.playerObj,c,self.instance.powered)
 end
 
 function a:onData(sequence,messages)
@@ -126,7 +133,7 @@ local b=self:isConnected()
 self.peerCartridge=cartridge
 self.peerOn=on
 if b and not self:isConnected()and self:inUse()then
-self.window:onLinkLost()
+self.instance:onLinkLost()
 end
 end
 
@@ -145,7 +152,7 @@ self.incoming={}
 self.peerCartridge=nil
 self.peerOn=false
 if self:inUse()then
-self.window:onLinkLost()
+self.instance:onLinkLost()
 end
 end
 

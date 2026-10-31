@@ -20,7 +20,7 @@ return d
 end
 
 local function b(name,to,tx,ty,dir,when)
-return a(name,{to=to,tx=tx,ty=ty,dir=dir,when=when})
+return a(name,{kind="townmark",w=1,h=1,door=0,face=c.MurkSea.gateFaces[name],to=to,tx=tx,ty=ty,dir=dir,when=when})
 end
 
 local function d(name,region)
@@ -36,12 +36,44 @@ music=j.ROAD,
 back="fog",
 fog=true,
 chunk={w=25,h=18},
+namedIslets={
+landing=true,
+spur=true,
+stair=true,
+hollowrest=true,
+eastlanding=true,
+orchard=true,
+eastside=true,
+reach=true,
+eastwatch=true,
+rocks=true,
+harbour=true,
+wreck=true,
+coastwatch=true,
+farshoal=true,
+tidefirst=true,
+chartisle=true,
+survey=true,
+maw=true,
+tidewatch=true,
+capital=true,
+spirewatch=true,
+spirefoot=true,
+},
 objects={
 d("riveWatch","rive"),
 d("eastWatch","east"),
 d("coastWatch","coast"),
 d("tideWatch","tide"),
 d("spireWatch","spire"),
+b("tallowbyEastGate","tallowby",34,8,"left"),
+b("wickSouthGate","wickhollow",20,25,"up"),
+b("brassWestGate","brassmouth",1,20,"right"),
+b("capitalWestGate","glimmerhold",1,17,"right"),
+b("farrowGate","farrow",14,20,"up",{min=17}),
+b("sunkenGate","sunkenroad",4,12,"up",{min=17}),
+b("surveyGate","drownedsurvey",14,1,"down",{min=17}),
+b("spireGate","spire",17,38,"up"),
 },
 lamps={
 a("landingLamp",{flag="l_landing"}),
@@ -179,23 +211,10 @@ spire={rate=112,when={min=19},troops={
 },rares={{"gildedmite"},{"lostwarden"}}},
 },
 },
-warps={
-b("tallowbyNorthGate","tallowby",34,8,"left"),
-b("tallowbySouthGate","tallowby",34,19,"left"),
-b("wickWestGate","wickhollow",1,14,"right"),
-b("wickSouthGate","wickhollow",20,25,"up"),
-b("brassWestGate","brassmouth",1,20,"right"),
-b("brassEastGate","brassmouth",42,12,"left"),
-b("capitalWestGate","glimmerhold",1,17,"right"),
-b("capitalEastGate","glimmerhold",42,17,"left"),
-b("farrowGate","farrow",1,10,"right",{min=17}),
-b("sunkenGate","sunkenroad",1,7,"right",{min=17}),
-b("surveyGate","drownedsurvey",14,1,"down",{min=17}),
-b("spireGate","spire",17,38,"up"),
-},
 }
 
 for k,g in ipairs(c.MurkSea.extraLamps)do
 local h=f.murksea.lamps
 h[#h+1]=a(g.site,{flag=g.flag})
 end
+

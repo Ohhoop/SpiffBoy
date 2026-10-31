@@ -1,37 +1,37 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Window"
+require"SpiffBoy/Games/Lanterways/Class"
 
 local d=SpiffBoyLanterwaysGame
 local a=SpiffBoy.Lanterways
 local c=a.Window
 local e=a.Party
 local f=a.Items
-local u=a.Characters
+local t=a.Characters
 
 local g={listRows=3,listY=20,boxY=74,boxH=46,lineY=6,nameRoom=102,tabX=11,tabRoom=89,arrowLeftX=2,arrowRightX=102}
-local v={"ShopBuy","ShopSell","ShopLeave"}
-local w={"ShopBuy","ShopSell","ShopCraft","ShopLeave"}
-local x={"weapon","armor","charm","use","loot"}
-local y={heal="heart",sp="lampIcon",revive="heart",cure="statusRegen",buff="statusUp",debuff="statusDown",damage="bang",escape="note",glow="glow"}
-local p={blind="statusBlind",sleep="statusSleep",soot="statusSoot",stun="statusStun",regen="statusRegen",veil="statusVeil"}
-local z={none=true}
+local u={"ShopBuy","ShopSell","ShopLeave"}
+local v={"ShopBuy","ShopSell","ShopCraft","ShopLeave"}
+local w={"weapon","armor","charm","use","loot"}
+local x={heal="heart",sp="lampIcon"}
+local y={none=true}
 
-local function q(value)
+local function n(value)
 if value>0 then
 return"+"..value
 end
 return tostring(value)
 end
 
-local function r(value)
+local function o(value)
 return math.floor(value*100+0.5).."%"
 end
 
 function d:shopChoices()
 if a.Recipes[self.shop.id]then
-return w
-end
 return v
+end
+return u
 end
 
 function d:canCraft(recipe)
@@ -95,7 +95,7 @@ for i,b in ipairs(self:shopAllRows(screen))do
 h[f.get(b.id).kind]=true
 end
 local b={}
-for j,i in ipairs(x)do
+for j,i in ipairs(w)do
 if h[i]then
 b[#b+1]=i
 end
@@ -151,7 +151,7 @@ local b={i}
 for m,h in ipairs(e.STATS)do
 local j=l[h]-k[h]
 if j~=0 then
-b[#b+1]=a.text("Stat_"..h)..q(j)
+b[#b+1]=a.text("Stat_"..h)..n(j)
 end
 end
 if#b==1 then
@@ -164,7 +164,7 @@ function d:wearerPages(item)
 local b={}
 for j,h in ipairs(self.state.order)do
 local i=self.state.members[h]
-if i and f.fits(u.BY_ID[h],item)then
+if i and f.fits(t.BY_ID[h],item)then
 b[#b+1]={text=self:compareText(i,item)}
 end
 end
@@ -174,38 +174,61 @@ end
 return b
 end
 
+function d:effectParts(item)
+local b=item.effect
+if b=="heal"or b=="sp"then
+return{n(item.power)}
+elseif b=="revive"then
+return{o(item.power),a.text("UseRevive")}
+elseif b=="cure"and item.status then
+return{a.text("UseCure",a.text("StatusName_"..item.status))}
+elseif b=="cure"then
+return{a.text("UseCureAll")}
+elseif b=="buff"then
+return{a.text("UseStatus_"..item.status)}
+elseif b=="debuff"then
+return{o(item.chance),a.text("UseStatus_"..item.status)}
+elseif b=="damage"then
+local h={a.text("UseDamage",item.power,a.text("Element_"..item.element))}
+if item.status then
+h[2]=a.text("UseRider",o(item.chance),a.text("StatusName_"..item.status))
+end
+return h
+elseif b=="glow"then
+return{a.text("UseGlow",n(item.power))}
+end
+return{}
+end
+
 function d:effectPage(item)
-local i=y[item.effect]
-if item.status and p[item.status]then
-i=p[item.status]
-elseif item.element then
-i=c.ELEMENT_ICONS[item.element]
-end
-local h=""
-if item.effect=="heal"or item.effect=="sp"or item.effect=="glow"then
-h=q(item.power)
-elseif item.effect=="damage"then
-h=tostring(item.power)
-elseif item.effect=="revive"then
-h=r(item.power)
-elseif item.chance then
-h=r(item.chance)
-end
-local b={}
-if h~=""then
-b[#b+1]=h
-end
-if z[item.target]then
+local b=self:effectParts(item)
+if y[item.target]then
 b[#b+1]=a.text("Effect_"..item.effect)
 else
 b[#b+1]=a.text("Target_"..item.target)
 end
-return{icon=i,text=table.concat(b,"  ")}
+return{icon=x[item.effect],text=table.concat(b,"  ")}
+end
+
+function d:gearText(item)
+if item.element then
+return a.text("GearStrikes",a.text("Element_"..item.element))
+elseif item.ward then
+return a.text("GearHalves",a.text("Element_"..item.ward))
+elseif item.guard then
+return a.text("GearBlocks",a.text("StatusName_"..item.guard))
+end
+return nil
 end
 
 function d:itemPages(item)
 if f.isEquipment(item)then
-return self:wearerPages(item)
+local b=self:wearerPages(item)
+local h=self:gearText(item)
+if h then
+b[#b+1]={text=h}
+end
+return b
 elseif item.kind=="use"then
 return{self:effectPage(item)}
 end
@@ -222,6 +245,7 @@ if item[h]then
 b[#b+1]=a.text("Stat_"..h).." "..item[h]
 end
 end
+b[#b+1]=self:gearText(item)
 if#b==0 then
 return{}
 end
@@ -354,9 +378,9 @@ self:effect("cursor")
 end
 b.tab=SpiffBoy.clamp(b.tab,1,math.max(1,#k))
 local j=self:shopRows(b.screen)
-local n=a.verticalStep(h)
-if n~=0 and#j>0 then
-b.list=a.wrap(b.list+n,#j)
+local p=a.verticalStep(h)
+if p~=0 and#j>0 then
+b.list=a.wrap(b.list+p,#j)
 b.top=c.scroll(b.list,b.top,g.listRows,#j)
 self:effect("cursor")
 end
@@ -383,9 +407,9 @@ end
 return
 end
 if h.a and i then
-local o=f.get(i.id)
+local q=f.get(i.id)
 if b.screen=="buy"then
-local l=math.floor(self.state.gold/o.price)
+local l=math.floor(self.state.gold/q.price)
 l=math.min(l,f.MAX_STACK-e.count(self.state,i.id))
 if l<=0 then
 self:effect("buzz")
@@ -442,7 +466,7 @@ local b=self.shop
 local i=self.artUi
 local j,k=6,a.WIDTH-12
 local h=g.boxY+g.lineY
-local n=h+c.LINE
+local p=h+c.LINE
 c.frame(screen,nil,0,g.boxY,a.WIDTH,g.boxH)
 if not row then
 return
@@ -454,67 +478,61 @@ c.text(screen,"x"..b.amount,10,h)
 c.textRight(screen,tostring(m*b.amount),a.WIDTH-8,h)
 c.icon(screen,i,"arrowLeft",2,c.iconBeside(screen,"arrowLeft",h),{1})
 c.icon(screen,i,"arrowRight",52,c.iconBeside(screen,"arrowRight",h),{1})
-c.pages(screen,i,{{text=self:ownedText(l),shade=a.DARK}},j,n,k,self.clock)
+c.pages(screen,i,{{text=self:ownedText(l),shade=a.DARK}},j,p,k,self.clock)
 return
 end
 local l=f.get(row.id)
 if b.screen=="craft"then
 c.pages(screen,i,self:itemPages(l),j,h,k,self.clock)
-local o={}
-for A,m in ipairs(a.Recipes[b.id][row.recipe].needs)do
-local s=e.count(self.state,m[1])
-local t=a.INK
-if s<m[2]then
-t=a.MID
+local q={}
+for z,m in ipairs(a.Recipes[b.id][row.recipe].needs)do
+local r=e.count(self.state,m[1])
+local s=a.INK
+if r<m[2]then
+s=a.MID
 end
-o[#o+1]={text=s.."/"..m[2].." "..a.text("Item_"..m[1]),shade=t}
+q[#q+1]={text=r.."/"..m[2].." "..a.text("Item_"..m[1]),shade=s}
 end
-c.pages(screen,i,o,j,n,k,self.clock)
+c.pages(screen,i,q,j,p,k,self.clock)
 return
 end
 local m=self:itemPages(l)
-local o=self:ownedText(l)
+local q=self:ownedText(l)
 if b.screen=="sell"then
-local s=self:wearerNames(l.id)
-if s then
-table.insert(m,1,{text=a.text("WornBy",s),shade=a.DARK})
+local r=self:wearerNames(l.id)
+if r then
+table.insert(m,1,{text=a.text("WornBy",r),shade=a.DARK})
 end
-local t=e.count(self.state,l.id)
-o=a.text("AfterSale",t,t-1)
+local s=e.count(self.state,l.id)
+q=a.text("AfterSale",s,s-1)
 end
 c.pages(screen,i,m,j,h,k,self.clock)
-c.pair(screen,o,a.text("ShopDetails"),j,n,k,self.clock,a.DARK,a.DARK)
+c.pair(screen,q,a.text("ShopDetails"),j,p,k,self.clock,a.DARK,a.DARK)
 end
 
 function d:drawShopDetails(screen)
 local l=self.shop
 local k=self.artUi
 local b=f.get(l.item)
-local i,h=6,a.WIDTH-12
+local h,i=6,a.WIDTH-12
 local function j(index)
 return 2+(index-1)*c.LINE
 end
 c.frame(screen,k,0,0,a.WIDTH,a.HEIGHT)
-local o=h
-local m=f.isEquipment(b)and c.gearIcon(b)
-if m then
-o=h-12
-c.icon(screen,k,m,i+h-8,c.iconBeside(screen,m,j(1)),{1,3})
-end
-c.pages(screen,k,{{text=a.text("Item_"..b.id)}},i,j(1),o,self.clock)
-c.pages(screen,k,{{text=a.text("Kind_"..b.kind),shade=a.DARK}},i,j(2),h,self.clock)
-c.paragraph(screen,a.text("ItemDesc_"..b.id),i,j(3),h,2,self.clock)
-c.pages(screen,k,self:statPages(b),i,j(5),h,self.clock)
+c.pages(screen,k,{{text=a.text("Item_"..b.id)}},h,j(1),i,self.clock)
+c.pages(screen,k,{{text=a.text("Kind_"..b.kind),shade=a.DARK}},h,j(2),i,self.clock)
+c.paragraph(screen,a.text("ItemDesc_"..b.id),h,j(3),i,2,self.clock)
+c.pages(screen,k,self:statPages(b),h,j(5),i,self.clock)
 if f.isEquipment(b)then
-c.pages(screen,k,self:wearerPages(b),i,j(6),h,self.clock)
+c.pages(screen,k,self:wearerPages(b),h,j(6),i,self.clock)
 end
-local n=""
+local m=""
 if l.detailsBack=="buy"then
-n=a.text("Price",b.price)
+m=a.text("Price",b.price)
 elseif l.detailsBack=="sell"then
-n=a.text("Price",f.sellPrice(b))
+m=a.text("Price",f.sellPrice(b))
 end
-c.pair(screen,self:ownedText(b),n,i,j(7),h,self.clock,a.DARK,a.DARK)
+c.pair(screen,self:ownedText(b),m,h,j(7),i,self.clock,a.DARK,a.DARK)
 end
 
 function d:drawShop(screen)

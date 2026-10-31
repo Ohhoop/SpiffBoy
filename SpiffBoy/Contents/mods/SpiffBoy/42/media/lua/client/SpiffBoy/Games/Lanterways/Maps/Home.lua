@@ -3,16 +3,16 @@ require"SpiffBoy/Games/Lanterways/Maps/Rows"
 require"SpiffBoy/Games/Lanterways/Maps/MurkSea"
 require"SpiffBoy/Games/Lanterways/Music"
 
-local a=SpiffBoy.Lanterways
-local c=a.Maps
-local d=a.MapRows
-local b=a.Music
+local b=SpiffBoy.Lanterways
+local c=b.Maps
+local d=b.MapRows
+local a=b.Music
 
 c.pellhouse={
 rows=d.pellhouse,
 place="tallowby",
-music=b.HOME,
-musicLate={when={min=16,max=16},music=b.TENSION},
+music=a.HOME,
+musicLate={when={min=16,max=16},music=a.TENSION},
 nightWhen={min=16,max=16},
 npcs={
 {id="marta",sprite="marta",x=3,y=5,dir="down",talk={
@@ -38,8 +38,8 @@ warps={
 c.lamphouse={
 rows=d.lamphouse,
 place="tallowby",
-music=b.HOME,
-musicLate={when={min=16,max=16},music=b.TENSION},
+music=a.HOME,
+musicLate={when={min=16,max=16},music=a.TENSION},
 nightWhen={min=16,max=16},
 npcs={
 {id="hesk",sprite="hesk",x=6,y=4,dir="down",show={max=15},talk={
@@ -79,8 +79,8 @@ rows=d.tallowby,
 place="tallowby",
 banner="tallowby",
 visit="tallowby",
-music=b.HOME,
-musicLate={when={min=16,max=16},music=b.TENSION},
+music=a.HOME,
+musicLate={when={min=16,max=16},music=a.TENSION},
 nightWhen={min=16,max=16},
 back="meadow",
 wisps=true,
@@ -159,21 +159,19 @@ npcs={
 },
 events={
 {x=31,y=8,when={max=1},script="spur_notyet"},
-{x=31,y=19,when={max=1},script="spur_notyet"},
 },
 enter={
 {when={min=16,max=16,notFlag="ch6"},script="chapter6"},
 },
 warps={
-{x=35,y=8,to="murksea",tx=a.MurkSea.sites.tallowbyNorth.x,ty=a.MurkSea.sites.tallowbyNorth.y,dir="right"},
-{x=35,y=19,to="murksea",tx=a.MurkSea.sites.tallowbySouth.x,ty=a.MurkSea.sites.tallowbySouth.y,dir="right"},
+{x=35,y=8,to="murksea",tx=b.MurkSea.sites.tallowbyEast.x,ty=b.MurkSea.sites.tallowbyEast.y,dir="right"},
 },
 }
 
 c.inn={
 rows=d.inn,
 place="inn",
-music=b.HOME,
+music=a.HOME,
 npcs={
 {id="innkeeper",sprite="innkeeper",x=3,y=2,dir="down",talk="inn_talk"},
 },

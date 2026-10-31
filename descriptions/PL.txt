@@ -37,7 +37,7 @@ Podłącz Kabel link SpiffBoy między dwiema konsolami i rzuć wyzwanie znajomem
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Dostosuj konsolę SpiffBoy do swoich upodobań: opcje piaskownicy decydują, jak wpasowuje się w twój świat, od tłumu, który ściąga jej dźwięk, po dobry humor, który przynosi; ustawienia sterowania pozwalają wybrać przyciski, a opcje moda kształtują jej wygląd na ekranie.
+Dostosuj konsolę SpiffBoy do swoich upodobań: opcje piaskownicy decydują, jak wpasowuje się w twój świat, od tłumu, który ściąga jej dźwięk, po dobry humor, który przynosi; klawisze znajdziesz w opcjach, w PRZYPISANIE KLAWISZY, w sekcji SpiffBoy, a na kontrolerze gra się równie dobrze, a opcje moda kształtują jej wygląd na ekranie.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

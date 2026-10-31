@@ -18,11 +18,17 @@ local j={}
 
 local f
 
-local function d(message,pos)
-error("invalid JSON, "..message.." at character "..tostring(pos),0)
+local function c(text,message,pos)
+if pos>string.len(text)then
+error("invalid JSON, "..message.." at the end of the file",0)
+end
+local a=string.sub(text,1,pos-1)
+local g,d=string.gsub(a,"\n","")
+local e=string.find(a,"\n[^\n]*$")or 0
+error("invalid JSON, "..message.." at line "..tostring(d+1)..", column "..tostring(pos-e),0)
 end
 
-local function c(text,pos)
+local function d(text,pos)
 local e,a=string.find(text,"^[ \t\r\n]*",pos)
 return a+1
 end
@@ -33,7 +39,7 @@ local g=pos+1
 while true do
 local a=string.find(text,'["\\]',g)
 if not a then
-d("unfinished string",pos)
+c(text,"unfinished string",pos)
 end
 e[#e+1]=string.sub(text,g,a-1)
 if string.sub(text,a,a)=='"'then
@@ -43,14 +49,14 @@ local l=string.sub(text,a+1,a+1)
 if l=="u"then
 local m=string.sub(text,a+2,a+5)
 if not string.find(m,"^%x%x%x%x$")then
-d("bad unicode escape",a)
+c(text,"bad unicode escape",a)
 end
 e[#e+1]=string.char(tonumber(m,16))
 g=a+6
 else
 local m=q[l]
 if not m then
-d("bad escape",a)
+c(text,"bad escape",a)
 end
 e[#e+1]=m
 g=a+2
@@ -60,50 +66,58 @@ end
 
 local function s(text,pos)
 local e={}
-local a=c(text,pos+1)
+local a=d(text,pos+1)
 if string.sub(text,a,a)=="}"then
 return e,a+1
 end
 while true do
 if string.sub(text,a,a)~='"'then
-d("expected a key",a)
+c(text,"expected a key",a)
 end
 local g
 g,a=k(text,a)
-a=c(text,a)
+a=d(text,a)
 if string.sub(text,a,a)~=":"then
-d("expected a colon",a)
+c(text,"expected a colon",a)
 end
-e[g],a=f(text,c(text,a+1))
-a=c(text,a)
+e[g],a=f(text,d(text,a+1))
+a=d(text,a)
 local l=string.sub(text,a,a)
 if l=="}"then
 return e,a+1
 end
 if l~=","then
-d("expected a comma",a)
+c(text,"expected a comma",a)
 end
-a=c(text,a+1)
+local m=a
+a=d(text,a+1)
+if string.sub(text,a,a)=="}"then
+c(text,"a comma after the last entry",m)
+end
 end
 end
 
 local function t(text,pos)
 local e={}
-local a=c(text,pos+1)
+local a=d(text,pos+1)
 if string.sub(text,a,a)=="]"then
 return e,a+1
 end
 while true do
 e[#e+1],a=f(text,a)
-a=c(text,a)
+a=d(text,a)
 local g=string.sub(text,a,a)
 if g=="]"then
 return e,a+1
 end
 if g~=","then
-d("expected a comma",a)
+c(text,"expected a comma",a)
 end
-a=c(text,a+1)
+local l=a
+a=d(text,a+1)
+if string.sub(text,a,a)=="]"then
+c(text,"a comma after the last entry",l)
+end
 end
 end
 
@@ -126,13 +140,13 @@ local e=string.match(text,"^-?%d+%.?%d*[eE]?[-+]?%d*",pos)
 if e and tonumber(e)then
 return tonumber(e),pos+string.len(e)
 end
-d("unexpected character",pos)
+c(text,"unexpected character",pos)
 end
 
 function b.decode(text)
-local e,a=f(text,c(text,1))
-if c(text,a)<=string.len(text)then
-d("unexpected text after the value",a)
+local e,a=f(text,d(text,1))
+if d(text,a)<=string.len(text)then
+c(text,"unexpected text after the value",a)
 end
 return e
 end

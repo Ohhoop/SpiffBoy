@@ -37,7 +37,7 @@ Zapojte Propojovací kabel SpiffBoy mezi dvě konzole a vyzvěte kamaráda, poku
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Nalaďte si konzoli SpiffBoy podle svého: sandboxové možnosti určují, jak zapadne do vašeho světa, od davu, který přiláká její zvuk, po dobrou náladu, kterou přináší, nastavení ovládání vám dovolí vybrat si tlačítka a možnosti modu určují, jak vypadá na obrazovce.
+Nalaďte si konzoli SpiffBoy podle svého: sandboxové možnosti určují, jak zapadne do vašeho světa, od davu, který přiláká její zvuk, po dobrou náladu, kterou přináší, klávesy najdete v možnostech pod NASTAVENÍ KLÁVES, v sekci SpiffBoy, a s ovladačem se hraje stejně dobře a možnosti modu určují, jak vypadá na obrazovce.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]

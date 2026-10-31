@@ -37,7 +37,7 @@ Steck das SpiffBoy-Linkkabel zwischen zwei Konsolen und fordere einen Freund her
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/yours.png[/img]
-Stell den SpiffBoy nach deinem Geschmack ein: Die Sandbox-Optionen bestimmen, wie er in deine Welt passt, von der Menge, die sein Klang anlockt, bis zur guten Laune, die er bringt; in den Steuerungseinstellungen wählst du deine Tasten, und die Mod-Optionen legen fest, wie er auf deinem Bildschirm aussieht.
+Stell den SpiffBoy nach deinem Geschmack ein: Die Sandbox-Optionen bestimmen, wie er in deine Welt passt, von der Menge, die sein Klang anlockt, bis zur guten Laune, die er bringt; deine Tasten findest du in den Optionen unter TASTATURBELEGUNG, im Abschnitt SpiffBoy, und mit einem Controller spielt er sich genauso gut, und die Mod-Optionen legen fest, wie er auf deinem Bildschirm aussieht.
 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
