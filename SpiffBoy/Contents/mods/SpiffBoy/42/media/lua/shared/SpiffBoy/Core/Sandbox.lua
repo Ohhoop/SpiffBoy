@@ -44,3 +44,7 @@ end
 function a.othersHearConsole()
 return b().OthersHearConsole
 end
+
+function a.fastForwardWhilePlaying()
+return b().FastForwardWhilePlaying
+end

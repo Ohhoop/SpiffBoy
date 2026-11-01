@@ -75,3 +75,11 @@ option SpiffBoy.OthersHearConsole
     page = SpiffBoy,
     translation = SpiffBoy_OthersHearConsole,
 }
+
+option SpiffBoy.FastForwardWhilePlaying
+{
+    type = boolean,
+    default = false,
+    page = SpiffBoy,
+    translation = SpiffBoy_FastForwardWhilePlaying,
+}

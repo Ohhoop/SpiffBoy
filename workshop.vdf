@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.9: hand your running console to a friend in multiplayer and the game travels with it, picking up exactly where you left off, with RECEIVING GAME on its screen while it arrives; a switched on console keeps playing wherever it lies, on the floor, in a crate or in a vehicle, heard from there, louder further; a building or a closed vehicle keeps its sound, walls muffle it both ways; up to three consoles run at once, the oldest paused; a console left on at quit comes back off"
+	"changenote"		"0.1.10: new sandbox option Fast forward while playing, off by default: in singleplayer, speed up time while you play; the console keeps its normal pace for its game and music, while the battery, the noise and the mood follow the time of the world"
 }

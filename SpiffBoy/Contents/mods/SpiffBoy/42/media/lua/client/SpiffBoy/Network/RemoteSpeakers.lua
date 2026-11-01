@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Commands"
 require"SpiffBoy/Core/Clock"
+require"SpiffBoy/Core/Pace"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/Chip"
 require"SpiffBoy/Core/Speaker"

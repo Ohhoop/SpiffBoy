@@ -21,6 +21,7 @@ The SpiffBoy was built to behave like the handheld consoles of the era, down to 
 - A sound that carries: play it loud, and you may draw a crowd you did not invite.
 - Runs on batteries, so you can play anywhere, even when the power is out.
 - Play with the keyboard or a controller.
+- Pass it to a friend mid-game.
 - Nothing beats a good game to chase the boredom away and lift your spirits.
 
 

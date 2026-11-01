@@ -40,9 +40,10 @@ if not SpiffBoy.Sandbox.playingEasesMood()then
 return false
 end
 g(playerObj)
-local b=playerObj:getStats()
-b:remove(CharacterStat.BOREDOM,a.BOREDOM_PER_SECOND)
-b:remove(CharacterStat.UNHAPPINESS,a.UNHAPPINESS_PER_SECOND)
+local b=getGameTime():getTrueMultiplier()
+local d=playerObj:getStats()
+d:remove(CharacterStat.BOREDOM,a.BOREDOM_PER_SECOND*b)
+d:remove(CharacterStat.UNHAPPINESS,a.UNHAPPINESS_PER_SECOND*b)
 return true
 end
 

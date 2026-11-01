@@ -29,13 +29,6 @@ function SpiffBoy.isDevBuild()
 return luautils.stringEnds(SpiffBoy.MOD_ID,b)
 end
 
-local c={[5]=2,[20]=4,[40]=6}
-local d=1
-
-function SpiffBoy.consoleRate()
-return c[getGameTime():getTrueMultiplier()]or d
-end
-
 function SpiffBoy.log(message)
 print("SpiffBoy: "..tostring(message))
 end
@@ -68,8 +61,8 @@ if math.abs(math.floor(listener:getZ())-math.floor(source:getZ()))>SpiffBoy.HEAR
 return false
 end
 local a=math.abs(listener:getX()-source:getX())
-local e=math.abs(listener:getY()-source:getY())
-return math.max(a,e)<=reach
+local c=math.abs(listener:getY()-source:getY())
+return math.max(a,c)<=reach
 end
 
 function SpiffBoy.newSeed()

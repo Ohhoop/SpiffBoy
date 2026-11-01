@@ -1,5 +1,6 @@
 require"ISUI/ISPanel"
 require"SpiffBoy/Core/Core"
+require"SpiffBoy/Core/Sandbox"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Core/Runtime"
@@ -753,11 +754,18 @@ function SpiffBoyHandheldWindow:prerender()
 if self.closing then
 return
 end
+self:holdNormalSpeed()
+self:holdZoomIn()
+self.instance:step()
+end
+
+function SpiffBoyHandheldWindow:holdNormalSpeed()
+if SpiffBoy.Sandbox.fastForwardWhilePlaying()then
+return
+end
 if getGameSpeed()>1 then
 setGameSpeed(1)
 end
-self:holdZoomIn()
-self.instance:step()
 end
 
 function SpiffBoyHandheldWindow:holdZoomIn()
