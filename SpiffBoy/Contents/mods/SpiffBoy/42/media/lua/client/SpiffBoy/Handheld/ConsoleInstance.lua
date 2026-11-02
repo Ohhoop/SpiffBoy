@@ -31,7 +31,7 @@ SpiffBoyConsoleInstance={}
 SpiffBoyConsoleInstance.__index=SpiffBoyConsoleInstance
 SpiffBoyConsoleInstance.instances={}
 
-local o="media/ui/SpiffBoy/handheld/"
+local p="media/ui/SpiffBoy/handheld/"
 local j=1000
 local z=5000
 local A=4
@@ -41,14 +41,14 @@ local B=60
 local C="SpiffBoy_PowerSwitch"
 local c=10
 local D=7
-local p="SpiffBoy_VolumeWheel"
-local q=7
+local q="SpiffBoy_VolumeWheel"
+local r=7
 local E=24
 local F=120
-local r=40
+local s=40
 local G=6
 local k=#SpiffBoy.Cartridges.SHADES
-local s="spiffboy"
+local l="spiffboy"
 local t="SpiffBoyRemoveCartridgeAction"
 local H=2
 local u=5000
@@ -59,8 +59,9 @@ local f=SpiffBoy.MUFFLE
 local h=SpiffBoy.SaveState
 local w={"powered","switchOn","battery","volumeStep","glitch","linkLost","gameMissing","noiseCounter","flickerFrames"}
 
-SpiffBoyConsoleInstance.ART=o
+SpiffBoyConsoleInstance.ART=p
 SpiffBoyConsoleInstance.VOLUME_STEPS=c
+SpiffBoyConsoleInstance.BOOT_LOGO=l
 SpiffBoyConsoleInstance.REMOVE_ACTION=t
 
 local function x(playerObj,console,anchor,enclosures)
@@ -86,7 +87,7 @@ a.runtime=SpiffBoyRuntime.new(a.screen)
 a.runtime.onCrash=function()
 a:onGameCrash()
 end
-a.screenArt=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,o,true)
+a.screenArt=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,p,true)
 a.boot=nil
 a.input=SpiffBoyInputState.new()
 a.inputs={a.input}
@@ -186,7 +187,7 @@ end
 function SpiffBoyConsoleInstance.makeRoom(playerNum,keep)
 local d=SpiffBoyConsoleInstance.hostedBy(playerNum)
 local i=0
-for l,a in ipairs(d)do
+for m,a in ipairs(d)do
 if not a.paused and a~=keep and a.powered then
 i=i+1
 end
@@ -200,17 +201,17 @@ a:pause()
 end
 end
 local a={}
-for m,l in ipairs(d)do
-if l.paused then
-a[#a+1]=l
+for n,m in ipairs(d)do
+if m.paused then
+a[#a+1]=m
 end
 end
 while#a>SpiffBoy.MAX_PAUSED do
-local l=y(a,function(instance)return instance~=keep end)
-l:turnOff()
-for m=#a,1,-1 do
-if a[m]==l then
-table.remove(a,m)
+local m=y(a,function(instance)return instance~=keep end)
+m:turnOff()
+for n=#a,1,-1 do
+if a[n]==m then
+table.remove(a,n)
 end
 end
 end
@@ -540,10 +541,10 @@ return"placed"
 end
 self.nextLocateMs=a+j
 end
-local l,m=SpiffBoy.LocalPlayers.carrierOf(d,self.playerObj)
-if l then
-self:changeHost(l)
-if self:settle(m)then
+local m,n=SpiffBoy.LocalPlayers.carrierOf(d,self.playerObj)
+if m then
+self:changeHost(m)
+if self:settle(n)then
 return"held"
 end
 return"lost"
@@ -661,8 +662,8 @@ local a,d=self:anchorPoint()
 if not a then
 return 0
 end
-local i,l=self:hearingFor(self.playerObj)
-return SpiffBoy.RemoteSpeakers.gainAt(a,d,i)*f.gain^l
+local i,m=self:hearingFor(self.playerObj)
+return SpiffBoy.RemoteSpeakers.gainAt(a,d,i)*f.gain^m
 end
 
 function SpiffBoyConsoleInstance:sound()
@@ -735,7 +736,7 @@ return math.floor(self:noiseRange(inRoom)*f.range^self:outerEnclosures())
 end
 
 function SpiffBoyConsoleInstance:hearingReach()
-local a,i,l,d=self:soundSquare()
+local a,i,m,d=self:soundSquare()
 if not a then
 return 0
 end
@@ -783,7 +784,7 @@ if self.noiseCounter>0 then
 return
 end
 self.noiseCounter=g.period
-local a,i,l,m,n=self:noiseSource()
+local a,i,m,n,o=self:noiseSource()
 if not a then
 return
 end
@@ -791,7 +792,7 @@ local d=nil
 if self.anchor.kind==b.PLAYER then
 d=self.playerObj
 end
-addSound(d,a,i,l,m,n)
+addSound(d,a,i,m,n,o)
 end
 
 function SpiffBoyConsoleInstance:soundedLately()
@@ -803,11 +804,11 @@ local a=self:volume()
 if not self.powered or self.paused or not self:soundedLately()or a<=0 or self:hasHeadphones()or not SpiffBoy.Sandbox.noiseAttractsZombies()then
 return nil
 end
-local d,i,l,m=self:soundSquare()
+local d,i,m,n=self:soundSquare()
 if not d then
 return nil
 end
-return d,i,l,self:reachFrom(m),math.floor(g.loudness*a*f.gain^self:outerEnclosures())
+return d,i,m,self:reachFrom(n),math.floor(g.loudness*a*f.gain^self:outerEnclosures())
 end
 
 function SpiffBoyConsoleInstance:volume()
@@ -836,7 +837,7 @@ return
 end
 self.pendingVolumeStep=step
 self.speaker:setVolume(step/c)
-SpiffBoy.Audio.playSound(p)
+SpiffBoy.Audio.playSound(q)
 return
 end
 if step==self.volumeStep then
@@ -846,7 +847,7 @@ self.volumeStep=step
 self.volumeDirty=true
 self.speaker:setVolume(self:volume())
 self.link:setVolume(self:volume())
-SpiffBoy.Audio.playSound(p)
+SpiffBoy.Audio.playSound(q)
 end
 
 function SpiffBoyConsoleInstance:togglePower()
@@ -883,7 +884,7 @@ if self.definition then
 self.link:powerOn(self.definition.item,self:volume())
 end
 self.channel:announce()
-self.boot=SpiffBoyBootScreen.new(self.screenArt(s),self.chip,not self.definition)
+self.boot=SpiffBoyBootScreen.new(self.screenArt(l),self.chip,not self.definition)
 self.runtime:setDevices({self.chip,self.link,self.channel})
 self.runtime:setGame(self.boot)
 end
@@ -899,11 +900,11 @@ function SpiffBoyConsoleInstance:freeze()
 local d=self.screen.width
 local i=self.screen.height
 local a={}
-for m=1,q do
-local l=ZombRand(E,F+1)
-a[#a+1]={x=ZombRand(d),y=ZombRand(i),w=l,h=1,shade=ZombRand(k)+1}
+for n=1,r do
+local m=ZombRand(E,F+1)
+a[#a+1]={x=ZombRand(d),y=ZombRand(i),w=m,h=1,shade=ZombRand(k)+1}
 end
-for l=1,r do
+for m=1,s do
 a[#a+1]={x=ZombRand(d),y=ZombRand(i),w=ZombRand(1,G+1),h=1,shade=ZombRand(k)+1}
 end
 self.glitch=a
@@ -1019,14 +1020,14 @@ context=self.gameContext or{definition=self.definition},
 artNames=self.artNames,
 game=a,
 boot=self.boot,
-bootLogo=self.screenArt(s),
+bootLogo=self.screenArt(l),
 }
 end
 
 function SpiffBoyConsoleInstance:captureState(pace)
 local a=self:stateParts()
 local d={}
-for l,i in ipairs(w)do
+for m,i in ipairs(w)do
 d[i]=self[i]
 end
 a.console=d
@@ -1052,25 +1053,25 @@ return a
 end
 
 local function K(glitch,width,height)
-if type(glitch)~="table"or#glitch>q+r then
+if type(glitch)~="table"or#glitch>r+s then
 return false
 end
 for L,a in ipairs(glitch)do
 if type(a)~="table"then
 return false
 end
-local d,i,l,m,n=a.x,a.y,a.w,a.h,a.shade
-if not(SpiffBoy.isInteger(d)and SpiffBoy.isInteger(i)and SpiffBoy.isInteger(l)and SpiffBoy.isInteger(m)and SpiffBoy.isInteger(n))then
+local d,i,m,n,o=a.x,a.y,a.w,a.h,a.shade
+if not(SpiffBoy.isInteger(d)and SpiffBoy.isInteger(i)and SpiffBoy.isInteger(m)and SpiffBoy.isInteger(n)and SpiffBoy.isInteger(o))then
 return false
 end
-if d<0 or d>=width or i<0 or i>=height or l<1 or l>width or m<1 or m>height or n<1 or n>k then
+if d<0 or d>=width or i<0 or i>=height or m<1 or m>width or n<1 or n>height or o<1 or o>k then
 return false
 end
 end
 return true
 end
 
-local function l(fields,width,height)
+local function m(fields,width,height)
 if type(fields)~="table"then
 return false
 end
@@ -1105,10 +1106,10 @@ local d=self:stateParts()
 d.game=nil
 d.boot=nil
 local a=h.restore(data,d,pace)
-if not l(a.console,self.screen.width,self.screen.height)then
+if not m(a.console,self.screen.width,self.screen.height)then
 error("the console fields of the save state are out of their range")
 end
-for m,i in ipairs(w)do
+for n,i in ipairs(w)do
 self[i]=a.console[i]
 end
 self.speaker:setVolume(self:volume())

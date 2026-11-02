@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.1.10: new sandbox option Fast forward while playing, off by default: in singleplayer, speed up time while you play; the console keeps its normal pace for its game and music, while the battery, the noise and the mood follow the time of the world"
+	"changenote"		"0.2.0: a console guide opens beside the console the first time you play it in each world: a picture of the console with every part, key and mouse button shown, and where to change the keys, the console position and the sandbox settings; F7 brings it back. The link cable is now the SpiffLink Cable. Knox Inventory compatibility: console details under its tooltip, and a double click plays a carried console"
 }

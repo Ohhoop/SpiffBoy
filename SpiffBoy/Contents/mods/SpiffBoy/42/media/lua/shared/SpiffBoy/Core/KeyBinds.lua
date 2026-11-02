@@ -17,6 +17,7 @@ b={id="SB_B",key=Keyboard.KEY_P},
 start={id="SB_Start",key=Keyboard.KEY_SPACE},
 resume={id="SB_Resume",key=Keyboard.KEY_CAPITAL},
 }
+a.GUIDE={id="SB_Tutorial",key=Keyboard.KEY_F7}
 
 local function d()
 local b={}
@@ -37,4 +38,9 @@ table.insert(keyBinding,{value=b.id,key=b.key})
 end
 end
 
+local function b()
+table.insert(keyBinding,{value=a.GUIDE.id,key=a.GUIDE.key})
+end
+
 c()
+b()

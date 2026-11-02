@@ -14,30 +14,30 @@ local g=SpiffBoy.Cartridges.SHADES[1]
 local e=134
 local a=26
 local k={1,2,3,4}
-local r=0
-local s=1
+local s=0
 local t=1
-local u=0x80
-local v=0x40
+local u=1
+local v=0x80
+local w=0x40
 local h=0xC2
-local w=0xC5
+local x=0xC5
 local i=0x82
-local x=0x84
-local y=65
+local y=0x84
+local l=65
 local z={
-{registers=d.REGISTERS[SpiffBoyChip.PULSE1],duty=u},
-{registers=d.REGISTERS[SpiffBoyChip.PULSE2],duty=v},
+{registers=d.REGISTERS[SpiffBoyChip.PULSE1],duty=v},
+{registers=d.REGISTERS[SpiffBoyChip.PULSE2],duty=w},
 }
-local l,m,n,A,B=1798,1849,1881,1923,1714
+local m,n,o,A,B=1798,1849,1881,1923,1714
 local j={
-{tick=0,voice=1,period=l,envelope=h},
+{tick=0,voice=1,period=m,envelope=h},
 {tick=0,voice=2,period=B,envelope=i},
-{tick=5,voice=1,period=m,envelope=h},
-{tick=5,voice=2,period=l,envelope=i},
-{tick=10,voice=1,period=n,envelope=h},
-{tick=10,voice=2,period=m,envelope=i},
-{tick=15,voice=1,period=A,envelope=w},
-{tick=15,voice=2,period=n,envelope=x},
+{tick=5,voice=1,period=n,envelope=h},
+{tick=5,voice=2,period=m,envelope=i},
+{tick=10,voice=1,period=o,envelope=h},
+{tick=10,voice=2,period=n,envelope=i},
+{tick=15,voice=1,period=A,envelope=x},
+{tick=15,voice=2,period=o,envelope=y},
 }
 
 function SpiffBoyBootScreen.new(logo,chip,empty)
@@ -50,24 +50,31 @@ b.landedTicks=nil
 return b
 end
 
+function SpiffBoyBootScreen.landed(logo)
+local b=SpiffBoyBootScreen.new(logo,nil,false)
+b.y=math.floor((SpiffBoy.Cartridges.SCREEN_HEIGHT-a)/2)
+b.landedTicks=l
+return b
+end
+
 function SpiffBoyBootScreen:note(entry)
 local c=self.chip
-local o=z[entry.voice]
-local b=o.registers
+local p=z[entry.voice]
+local b=p.registers
 if b.sweep then
 c:write(b.sweep,0)
 end
-c:write(b.duty,o.duty)
+c:write(b.duty,p.duty)
 c:write(b.envelope,entry.envelope)
-local p,q=d.periodBytes(entry.period)
-c:write(b.low,p)
-c:write(b.high,d.TRIGGER+q)
+local q,r=d.periodBytes(entry.period)
+c:write(b.low,q)
+c:write(b.high,d.TRIGGER+r)
 end
 
 function SpiffBoyBootScreen:tick(inputs,tick)
 local b=math.floor((SpiffBoy.Cartridges.SCREEN_HEIGHT-a)/2)
 if self.y<b then
-self.y=math.min(b,self.y+t)
+self.y=math.min(b,self.y+u)
 return
 end
 if self.empty then
@@ -86,27 +93,27 @@ end
 end
 
 function SpiffBoyBootScreen:isDone()
-return self.landedTicks~=nil and self.landedTicks>=y
+return self.landedTicks~=nil and self.landedTicks>=l
 end
 
 function SpiffBoyBootScreen:draw(screen)
 screen:clear(f.r,f.g,f.b)
 local c=math.floor(self.y)
-local o=math.floor((screen.width-e)/2)
+local p=math.floor((screen.width-e)/2)
 local b=math.max(0,-c)
 if b>=a then
 return
 end
 if self.empty then
-screen:rect(o,c+b,e,a-b,g.r,g.g,g.b,1)
+screen:rect(p,c+b,e,a-b,g.r,g.g,g.b,1)
 return
 end
-local p=r
+local q=s
 if self.landedTicks then
-p=s
+q=t
 end
 for C=1,#k do
-local q=k[C]
-screen:sheet(self.logo,p*e,(q-1)*a+b,e,a-b,o,c+b,1,q)
+local r=k[C]
+screen:sheet(self.logo,q*e,(r-1)*a+b,e,a-b,p,c+b,1,r)
 end
 end
