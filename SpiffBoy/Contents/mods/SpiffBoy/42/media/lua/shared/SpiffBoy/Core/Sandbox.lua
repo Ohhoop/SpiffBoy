@@ -13,6 +13,10 @@ function a.playingEasesMood()
 return b().PlayingEasesMood
 end
 
+function a.allowIdlePlay()
+return b().AllowIdlePlay
+end
+
 function a.noiseAttractsZombies()
 return b().NoiseAttractsZombies
 end

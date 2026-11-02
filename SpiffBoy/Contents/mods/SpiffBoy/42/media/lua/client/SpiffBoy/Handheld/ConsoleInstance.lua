@@ -562,7 +562,7 @@ end
 
 function SpiffBoyConsoleInstance:isPlaying()
 local a=self.runtime
-return self.powered and self.window~=nil and not isGamePaused()and a.game~=nil and self.boot==nil and a.crash==nil and not self:isFrozen()and self.input:activeWithin(z)
+return self.powered and self.window~=nil and not isGamePaused()and a.game~=nil and self.boot==nil and a.crash==nil and not self:isFrozen()and(SpiffBoy.Sandbox.allowIdlePlay()or self.input:activeWithin(z))
 end
 
 function SpiffBoyConsoleInstance:everySecond()

@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.0: a console guide opens beside the console the first time you play it in each world: a picture of the console with every part, key and mouse button shown, and where to change the keys, the console position and the sandbox settings; F7 brings it back. The link cable is now the SpiffLink Cable. Knox Inventory compatibility: console details under its tooltip, and a double click plays a carried console"
+	"changenote"		"0.2.1: new Allow idle play sandbox option, off by default: boredom and unhappiness also go down while the console is simply left running and visible on screen, without pressing any button"
 }

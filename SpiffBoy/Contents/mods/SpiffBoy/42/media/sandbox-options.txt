@@ -8,6 +8,14 @@ option SpiffBoy.PlayingEasesMood
     translation = SpiffBoy_PlayingEasesMood,
 }
 
+option SpiffBoy.AllowIdlePlay
+{
+    type = boolean,
+    default = false,
+    page = SpiffBoy,
+    translation = SpiffBoy_AllowIdlePlay,
+}
+
 option SpiffBoy.NoiseAttractsZombies
 {
     type = boolean,
