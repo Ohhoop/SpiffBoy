@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.2: headphones no longer stay on the head after putting the console away in multiplayer; the character no longer walks while playing after closing the map; the console stays readable in a vehicle with its engine or battery on, and with a lit light carried; mod compatibility follows the version of each mod"
+	"changenote"		"0.2.3: SpiffBoy can now be found on video rental shelves, and no longer in holiday stuff"
 }
