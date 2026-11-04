@@ -89,8 +89,19 @@ end
 return nil
 end
 
+local function f()
+for c,b in pairs(a)do
+if not b.playerObj:isBlockMovement()then
+b.playerObj:setBlockMovement(true)
+if SpiffBoy.isDevBuild()then
+SpiffBoy.log("player "..tostring(c)..": movement blocked again while the console is shown")
+end
+end
+end
+end
+
 local function c()
-for f,b in pairs(a)do
+for j,b in pairs(a)do
 b.playerObj:setBlockMovement(false)
 b.playerObj:setAuthorizeShoveStomp(true)
 b.playerObj:setAuthorizeMeleeAction(true)
@@ -100,3 +111,4 @@ end
 
 Events.OnGameStart.Add(c)
 Events.OnCreatePlayer.Add(c)
+Events.OnTick.Add(f)

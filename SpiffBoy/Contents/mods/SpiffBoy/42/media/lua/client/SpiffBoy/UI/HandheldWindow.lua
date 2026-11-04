@@ -28,13 +28,13 @@ SpiffBoyHandheldWindow=ISPanel:derive("SpiffBoyHandheldWindow")
 SpiffBoyHandheldWindow.windows={}
 
 local b=SpiffBoy.ShellLayout
-local aq=SpiffBoyConsoleInstance.ART
+local ar=SpiffBoyConsoleInstance.ART
 local q=b.SHELL_WIDTH
 local s=b.SHELL_HEIGHT
-local ar=b.SCREEN_X
-local as=b.SCREEN_Y
-local at=b.GLASS_BORDER
-local au=0.62
+local as=b.SCREEN_X
+local at=b.SCREEN_Y
+local au=b.GLASS_BORDER
+local av=0.62
 local Q=24
 local k=b.DPAD
 local t=b.DPAD_COLUMNS
@@ -54,48 +54,50 @@ local A=b.CRISP_BORDER
 local F=b.SIDE_TUCK
 local g=b.VOLUME
 local V=i.x-i.hitMargin
-local av=g.x+g.w+g.hitMargin
-local aw=SpiffBoyConsoleInstance.VOLUME_STEPS
-local ax=2
-local ay=0.15
+local aw=g.x+g.w+g.hitMargin
+local ax=SpiffBoyConsoleInstance.VOLUME_STEPS
+local ay=2
+local az=0.15
 local d=SpiffBoy.Cartridges.SHADES[4]
 local f=SpiffBoy.Cartridges.SHADES[1]
-local az=b.SCREEN_OFF
-local aA=b.BLINK_MS
+local aA=b.SCREEN_OFF
+local aB=b.BLINK_MS
 local W=-1
-local aB=0
+local aC=0
 local X=0.95
-local aC=0.135
-local aD=0.15
-local aE=0.08
+local aD=0.75
+local Y=ArrayList.new()
+local aE=0.135
+local aF=0.15
+local aG=0.08
 local e={size=32,strength=0.6,curve=3,red=0.45,dim=0.5}
-local aF=1
-local aG=60
-local aH=0.95
-local aI={width=150,padding=6}
-local Y={delayMs=1000,margin=8,barWidth=100,barHeight=7,gap=4}
-local Z={}
+local aH=1
+local aI=60
+local aJ=0.95
+local aK={width=150,padding=6}
+local Z={delayMs=1000,margin=8,barWidth=100,barHeight=7,gap=4}
+local _={}
 local G=b.SHELL_ART
-local _=b.POWER_SWITCH_ART
-local aa=b.LED_ART
-local ab="led_glow_edge"
-local ac="led_glow_red"
-local ad=b.BUTTON_START_ART
-local aJ={x=128,y=0,w=128,h=8}
+local aa=b.POWER_SWITCH_ART
+local ab=b.LED_ART
+local ac="led_glow_edge"
+local ad="led_glow_red"
+local ae=b.BUTTON_START_ART
+local aL={x=128,y=0,w=128,h=8}
 local c=b.SLOT
 local l=b.JACK
 local n=b.LINK
 local m={travel=40,snap=1,ease=1.5,start=0.10,reach=0.90,gone=0.90}
-local aK="SpiffBoy_PartClick"
-local aL="SpiffBoyPlugHeadphonesAction"
-local aM="SpiffBoyUnplugHeadphonesAction"
-local aN="SpiffBoyPlugCableAction"
-local aO="SpiffBoyUnplugCableAction"
-local aP="SpiffBoyConnectCableAction"
-local aQ="SpiffBoyDisconnectCableAction"
-local aR="SpiffBoyInsertCartridgeAction"
-local aS=SpiffBoyConsoleInstance.REMOVE_ACTION
-local aT=600
+local aM="SpiffBoy_PartClick"
+local aN="SpiffBoyPlugHeadphonesAction"
+local aO="SpiffBoyUnplugHeadphonesAction"
+local aP="SpiffBoyPlugCableAction"
+local aQ="SpiffBoyUnplugCableAction"
+local aR="SpiffBoyConnectCableAction"
+local aS="SpiffBoyDisconnectCableAction"
+local aT="SpiffBoyInsertCartridgeAction"
+local aU=SpiffBoyConsoleInstance.REMOVE_ACTION
+local aV=600
 local j={
 name="cartridge",
 x=c.x+3,
@@ -104,19 +106,19 @@ h=100,
 mouth=6,
 label={x=11,y=29,w=97,h=53,file="label.png",inset=3},
 }
-local aU={r=238/255,g=232/255,b=214/255}
-local aV={r=52/255,g=44/255,b=60/255}
+local aW={r=238/255,g=232/255,b=214/255}
+local aX={r=52/255,g=44/255,b=60/255}
 local H={r=96/255,g=62/255,b=116/255}
-local ae=b.DPAD_FRAMES
+local af=b.DPAD_FRAMES
 local I=b.BUTTON_FRAMES
-local af=b.VOLUME_FRAMES
-local o={G,c.empty,c.full,j.name,_,aa,ab,ac,ad,l.empty.name,n.empty.name,n.plugged.name,n.slide.name}
+local ag=b.VOLUME_FRAMES
+local o={G,c.empty,c.full,j.name,aa,ab,ac,ad,ae,l.empty.name,n.empty.name,n.plugged.name,n.slide.name}
 
 for a=0,t*t-1 do
-o[#o+1]=ae[a]
-end
-for a=0,aw do
 o[#o+1]=af[a]
+end
+for a=0,ax do
+o[#o+1]=ag[a]
 end
 for h,a in pairs(I)do
 o[#o+1]=a[0]
@@ -128,7 +130,7 @@ o[#o+1]=h.name
 end
 end
 
-local function aW(art)
+local function aY(art)
 local a={}
 for u=1,#o do
 local h=o[u]
@@ -141,11 +143,11 @@ local function J(itemType)
 return SpiffBoy.Handheld.HEADPHONES[itemType].kind
 end
 
-local function ag(shell,veil,texture,x,y,w,h)
+local function ah(shell,veil,texture,x,y,w,h)
 shell:sprite(texture,x,y,w,h)
 end
 
-local function ah(shell,veil,texture,x,y,w,h)
+local function ai(shell,veil,texture,x,y,w,h)
 shell:tinted(texture,x,y,w,h,0,0,0,veil)
 end
 
@@ -157,24 +159,24 @@ local function L(shell,veil,texture,sx,sy,w,h,x,y)
 shell:tintedSheet(texture,sx,sy,w,h,x,y,0,0,0,veil)
 end
 
-local function aX(window,veil,itemType,x,y)
+local function aZ(window,veil,itemType,x,y)
 window:drawCartridgeLabel(itemType,x,y)
 end
 
-local function aY(window,veil,itemType,x,y)
+local function a_(window,veil,itemType,x,y)
 local a=j.label
 window.shell:rect(x+a.x,y+a.y,a.w,a.h,0,0,0,veil)
 end
 
-local function aZ(input,action)
+local function a0(input,action)
 input:tap(action)
 end
 
-local function a_(held,action)
+local function a1(held,action)
 held[action]=true
 end
 
-local function ai(x,y,centre)
+local function aj(x,y,centre)
 local a=x-centre.x
 local h=y-centre.y
 local u=v/2
@@ -196,10 +198,10 @@ local h=k.size/2
 if math.abs(x-k.x)<=h and math.abs(y-k.y)<=h then
 return"dpad"
 end
-if ai(x,y,C)then
+if aj(x,y,C)then
 return"a"
 end
-if ai(x,y,D)then
+if aj(x,y,D)then
 return"b"
 end
 if math.abs(x-p.x)<=p.w/2+R and math.abs(y-p.y)<=p.h/2+R then
@@ -208,7 +210,7 @@ end
 return nil
 end
 
-local function a0(x,y)
+local function a2(x,y)
 local a=k.size/t
 local h=k.x-k.size/2
 local u=k.y-k.size/2
@@ -217,12 +219,12 @@ local B=math.max(0,math.min(t-1,math.floor((y-u)/a)))
 return w-1,B-1
 end
 
-local function aj(control,x,y,visitor,target)
+local function ak(control,x,y,visitor,target)
 if control~="dpad"then
 visitor(target,control)
 return
 end
-local a,h=a0(x,y)
+local a,h=a2(x,y)
 if a<0 then
 visitor(target,"left")
 elseif a>0 then
@@ -235,7 +237,7 @@ visitor(target,"down")
 end
 end
 
-local function a1(x,y,zone)
+local function a3(x,y,zone)
 return x>=zone.x and x<zone.x+zone.w and y>=zone.y and y<zone.y+zone.h
 end
 
@@ -244,7 +246,7 @@ local a=port.zone
 return x>=a.x and x<a.x+a.w and y>=a.y and y<port.y+art.reach
 end
 
-local function ak(progress,travel)
+local function al(progress,travel)
 if progress<m.start then
 return nil
 end
@@ -252,23 +254,23 @@ local a=math.min(1,(progress-m.start)/(m.reach-m.start))
 return m.snap+(travel-m.snap)*(1-a)^m.ease
 end
 
-local function al(progress,travel)
+local function am(progress,travel)
 if progress>=m.gone then
 return nil
 end
 return m.snap+(travel-m.snap)*(progress/m.gone)^m.ease
 end
 
-local function am(progress,plugging,unplugging,slide)
+local function an(progress,plugging,unplugging,slide)
 if plugging then
-local a=ak(progress,m.travel)
+local a=al(progress,m.travel)
 if a then
 return{art=slide,drop=a}
 end
 return nil
 end
 if unplugging then
-local a=al(progress,m.travel)
+local a=am(progress,m.travel)
 return{art=a and slide,drop=a or 0}
 end
 return nil
@@ -302,7 +304,7 @@ end
 
 function SpiffBoyHandheldWindow:onRightMouseUp(x,y)
 local a,h=self.shell:toLocal(x,y)
-local u=a1(a,h,aJ)
+local u=a3(a,h,aL)
 local w=B(a,h,l,self:jackArt())
 local N=B(a,h,n,self:linkArt())
 self:traceMouse("right up at "..x..","..y.." shell "..a..","..h.." inside "..tostring(u).." jack "..tostring(w).." link "..tostring(N).." paused "..tostring(isGamePaused()))
@@ -369,7 +371,7 @@ self:clearStencilRect()
 end
 
 function SpiffBoyHandheldWindow:drawSlot()
-self:paintSlot(K,ag,aX,0,c.h,c.y+j.mouth+1)
+self:paintSlot(K,ah,aZ,0,c.h,c.y+j.mouth+1)
 local a=self.slotMotion
 if a and a.lift then
 self.shell:rect(j.x+1,c.y+j.mouth,j.w-2,1,H.r,H.g,H.b,1)
@@ -377,7 +379,7 @@ end
 end
 
 function SpiffBoyHandheldWindow:drawSlotVeil(veil)
-self:paintSlot(L,ah,aY,veil,-c.y,0)
+self:paintSlot(L,ai,a_,veil,-c.y,0)
 end
 
 function SpiffBoyHandheldWindow:cartridgeTravel()
@@ -397,25 +399,25 @@ local u=self.shell
 local a=j.label
 local w,N=x+a.x,y+a.y
 local h=itemType and SpiffBoy.Cartridges.get(itemType)
-local an=h and h.art and SpiffBoy.Textures.get(h.mod,h.art..a.file,true)
-if an then
-u:sprite(an,w,N,a.w,a.h)
+local ao=h and h.art and SpiffBoy.Textures.get(h.mod,h.art..a.file,true)
+if ao then
+u:sprite(ao,w,N,a.w,a.h)
 return
 end
-local O,P=aU,aV
+local O,P=aW,aX
 u:rect(w,N,a.w,a.h,O.r,O.g,O.b,1)
-local ao=u:lineHeight()
-local a2=h and h.title or getItemNameFromFullType(itemType)
-local ap=u:wrapText(a2,a.w-2*a.inset)
-local a3=N+math.floor((a.h-#ap*ao)/2)
-for a4,a5 in ipairs(ap)do
-u:textCentre(a5,w+math.floor(a.w/2),a3+(a4-1)*ao,P.r,P.g,P.b,1)
+local ap=u:lineHeight()
+local a4=h and h.title or getItemNameFromFullType(itemType)
+local aq=u:wrapText(a4,a.w-2*a.inset)
+local a5=N+math.floor((a.h-#aq*ap)/2)
+for a6,a7 in ipairs(aq)do
+u:textCentre(a7,w+math.floor(a.w/2),a5+(a6-1)*ap,P.r,P.g,P.b,1)
 end
 end
 
 function SpiffBoyHandheldWindow:clickOnRise(flag,condition)
 if condition and not self[flag]then
-SpiffBoy.Audio.playSound(aK)
+SpiffBoy.Audio.playSound(aM)
 end
 self[flag]=condition
 end
@@ -435,7 +437,7 @@ function SpiffBoyHandheldWindow:pullOutProgress()
 if not self.pullOutStartMs then
 return nil
 end
-local a=(getTimestampMs()-self.pullOutStartMs)/aT
+local a=(getTimestampMs()-self.pullOutStartMs)/aV
 if a>=1 then
 self.pullOutStartMs=nil
 return nil
@@ -446,39 +448,39 @@ end
 function SpiffBoyHandheldWindow:updateSlotMotion(current,progress)
 local a=self.instance.seated~=nil
 self:clickOnRise("cartridgeIn",a)
-local h=current~=nil and current.Type==aS and a
+local h=current~=nil and current.Type==aU and a
 self:clickOnRise("cartridgeLeaving",h)
 self.slotMotion=nil
-if current and current.Type==aR and current.item and not a then
-local u=ak(progress,self:cartridgeTravel())
+if current and current.Type==aT and current.item and not a then
+local u=al(progress,self:cartridgeTravel())
 if u then
 self.slotMotion={lift=u,itemType=current.item:getFullType()}
 end
 elseif h then
-self.slotMotion={lift=al(progress,self:cartridgeTravel()),itemType=self.instance.seated.type}
+self.slotMotion={lift=am(progress,self:cartridgeTravel()),itemType=self.instance.seated.type}
 end
 end
 
 function SpiffBoyHandheldWindow:updateJackMotion(current,progress)
-local a=current~=nil and current.Type==aM and self.instance.headphonesType~=nil
+local a=current~=nil and current.Type==aO and self.instance.headphonesType~=nil
 self:clickOnRise("headphonesLeaving",a)
-local u=current~=nil and current.Type==aL and SpiffBoy.Handheld.isHeadphones(current.item)
+local u=current~=nil and current.Type==aN and SpiffBoy.Handheld.isHeadphones(current.item)
 local h=nil
 if u then
 h=l.slides[J(current.item:getFullType())]
 elseif a then
 h=l.slides[J(self.instance.headphonesType)]
 end
-self.jackMotion=am(progress,u,a,h)
+self.jackMotion=an(progress,u,a,h)
 end
 
 function SpiffBoyHandheldWindow:updateLinkMotion(current,progress)
 local a=current and current.Type
 local h=self:pullOutProgress()
-local u=((a==aO or a==aQ)and self.instance.cableIn)or h~=nil
+local u=((a==aQ or a==aS)and self.instance.cableIn)or h~=nil
 self:clickOnRise("cableLeaving",u)
-local w=(a==aN and SpiffBoy.Handheld.isCable(current.item))or(a==aP and not self.instance.cableIn)
-self.linkMotion=am(h or progress,w,u,n.slide)
+local w=(a==aP and SpiffBoy.Handheld.isCable(current.item))or(a==aR and not self.instance.cableIn)
+self.linkMotion=an(h or progress,w,u,n.slide)
 end
 
 function SpiffBoyHandheldWindow:paintPort(paint,veil,port,motion,art)
@@ -647,8 +649,8 @@ a.jackGrip=SpiffBoyJackGrip:new(a)
 a.linkGrip=SpiffBoyLinkGrip:new(a)
 a.cartridgeGrip=SpiffBoyCartridgeGrip:new(a)
 a.shell=SpiffBoyScreen.new(a,q,s)
-a.art=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,aq)
-a.textures=aW(a.art)
+a.art=SpiffBoy.Textures.folder(SpiffBoy.MOD_ID,ar)
+a.textures=aY(a.art)
 a.veil=nil
 a.light=nil
 a.veilTarget=nil
@@ -701,7 +703,7 @@ end
 return right
 end
 
-local function ao(playerNum,left)
+local function aq(playerNum,left)
 local a=getPlayerData(playerNum).equipped
 if a and a:isVisible()then
 return math.max(left,a:getRight())
@@ -711,25 +713,25 @@ end
 
 function SpiffBoyHandheldWindow:layoutShell()
 local h=self.playerNum
-local w,an=getPlayerScreenLeft(h),getPlayerScreenTop(h)
+local w,ao=getPlayerScreenLeft(h),getPlayerScreenTop(h)
 local x,O=getPlayerScreenWidth(h),getPlayerScreenHeight(h)
-local a=math.floor(math.min(x*au/q,O*aH/s))
+local a=math.floor(math.min(x*av/q,O*aJ/s))
 a=math.max(1,a)
 local y=q*a
 self.position=SpiffBoy.ConsolePosition.get()
 local u
 if self.position==SpiffBoy.ConsolePosition.LEFT then
-u=math.min(w+x-y,ao(h,w)+Q)
+u=math.min(w+x-y,aq(h,w)+Q)
 elseif self.position==SpiffBoy.ConsolePosition.CENTRE then
 u=w+math.floor((x-y)/2)
 else
 u=math.max(w,P(h,w+x)-y-Q)
 end
-local ap=an+math.floor((O-s*a)/2)
+local ap=ao+math.floor((O-s*a)/2)
 local N=u+V*a
-self:fitTo(N,ap,(av-V)*a,s*a)
+self:fitTo(N,ap,(aw-V)*a,s*a)
 self.shell:setPlacement(u-N,0,a)
-self.instance.screen:setPlacement(u-N+ar*a,as*a,a)
+self.instance.screen:setPlacement(u-N+as*a,at*a,a)
 end
 
 function SpiffBoyHandheldWindow:prerender()
@@ -752,7 +754,7 @@ end
 
 function SpiffBoyHandheldWindow:holdZoomIn()
 local a=getCore()
-if a:getNextZoom(self.playerNum,W)~=a:getNextZoom(self.playerNum,aB)then
+if a:getNextZoom(self.playerNum,W)~=a:getNextZoom(self.playerNum,aC)then
 a:doZoomScroll(self.playerNum,W)
 end
 end
@@ -930,7 +932,7 @@ return self:isWantMouseEvents()
 end
 self.mouseControl=a
 if a then
-aj(a,u,h,aZ,self.instance.input)
+ak(a,u,h,a0,self.instance.input)
 end
 return self:isWantMouseEvents()
 end
@@ -959,7 +961,7 @@ self:releaseVolume()
 return
 end
 local w,u=self.shell:toLocal(self:getMouseX(),self:getMouseY())
-local h=math.floor((a.startY-u)/ax)
+local h=math.floor((a.startY-u)/ay)
 if h~=0 then
 a.moved=true
 end
@@ -992,7 +994,7 @@ self.mouseControl=nil
 return
 end
 local h,u=self.shell:toLocal(self:getMouseX(),self:getMouseY())
-aj(a,h,u,a_,input.held)
+ak(a,h,u,a1,input.held)
 end
 
 function SpiffBoyHandheldWindow:readInput()
@@ -1011,12 +1013,12 @@ end
 
 function SpiffBoyHandheldWindow:drawGlass()
 local a=self.instance.screen
-local h=az
+local h=aA
 if self.instance.powered or self.instance.flickerFrames>0 then
 h=d
 end
 local w=a.scale
-local u=math.floor(w*at)
+local u=math.floor(w*au)
 self.shell.calls=self.shell.calls+1
 self:drawRect(a.x-u,a.y-u,a.width*w+2*u,a.height*w+2*u,1,h.r,h.g,h.b)
 end
@@ -1040,17 +1042,17 @@ draw(self,a)
 a:endFrame()
 end
 
-local function an(window,screen)
+local function ao(window,screen)
 screen:clear(d.r,d.g,d.b)
 end
 
-local function ap(window,screen)
+local function a4(window,screen)
 screen:clear(d.r,d.g,d.b)
 local a=screen:lineHeight()
 screen:textCentre(getText("UI_SpiffBoy_GameMissing"),screen.width/2,(screen.height-a)/2,f.r,f.g,f.b,1)
 end
 
-local function a2(window,screen)
+local function a5(window,screen)
 local u=SpiffBoy.Cartridges.SHADES
 for w,a in ipairs(window.glitch)do
 local h=u[a.shade]
@@ -1058,14 +1060,14 @@ screen:rect(a.x,a.y,a.w,a.h,h.r,h.g,h.b,1)
 end
 end
 
-local function a3(window,screen)
-local a=Y
+local function a6(window,screen)
+local a=Z
 screen:clear(d.r,d.g,d.b)
 local u=screen:lineHeight()
-local h=Z[screen.width]
+local h=_[screen.width]
 if not h then
 h=screen:wrapText(getText("UI_SpiffBoy_ReceivingGame"),screen.width-a.margin*2)
-Z[screen.width]=h
+_[screen.width]=h
 end
 local O=#h*u+a.gap+a.barHeight
 local y=math.floor((screen.height-O)/2)
@@ -1082,8 +1084,8 @@ screen:rect(w+2,x+2,N,a.barHeight-4,f.r,f.g,f.b,1)
 end
 end
 
-local function a4(window,screen)
-local a=aI
+local function a7(window,screen)
+local a=aK
 local y=screen:lineHeight()
 local w=screen:wrapText(getText("UI_SpiffBoy_LinkLost"),a.width-a.padding*2)
 local h=#w*y+a.padding*2
@@ -1100,30 +1102,30 @@ end
 function SpiffBoyHandheldWindow:drawScreen()
 local a=self.instance.runtime
 if self.instance.transferring then
-if getTimestampMs()-self.instance.transferStartMs>=Y.delayMs then
-self:frame(a3)
+if getTimestampMs()-self.instance.transferStartMs>=Z.delayMs then
+self:frame(a6)
 else
-self:frame(an)
+self:frame(ao)
 end
 return
 end
 if a.crash then
-self:frame(an)
+self:frame(ao)
 elseif a.game then
 a:draw()
 elseif self.instance.gameMissing then
-self:frame(ap)
+self:frame(a4)
 end
 if self.instance.glitch then
-self:frame(a2)
+self:frame(a5)
 end
 if self.instance.linkLost then
-self:frame(a4)
+self:frame(a7)
 end
 end
 
 function SpiffBoyHandheldWindow:blinkOn()
-return math.floor(getTimestampMs()/aA)%2==0
+return math.floor(getTimestampMs()/aB)%2==0
 end
 
 function SpiffBoyHandheldWindow:drawControls()
@@ -1131,8 +1133,8 @@ local a=self.shell
 local h=self.textures
 local u=self.instance.input.held
 local N,O=self.instance.input:axes()
-local a5=(O+1)*t+(N+1)
-a:sprite(h[ae[a5]],k.x-k.size/2,k.y-k.size/2,k.size,k.size)
+local ap=(O+1)*t+(N+1)
+a:sprite(h[af[ap]],k.x-k.size/2,k.y-k.size/2,k.size,k.size)
 local w=0
 if u.a then
 w=1
@@ -1147,13 +1149,13 @@ local y=0
 if u.start then
 y=1
 end
-a:sheet(h[ad],y*p.w,0,p.w,p.h,p.x-p.w/2,p.y-p.h/2)
+a:sheet(h[ae],y*p.w,0,p.w,p.h,p.x-p.w/2,p.y-p.h/2)
 self:drawLed(self:ledFrame())
 end
 
 function SpiffBoyHandheldWindow:ledFrame()
 if self.instance.powered then
-if self.instance.battery<=ay and not self:blinkOn()then
+if self.instance.battery<=az and not self:blinkOn()then
 return T
 end
 return E
@@ -1165,31 +1167,49 @@ return U
 end
 
 function SpiffBoyHandheldWindow:drawLed(frame)
-self.shell:sheet(self.textures[aa],frame*r.size,0,r.size,r.size,r.x-r.size/2,r.y-r.size/2)
+self.shell:sheet(self.textures[ab],frame*r.size,0,r.size,r.size,r.x-r.size/2,r.y-r.size/2)
+end
+
+local function a8(playerObj)
+local a=playerObj:getVehicle()
+return a~=nil and(a:isEngineRunning()or a:getBatteryCharge()>0)
+end
+
+local function ap(playerObj)
+Y:clear()
+return playerObj:getActiveLightItems(Y):size()>0
 end
 
 function SpiffBoyHandheldWindow:ambientLight(square)
 local a=square:getLightLevel(self.playerNum)
 if self.playerObj:hasTrait(CharacterTrait.NIGHT_VISION)then
-a=a+aD
+a=a+aF
+end
+if a8(self.playerObj)or ap(self.playerObj)then
+a=math.max(a,aD)
 end
 return SpiffBoy.clamp(a,0,1)
 end
 
-local function a5()
-return getGameTime():getWorldAgeHours()*aG
+local function a9()
+return getGameTime():getWorldAgeHours()*aI
 end
 
 function SpiffBoyHandheldWindow:logLight(square)
 if not SpiffBoy.isDevBuild()then
 return
 end
-local a=a5()
-if a<self.nextLightLogMinutes then
+local h=a9()
+if h<self.nextLightLogMinutes then
 return
 end
-self.nextLightLogMinutes=a+aF
-SpiffBoy.log("light "..tostring(self.light).." target "..tostring(self.veilTarget).." veil "..tostring(self.veil).." raw "..tostring(square:getLightLevel(self.playerNum)).." setting "..tostring(SandboxVars.NightDarkness).." room "..tostring(square:isInARoom()).." hour "..tostring(getGameTime():getTimeOfDay()))
+self.nextLightLogMinutes=h+aH
+local a=self.playerObj:getVehicle()
+local u="none"
+if a then
+u="engine "..tostring(a:isEngineRunning()).." battery "..tostring(a:getBatteryCharge())
+end
+SpiffBoy.log("light "..tostring(self.light).." target "..tostring(self.veilTarget).." veil "..tostring(self.veil).." raw "..tostring(square:getLightLevel(self.playerNum)).." setting "..tostring(SandboxVars.NightDarkness).." room "..tostring(square:isInARoom()).." vehicle "..u.." carried light "..tostring(ap(self.playerObj)).." hour "..tostring(getGameTime():getTimeOfDay()))
 end
 
 function SpiffBoyHandheldWindow:measureLight()
@@ -1199,7 +1219,7 @@ return false
 end
 local h=self:ambientLight(a)
 self.light=h
-self.veilTarget=SpiffBoy.clamp((X-h)/(X-aC),0,1)
+self.veilTarget=SpiffBoy.clamp((X-h)/(X-aE),0,1)
 self:logLight(a)
 return true
 end
@@ -1219,7 +1239,7 @@ if self.veil==nil then
 self.veil=self.veilTarget
 return
 end
-self.veil=self.veil+(self.veilTarget-self.veil)*aE
+self.veil=self.veil+(self.veilTarget-self.veil)*aG
 end
 
 function SpiffBoyHandheldWindow:drawVeil()
@@ -1229,7 +1249,7 @@ if a==nil or a<=0 then
 return
 end
 local w=self.shell
-self:drawSideControlsWith(ah,a)
+self:drawSideControlsWith(ai,a)
 local u=self.textures[G]
 local x=r.x-e.size/2
 local h=r.y-e.size/2
@@ -1263,15 +1283,15 @@ w=1-(1-veil)/(1-u)
 end
 h:tintedSheet(face,left,top,e.size,e.size,left,top,0,0,0,u)
 if w>0 then
-h:sprite(self.textures[ab],left,top,e.size,e.size,w)
+h:sprite(self.textures[ac],left,top,e.size,e.size,w)
 end
 if a>0 then
-h:sprite(self.textures[ac],left,top,e.size,e.size,e.red*a/e.strength)
+h:sprite(self.textures[ad],left,top,e.size,e.size,e.red*a/e.strength)
 end
 end
 
 function SpiffBoyHandheldWindow:drawSideControls()
-self:drawSideControlsWith(ag,0)
+self:drawSideControlsWith(ah,0)
 end
 
 function SpiffBoyHandheldWindow:drawSideControlsWith(paint,veil)
@@ -1280,8 +1300,8 @@ local h=i.offY
 if self.instance.switchOn then
 h=i.onY
 end
-paint(a,veil,self.textures[_],i.x-A,h-A,i.w+F+2*A,i.h+2*A)
-paint(a,veil,self.textures[af[self.instance:wheelStep()]],g.x-F,g.y,g.w+F,g.h)
+paint(a,veil,self.textures[aa],i.x-A,h-A,i.w+F+2*A,i.h+2*A)
+paint(a,veil,self.textures[ag[self.instance:wheelStep()]],g.x-F,g.y,g.w+F,g.h)
 end
 
 function SpiffBoyHandheldWindow:followConsole(current,progress)
