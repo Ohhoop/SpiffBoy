@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.3: SpiffBoy can now be found on video rental shelves, and no longer in holiday stuff"
+	"changenote"		"0.2.4: a frozen console shows its static again instead of raising an error on every frame"
 }

@@ -1054,7 +1054,7 @@ end
 
 local function a5(window,screen)
 local u=SpiffBoy.Cartridges.SHADES
-for w,a in ipairs(window.glitch)do
+for w,a in ipairs(window.instance.glitch)do
 local h=u[a.shade]
 screen:rect(a.x,a.y,a.w,a.h,h.r,h.g,h.b,1)
 end
