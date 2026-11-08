@@ -42,8 +42,8 @@ Atur SpiffBoy sesuai seleramu: opsi sandbox menentukan bagaimana ia menyatu deng
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Carilah Segel Kualitas Spiffco![/b]
-Sepuluh game hanyalah permulaan. Jika kamu ingin membuat game untuk SpiffBoy, bagian berikutnya dari bagian ini menunjukkan caranya. Tunjukkan game-mu dan saya akan menambahkannya ke daftar di bawah (tempat terbatas, deskripsi hanya bisa memuat teks sebanyak itu).
-- Jadilah yang pertama! 🙂
+Sepuluh game hanyalah permulaan. Jika kamu ingin membuat game untuk SpiffBoy, bagian berikutnya dari bagian ini menunjukkan caranya. Tunjukkan game-mu dan saya akan menambahkannya ke koleksi di bawah.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Buat game-mu sendiri[/b]
 Selalu bermimpi membuat game sendiri? Mod apa pun bisa menambahkan kartridnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] punya semua yang kamu butuhkan untuk membuatnya: panduan, dua kartrid contoh untuk dipelajari, kartrid kosong untuk labelmu, dan alat untuk membuat serta menguji game-mu sendiri. Konsol ini dibuat untuk meniru konsol fisik sungguhan, lengkap dengan batasan teknisnya.

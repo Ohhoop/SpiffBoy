@@ -42,8 +42,8 @@ Nalaďte si konzoli SpiffBoy podle svého: sandboxové možnosti určují, jak z
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Hledejte Pečeť kvality Spiffco![/b]
-Deset her je jen začátek. Pokud byste chtěli vytvořit hru pro konzoli SpiffBoy, další část této sekce vám ukáže jak. Ukažte mi svou hru a přidám ji do seznamu níže (počet míst je omezený, popis pojme jen tolik textu).
-- Buďte první! 🙂
+Deset her je jen začátek. Pokud byste chtěli vytvořit hru pro konzoli SpiffBoy, další část této sekce vám ukáže jak. Ukažte mi svou hru a přidám ji do kolekce níže.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Vytvořte si vlastní hry[/b]
 Vždycky jste snili o vlastní hře? Jakýkoli mod může do konzole SpiffBoy přidat vlastní herní kazety. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] obsahuje vše, co k tomu potřebujete: návod, dvě ukázkové kazety, ze kterých se můžete učit, prázdnou kazetu pro váš štítek a nástroje k vytvoření a otestování vlastní hry. Konzole je postavena tak, aby napodobovala skutečnou fyzickou konzoli, včetně jejích technických omezení.

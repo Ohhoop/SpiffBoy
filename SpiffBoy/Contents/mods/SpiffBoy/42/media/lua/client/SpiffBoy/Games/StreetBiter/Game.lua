@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/StreetBiter/Class"
 require"SpiffBoy/Games/StreetBiter/Roster"
 require"SpiffBoy/Games/StreetBiter/Moves"
 require"SpiffBoy/Games/StreetBiter/Fighter"
@@ -11,7 +12,6 @@ require"SpiffBoy/Games/StreetBiter/Link"
 require"SpiffBoy/Games/StreetBiter/Music"
 require"SpiffBoy/Framework/GameTexts"
 
-SpiffBoyStreetBiterGame=SpiffBoyGameBase:derive("SpiffBoyStreetBiterGame")
 
 local a=SpiffBoyStreetBiterGame
 local e=SpiffBoy.StreetBiter
@@ -24,17 +24,16 @@ local b=e.Music
 
 local j=SpiffBoy.Cartridges.SHADES[4]
 local k=SpiffBoy.Cartridges.SHADES[1]
-local s=SpiffBoy.GameTexts.of("StreetBiter")
-a.gameText=s
+local C=a.gameText
 
-local t=120
-local u=150
+local s=120
+local t=150
 local o=90
-local v=150
-local w=3
-local z=4
-local A=3
-local B=2000000000
+local u=150
+local v=3
+local w=4
+local z=3
+local A=2000000000
 local p={up=false,down=false,left=false,right=false,a=false,b=false}
 
 a.MODE_TITLE="title"
@@ -52,10 +51,10 @@ a.PAUSE_MENU="menu"
 a.PAUSE_MOVES="moves"
 a.PAUSE_OPTIONS="options"
 
-local C={{-1,0},{1,0},{0,-1},{0,1}}
+local B={{-1,0},{1,0},{0,-1},{0,1}}
 
 local function q(screen,label,x,y)
-for f,d in ipairs(C)do
+for f,d in ipairs(B)do
 screen:textCentre(label,x+d[1],y+d[2],j.r,j.g,j.b,1)
 end
 screen:textCentre(label,x,y,k.r,k.g,k.b,1)
@@ -211,7 +210,7 @@ end
 
 function a:openVersus()
 self.mode=a.MODE_VERSUS
-self.versusTimer=t
+self.versusTimer=s
 self.paused=false
 self.sequencer:stop()
 self:effect(b.CONFIRM)
@@ -226,7 +225,7 @@ self.match=nil
 if self.port:leads()then
 self.port:nextMatch()
 local f=self.port:delay()
-self.port:sendStart(self.random:int(1,B),f)
+self.port:sendStart(self.random:int(1,A),f)
 self:createLinkedMatch(f)
 end
 end
@@ -251,7 +250,7 @@ end
 
 function a:prefill()
 local d=0
-while self.prefillTick<self.delay and d<w do
+while self.prefillTick<self.delay and d<v do
 self.port:sendInput(self.prefillTick,p)
 self.prefillTick=self.prefillTick+1
 d=d+1
@@ -300,13 +299,13 @@ local d=self.port
 local f=self:prefill()
 self.frame=self.frame+1
 local y=self.frame-1+self.delay
-while self.sentTick<y and f<z and self.prefillTick>=self.delay do
+while self.sentTick<y and f<w and self.prefillTick>=self.delay do
 self.sentTick=self.sentTick+1
 d:sendInput(self.sentTick,held)
 f=f+1
 end
 local h=0
-while h<A and self.simTick<self.frame and not self.match:isOver()do
+while h<z and self.simTick<self.frame and not self.match:isOver()do
 local l=d:localInput(self.simTick)
 local m=d:remoteInput(self.simTick)
 if not l or not m then
@@ -361,7 +360,7 @@ function a:endFight()
 local d=self.match.result.winner
 self.mode=a.MODE_RESULT
 if self.twoPlayer then
-self.resultTimer=u
+self.resultTimer=t
 if d==nil then
 self.resultText="Draw"
 elseif d==self:mySide()then
@@ -417,7 +416,7 @@ end
 
 function a:gameOver()
 self.mode=a.MODE_OVER
-self.overTimer=v
+self.overTimer=u
 self.sequencer:stop()
 self.sequencer:play(b.OVER)
 end

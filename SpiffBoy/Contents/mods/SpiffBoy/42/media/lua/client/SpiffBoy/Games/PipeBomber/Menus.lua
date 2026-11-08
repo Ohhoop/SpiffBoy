@@ -1,5 +1,6 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
+require"SpiffBoy/Games/PipeBomber/Class"
 require"SpiffBoy/Games/PipeBomber/Zones"
 require"SpiffBoy/Games/PipeBomber/Records"
 require"SpiffBoy/Games/PipeBomber/Music"

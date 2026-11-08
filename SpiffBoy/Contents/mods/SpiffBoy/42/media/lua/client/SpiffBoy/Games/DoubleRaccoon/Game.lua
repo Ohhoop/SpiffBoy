@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/DoubleRaccoon/Class"
 require"SpiffBoy/Games/DoubleRaccoon/Combat"
 require"SpiffBoy/Games/DoubleRaccoon/Stage"
 require"SpiffBoy/Games/DoubleRaccoon/Scenery"
@@ -10,25 +11,23 @@ require"SpiffBoy/Games/DoubleRaccoon/Records"
 require"SpiffBoy/Games/DoubleRaccoon/Music"
 require"SpiffBoy/Framework/GameTexts"
 
-SpiffBoyDoubleRaccoonGame=SpiffBoyGameBase:derive("SpiffBoyDoubleRaccoonGame")
 
 local c=SpiffBoyDoubleRaccoonGame
-local n=SpiffBoy.DoubleRaccoon
-local av=n.Combat
-local i=n.Stage
-local J=n.Scenery
-local A=n.Fighter
-local K=n.Horde
-local L=n.Records
-local j=n.Music
+local m=SpiffBoy.DoubleRaccoon
+local av=m.Combat
+local i=m.Stage
+local J=m.Scenery
+local A=m.Fighter
+local K=m.Horde
+local L=m.Records
+local j=m.Music
 
 local e=SpiffBoy.Cartridges.SHADES[4]
 local f=SpiffBoy.Cartridges.SHADES[1]
 local M=SpiffBoy.Cartridges.SHADES
 local k=SpiffBoy.Cartridges.SCREEN_WIDTH
 local B=SpiffBoy.Cartridges.SCREEN_HEIGHT
-local m=SpiffBoy.GameTexts.of("DoubleRaccoon")
-c.gameText=m
+local n=c.gameText
 
 local s=J.GROUND_Y+4
 local q={1,2,3,4}
@@ -559,15 +558,15 @@ local a=k/2
 if self.paused then
 u(screen,getText("UI_SpiffBoy_Paused"),a,44)
 elseif self.phase==H then
-u(screen,m("StageClear"),a,44)
+u(screen,n("StageClear"),a,44)
 elseif self.phase==S then
-u(screen,m("GameOver"),a,44)
+u(screen,n("GameOver"),a,44)
 elseif self.phase==I then
 screen:rect(0,r.y,k,r.height,f.r,f.g,f.b,1)
-screen:textCentre(m("Ending"),a,r.y+r.title,e.r,e.g,e.b,1)
-screen:textCentre(m("Score").." "..tostring(self.score),a,r.y+r.score,e.r,e.g,e.b,1)
+screen:textCentre(n("Ending"),a,r.y+r.title,e.r,e.g,e.b,1)
+screen:textCentre(n("Score").." "..tostring(self.score),a,r.y+r.score,e.r,e.g,e.b,1)
 elseif self.goTimer>0 and math.floor(self.goTimer/F)%2==0 then
-U(screen,m("Go"),k-6,30)
+U(screen,n("Go"),k-6,30)
 end
 end
 
@@ -599,8 +598,8 @@ screen:rect(p,y,d.margin,d.imageHeight,e.r,e.g,e.b,1)
 screen:rect(w-d.margin,y,d.margin,d.imageHeight,e.r,e.g,e.b,1)
 screen:rect(p,W,d.width,x-W,e.r,e.g,e.b,1)
 local X=k/2
-screen:textCentre(m("Stage",self.definition.number),X,o+d.stageY,b.r,b.g,b.b,1)
-screen:textCentre(m(self.definition.name),X,o+d.nameY,f.r,f.g,f.b,1)
+screen:textCentre(n("Stage",self.definition.number),X,o+d.stageY,b.r,b.g,b.b,1)
+screen:textCentre(n(self.definition.name),X,o+d.nameY,f.r,f.g,f.b,1)
 end
 
 function c:draw(screen)

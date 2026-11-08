@@ -1,4 +1,13 @@
 require"SpiffBoy/Games/QuickStart/Class"
+require"SpiffBoy/Games/QuickStart/Base"
+require"SpiffBoy/Games/QuickStart/Art"
+require"SpiffBoy/Games/QuickStart/Roster"
+require"SpiffBoy/Games/QuickStart/Race"
+require"SpiffBoy/Games/QuickStart/GrandPrix"
+require"SpiffBoy/Games/QuickStart/Records"
+require"SpiffBoy/Games/QuickStart/Music"
+require"SpiffBoy/Games/QuickStart/Hud"
+require"SpiffBoy/Games/QuickStart/View"
 
 local c=SpiffBoyQuickStartGame
 local a=SpiffBoy.QuickStart

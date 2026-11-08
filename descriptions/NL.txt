@@ -42,8 +42,8 @@ Stel de SpiffBoy in naar jouw smaak: de sandbox-opties bepalen hoe hij in je wer
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Let op het Spiffco-kwaliteitszegel![/b]
-Tien spellen is pas het begin. Wil je een spel maken voor de SpiffBoy, dan laat het volgende deel van deze sectie zien hoe. Laat me je spel zien en ik zet het in de lijst hieronder (de plekken zijn beperkt, de beschrijving kan maar zoveel tekst bevatten).
-- Wees de eerste! 🙂
+Tien spellen is pas het begin. Wil je een spel maken voor de SpiffBoy, dan laat het volgende deel van deze sectie zien hoe. Laat me je spel zien en ik zet het in de collectie hieronder.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Maak je eigen spellen[/b]
 Altijd al gedroomd van je eigen spel? Elke mod kan zijn eigen cassettes aan de SpiffBoy toevoegen. De [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] heeft alles wat je nodig hebt om er een te bouwen: een handleiding, twee voorbeeldcassettes om van te leren, een blanco cassette voor je label en tools om je eigen spel te maken en te testen. De console is gebouwd om een echte fysieke console na te bootsen, met zijn technische beperkingen.

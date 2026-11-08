@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.4: a frozen console shows its static again instead of raising an error on every frame"
+	"changenote"		"0.2.5: Quick Start no longer stops with an error at the end of a race; every cartridge loads its files in a safe order"
 }

@@ -42,8 +42,8 @@ Réglez la SpiffBoy à votre goût : les options sandbox décident de sa place d
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Recherchez le Sceau de qualité Spiffco ![/b]
-Dix jeux, ce n'est que le début. Si vous aimeriez créer un jeu pour la SpiffBoy, la suite de cette section vous montre comment. Montrez-moi votre jeu et je l'ajouterai à la liste ci-dessous (les places sont limitées, la description ne peut contenir qu'une quantité limitée de texte).
-- Soyez le premier ! 🙂
+Dix jeux, ce n'est que le début. Si vous aimeriez créer un jeu pour la SpiffBoy, la suite de cette section vous montre comment. Montrez-moi votre jeu et je l'ajouterai à la collection ci-dessous.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Créez vos propres jeux[/b]
 Vous avez toujours rêvé de créer votre propre jeu ? N'importe quel mod peut ajouter ses propres cassettes à la SpiffBoy. Le [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] contient tout ce qu'il faut pour en construire une : un guide, deux cassettes d'exemple pour apprendre, une cassette vierge pour votre étiquette, et des outils pour créer et tester votre propre jeu. La console est conçue pour imiter une vraie console physique, avec ses contraintes techniques.

@@ -1,5 +1,6 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
+require"SpiffBoy/Games/StreetBiter/Class"
 require"SpiffBoy/Games/StreetBiter/Roster"
 require"SpiffBoy/Games/StreetBiter/Moves"
 require"SpiffBoy/Games/StreetBiter/Brain"

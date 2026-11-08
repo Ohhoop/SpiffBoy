@@ -42,8 +42,8 @@ Ställ in SpiffBoy som du vill ha den: sandbox-inställningarna avgör hur den p
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Leta efter Spiffcos kvalitetssigill![/b]
-Tio spel är bara början. Om du vill göra ett spel till SpiffBoy visar nästa del av det här avsnittet hur. Visa mig ditt spel så lägger jag till det i listan nedan (platserna är begränsade, beskrivningen rymmer bara så mycket text).
-- Bli den första! 🙂
+Tio spel är bara början. Om du vill göra ett spel till SpiffBoy visar nästa del av det här avsnittet hur. Visa mig ditt spel så lägger jag till det i samlingen nedan.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Gör dina egna spel[/b]
 Har du alltid drömt om att göra ditt eget spel? Vilket mod som helst kan lägga till sina egna spelkassetter i SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] har allt du behöver för att bygga ett: en guide, två exempelkassetter att lära dig av, en tom kassett för din etikett och verktyg för att göra och testa ditt eget spel. Konsolen är byggd för att efterlikna en riktig fysisk konsol, med dess tekniska begränsningar.

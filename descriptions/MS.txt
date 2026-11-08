@@ -42,8 +42,8 @@ Laraskan SpiffBoy mengikut citarasa anda: pilihan sandbox menentukan bagaimana i
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Cari Meterai Kualiti Spiffco![/b]
-Sepuluh permainan hanyalah permulaan. Jika anda ingin membuat permainan untuk SpiffBoy, bahagian seterusnya menunjukkan caranya. Tunjukkan permainan anda dan saya akan menambahnya ke senarai di bawah (tempat terhad, penerangan hanya boleh memuatkan teks sebanyak itu).
-- Jadilah yang pertama! 🙂
+Sepuluh permainan hanyalah permulaan. Jika anda ingin membuat permainan untuk SpiffBoy, bahagian seterusnya menunjukkan caranya. Tunjukkan permainan anda dan saya akan menambahnya ke koleksi di bawah.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Buat permainan anda sendiri[/b]
 Selalu bermimpi membuat permainan sendiri? Mana-mana mod boleh menambah kartrijnya sendiri ke SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] mempunyai semua yang anda perlukan untuk membinanya: panduan, dua kartrij contoh untuk dipelajari, kartrij kosong untuk label anda, dan alatan untuk membuat dan menguji permainan anda sendiri. Konsol ini dibina untuk meniru konsol fizikal sebenar, lengkap dengan kekangan teknikalnya.

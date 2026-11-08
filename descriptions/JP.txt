@@ -42,8 +42,8 @@ SpiffBoyを好みに合わせて調整しましょう。サンドボックスオ
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Spiffco品質シールが目印！[/b]
-10本のゲームはほんの始まりにすぎません。SpiffBoy用のゲームを作ってみたい方は、このセクションの続きで作り方を紹介しています。あなたのゲームを見せてくれれば、下のリストに追加します（説明文に書ける量には限りがあるので、枠は限られています）。
-- 一番乗りを目指そう！🙂
+10本のゲームはほんの始まりにすぎません。SpiffBoy用のゲームを作ってみたい方は、このセクションの続きで作り方を紹介しています。あなたのゲームを見せてくれれば、下のコレクションに追加します。
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]自分だけのゲームを作ろう[/b]
 自分のゲームを作るのが夢でしたか？どのModでも、SpiffBoyに独自のカセットを追加できます。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url]には必要なものがすべて揃っています。ガイド、学習用のサンプルカセット2本、ラベル用の空のカセット、そしてゲームを作ってテストするためのツールです。このゲーム機は、技術的な制約も含めて、実在する物理的なゲーム機を再現するように作られています。

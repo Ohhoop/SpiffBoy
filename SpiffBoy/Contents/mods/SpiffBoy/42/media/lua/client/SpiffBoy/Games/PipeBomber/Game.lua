@@ -2,6 +2,7 @@ require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/Random"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/PipeBomber/Class"
 require"SpiffBoy/Games/PipeBomber/Zones"
 require"SpiffBoy/Games/PipeBomber/Grid"
 require"SpiffBoy/Games/PipeBomber/Bombs"
@@ -11,7 +12,6 @@ require"SpiffBoy/Games/PipeBomber/Records"
 require"SpiffBoy/Games/PipeBomber/Music"
 require"SpiffBoy/Framework/GameTexts"
 
-SpiffBoyPipeBomberGame=SpiffBoyGameBase:derive("SpiffBoyPipeBomberGame")
 
 local a=SpiffBoyPipeBomberGame
 local j=SpiffBoy.PipeBomber
@@ -24,7 +24,6 @@ local t=j.Records
 local b=j.Music
 
 local o=e.TILE
-a.gameText=SpiffBoy.GameTexts.of("PipeBomber")
 
 a.MODE_TITLE="title"
 a.MODE_SETUP="setup"

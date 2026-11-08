@@ -42,8 +42,8 @@ SpiffBoy 的设计力求像那个年代的掌机一样运作，连小细节也�
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]认准 Spiffco 品质印章！[/b]
-十款游戏只是开始。如果你想为 SpiffBoy 制作游戏，本节的下一部分会教你怎么做。把你的游戏给我看看，我会把它加入下面的列表（名额有限，简介能容纳的文字就这么多）。
-- 来当第一个吧！🙂
+十款游戏只是开始。如果你想为 SpiffBoy 制作游戏，本节的下一部分会教你怎么做。把你的游戏给我看看，我会把它加入下面的合集。
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]制作你自己的游戏[/b]
 一直梦想制作自己的游戏？任何模组都能为 SpiffBoy 添加自己的卡带。[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] 提供你所需的一切：一份指南、两张可供学习的示例卡带、一张用来贴上你自己标签的空白卡带，以及制作和测试游戏的工具。这台游戏机模仿真实的实体游戏机打造，连同它的技术限制。

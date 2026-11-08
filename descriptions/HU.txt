@@ -42,8 +42,8 @@ Hangold a SpiffBoy konzolt a saját ízlésedre: a sandbox opciók döntik el, h
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Keresd a Spiffco minőségi pecsétet![/b]
-A tíz játék csak a kezdet. Ha szeretnél játékot készíteni a SpiffBoy konzolra, a szakasz következő része megmutatja, hogyan. Mutasd meg a játékodat, és felveszem az alábbi listára (a helyek száma korlátozott, a leírásba csak ennyi szöveg fér).
-- Legyél te az első! 🙂
+A tíz játék csak a kezdet. Ha szeretnél játékot készíteni a SpiffBoy konzolra, a szakasz következő része megmutatja, hogyan. Mutasd meg a játékodat, és felveszem az alábbi gyűjteménybe.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Készítsd el a saját játékaidat[/b]
 Mindig is saját játékot akartál készíteni? Bármelyik mod hozzáadhat saját játékkazettákat a SpiffBoy konzolhoz. A [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] mindent tartalmaz, ami kell: útmutatót, két példakazettát a tanuláshoz, egy üres kazettát a saját címkédhez, valamint eszközöket a saját játékod elkészítéséhez és teszteléséhez. A konzol úgy készült, hogy egy valódi fizikai konzolt utánozzon, annak technikai korlátaival együtt.

@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/SnackMan/Class"
 require"SpiffBoy/Games/SnackMan/Rules"
 require"SpiffBoy/Games/SnackMan/Maze"
 require"SpiffBoy/Games/SnackMan/Actors"
@@ -9,7 +10,6 @@ require"SpiffBoy/Games/SnackMan/Records"
 require"SpiffBoy/Games/SnackMan/Music"
 require"SpiffBoy/Framework/GameTexts"
 
-SpiffBoySnackManGame=SpiffBoyGameBase:derive("SpiffBoySnackManGame")
 
 local a=SpiffBoySnackManGame
 local p=SpiffBoy.SnackMan
@@ -23,9 +23,8 @@ local g=p.Music
 local I=SpiffBoy.Cartridges.SHADES
 local k=I[4]
 local b=I[1]
-local s=SpiffBoy.Cartridges.SCREEN_WIDTH
-local r=SpiffBoy.GameTexts.of("SnackMan")
-a.gameText=r
+local r=SpiffBoy.Cartridges.SCREEN_WIDTH
+local s=a.gameText
 
 local m={1,2,3,4}
 local U={1,2,3}
@@ -456,9 +455,9 @@ screen:layers(self.food,(self.mazeIndex-1)*n,n,n,e.x+i-n/2,e.y+x-n/2,A)
 end
 
 function a:drawPanel(screen)
-screen:rect(h.x,0,s-h.x,screen.height,k.r,k.g,k.b,1)
+screen:rect(h.x,0,r-h.x,screen.height,k.r,k.g,k.b,1)
 screen:rect(h.x,0,1,screen.height,b.r,b.g,b.b,1)
-screen:text(r("Score"),h.textX,h.labelY,b.r,b.g,b.b,1)
+screen:text(s("Score"),h.textX,h.labelY,b.r,b.g,b.b,1)
 screen:textRight(tostring(self.score),h.right,h.scoreY,b.r,b.g,b.b,1)
 local x=math.min(h.livesShown,self.lives-1)
 for i=1,x do
@@ -494,10 +493,10 @@ else
 i=i-l.drop*(1-x)
 end
 screen:layers(self.pin,0,u.width,u.height,math.floor(y)-u.tipX,l.y+math.floor(i)-u.height,m)
-screen:rect(0,0,s,l.band,b.r,b.g,b.b,1)
-F(screen,r("Level",self.level),s/2,l.levelY)
-screen:rect(0,l.y+l.height,s,screen.height-l.y-l.height,b.r,b.g,b.b,1)
-F(screen,r("Maze"..self.mazeIndex),s/2,l.nameY)
+screen:rect(0,0,r,l.band,b.r,b.g,b.b,1)
+F(screen,s("Level",self.level),r/2,l.levelY)
+screen:rect(0,l.y+l.height,r,screen.height-l.y-l.height,b.r,b.g,b.b,1)
+F(screen,s("Maze"..self.mazeIndex),r/2,l.nameY)
 end
 
 function a:drawRun(screen)
@@ -527,9 +526,9 @@ end
 end
 self:drawPanel(screen)
 if i==v then
-self:drawBand(screen,r("Ready"))
+self:drawBand(screen,s("Ready"))
 elseif i==t then
-self:drawBand(screen,r("GameOver"))
+self:drawBand(screen,s("GameOver"))
 elseif self.paused then
 self:drawBand(screen,getText("UI_SpiffBoy_Paused"))
 end

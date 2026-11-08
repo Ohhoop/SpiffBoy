@@ -42,8 +42,8 @@ Reglează SpiffBoy după gustul tău: opțiunile sandbox decid cum se potriveșt
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Caută Sigiliul de Calitate Spiffco![/b]
-Zece jocuri sunt doar începutul. Dacă ai vrea să faci un joc pentru SpiffBoy, următoarea parte a acestei secțiuni îți arată cum. Arată-mi jocul tău și îl adaug în lista de mai jos (locurile sunt limitate, descrierea poate cuprinde doar atât text).
-- Fii primul! 🙂
+Zece jocuri sunt doar începutul. Dacă ai vrea să faci un joc pentru SpiffBoy, următoarea parte a acestei secțiuni îți arată cum. Arată-mi jocul tău și îl adaug în colecția de mai jos.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Fă-ți propriile jocuri[/b]
 Ai visat mereu să-ți faci propriul joc? Orice mod poate adăuga propriile cartușe în SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] are tot ce-ți trebuie: un ghid, două cartușe exemplu din care să înveți, un cartuș gol pentru eticheta ta și unelte ca să-ți faci și să-ți testezi propriul joc. Consola este construită să imite o consolă fizică reală, cu constrângerile ei tehnice.

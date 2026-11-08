@@ -42,8 +42,8 @@ SpiffBoy'u zevkinize göre ayarlayın: sandbox seçenekleri, sesinin topladığ�
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Spiffco Kalite Mührünü arayın![/b]
-On oyun sadece başlangıç. SpiffBoy için bir oyun yapmak isterseniz, bu bölümün devamı size nasıl yapılacağını gösteriyor. Oyununuzu bana gösterin, aşağıdaki listeye ekleyeyim (yer sınırlı, açıklama ancak bu kadar metin alabiliyor).
-- İlk siz olun! 🙂
+On oyun sadece başlangıç. SpiffBoy için bir oyun yapmak isterseniz, bu bölümün devamı size nasıl yapılacağını gösteriyor. Oyununuzu bana gösterin, aşağıdaki koleksiyona ekleyeyim.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Kendi oyunlarınızı yapın[/b]
 Hep kendi oyununuzu yapmayı mı hayal ettiniz? Her mod SpiffBoy'a kendi kartuşlarını ekleyebilir. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] bir oyun yapmak için ihtiyacınız olan her şeyi içerir: bir rehber, örnek alınacak iki kartuş, etiketiniz için boş bir kartuş ve kendi oyununuzu yapıp test etmek için araçlar. Konsol, teknik kısıtlamalarıyla birlikte gerçek bir fiziksel konsolu taklit edecek şekilde tasarlandı.

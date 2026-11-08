@@ -2,6 +2,13 @@ require"SpiffBoy/Core/Runtime"
 require"SpiffBoy/Games/QuickStart/Class"
 require"SpiffBoy/Games/QuickStart/Tracks"
 require"SpiffBoy/Games/QuickStart/Road"
+require"SpiffBoy/Games/QuickStart/Base"
+require"SpiffBoy/Games/QuickStart/Art"
+require"SpiffBoy/Games/QuickStart/Roster"
+require"SpiffBoy/Games/QuickStart/Race"
+require"SpiffBoy/Games/QuickStart/Music"
+require"SpiffBoy/Games/QuickStart/Records"
+require"SpiffBoy/Games/QuickStart/Fixed"
 
 local a=SpiffBoyQuickStartGame
 local b=SpiffBoy.QuickStart

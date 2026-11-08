@@ -1,6 +1,8 @@
 require"SpiffBoy/Games/Lanterways/Base"
 require"SpiffBoy/Games/Lanterways/Window"
 require"SpiffBoy/Games/Lanterways/Class"
+require"SpiffBoy/Games/Lanterways/Party"
+require"SpiffBoy/Games/Lanterways/Data/Enemies"
 
 local e=SpiffBoyLanterwaysGame
 local a=SpiffBoy.Lanterways

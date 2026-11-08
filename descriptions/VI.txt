@@ -42,8 +42,8 @@ Tùy chỉnh SpiffBoy theo ý thích: các tùy chọn sandbox quyết định c
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Hãy tìm Con Dấu Chất Lượng Spiffco![/b]
-Mười trò chơi chỉ là khởi đầu. Nếu bạn muốn làm một trò chơi cho SpiffBoy, phần tiếp theo sẽ chỉ cho bạn cách làm. Hãy cho tôi xem trò chơi của bạn và tôi sẽ thêm nó vào danh sách bên dưới (số chỗ có hạn, phần mô tả chỉ chứa được chừng ấy chữ).
-- Hãy là người đầu tiên! 🙂
+Mười trò chơi chỉ là khởi đầu. Nếu bạn muốn làm một trò chơi cho SpiffBoy, phần tiếp theo sẽ chỉ cho bạn cách làm. Hãy cho tôi xem trò chơi của bạn và tôi sẽ thêm nó vào bộ sưu tập bên dưới.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Tự làm trò chơi của riêng bạn[/b]
 Luôn mơ ước tự làm một trò chơi? Bất kỳ mod nào cũng có thể thêm băng game của riêng mình vào SpiffBoy. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] có mọi thứ bạn cần: một bản hướng dẫn, hai băng game mẫu để học hỏi, một băng game trống cho nhãn của bạn, và các công cụ để làm và thử nghiệm trò chơi của riêng bạn. Chiếc máy được tạo ra để mô phỏng một máy chơi game thật, với đầy đủ giới hạn kỹ thuật của nó.

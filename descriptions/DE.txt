@@ -42,8 +42,8 @@ Stell den SpiffBoy nach deinem Geschmack ein: Die Sandbox-Optionen bestimmen, wi
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Achte auf das Spiffco-Qualitätssiegel![/b]
-Zehn Spiele sind erst der Anfang. Wenn du ein Spiel für den SpiffBoy machen möchtest, zeigt dir der nächste Teil dieses Abschnitts, wie es geht. Zeig mir dein Spiel, und ich füge es der Liste unten hinzu (die Plätze sind begrenzt, die Beschreibung fasst nur so viel Text).
-- Sei der Erste! 🙂
+Zehn Spiele sind erst der Anfang. Wenn du ein Spiel für den SpiffBoy machen möchtest, zeigt dir der nächste Teil dieses Abschnitts, wie es geht. Zeig mir dein Spiel, und ich füge es der Sammlung unten hinzu.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Mach deine eigenen Spiele[/b]
 Schon immer davon geträumt, dein eigenes Spiel zu machen? Jeder Mod kann dem SpiffBoy eigene Spielmodule hinzufügen. Das [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] hat alles, was du dafür brauchst: eine Anleitung, zwei Beispielmodule zum Lernen, ein leeres Spielmodul für dein Etikett und Werkzeuge, um dein eigenes Spiel zu erstellen und zu testen. Die Konsole ist so gebaut, dass sie eine echte physische Konsole mit ihren technischen Einschränkungen nachahmt.

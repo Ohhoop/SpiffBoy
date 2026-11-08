@@ -42,8 +42,8 @@ Säädä SpiffBoy mieleiseksesi: sandbox-asetukset päättävät, miten se sopii
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Etsi Spiffco-laatusinettiä![/b]
-Kymmenen peliä on vasta alkua. Jos haluaisit tehdä pelin SpiffBoylle, tämän osion seuraava osa näyttää, miten. Näytä minulle pelisi, niin lisään sen alla olevaan listaan (paikkoja on rajoitetusti, kuvaukseen mahtuu vain tietty määrä tekstiä).
-- Ole ensimmäinen! 🙂
+Kymmenen peliä on vasta alkua. Jos haluaisit tehdä pelin SpiffBoylle, tämän osion seuraava osa näyttää, miten. Näytä minulle pelisi, niin lisään sen alla olevaan kokoelmaan.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Tee omia pelejäsi[/b]
 Oletko aina haaveillut oman pelin tekemisestä? Mikä tahansa modi voi lisätä SpiffBoyhin omia pelikasettejaan. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] sisältää kaiken, mitä tarvitset pelin rakentamiseen: oppaan, kaksi esimerkkikasettia opiskeltavaksi, tyhjän kasetin omaa etikettiäsi varten sekä työkalut oman pelisi tekemiseen ja testaamiseen. Konsoli on rakennettu jäljittelemään oikeaa fyysistä konsolia teknisine rajoituksineen.

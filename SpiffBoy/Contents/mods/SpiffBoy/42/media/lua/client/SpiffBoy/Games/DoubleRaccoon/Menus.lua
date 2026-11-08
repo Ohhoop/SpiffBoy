@@ -1,5 +1,6 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
+require"SpiffBoy/Games/DoubleRaccoon/Class"
 require"SpiffBoy/Games/DoubleRaccoon/Stage"
 require"SpiffBoy/Games/DoubleRaccoon/Records"
 require"SpiffBoy/Games/DoubleRaccoon/Music"

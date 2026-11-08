@@ -43,8 +43,8 @@ Tune the SpiffBoy to your liking: the sandbox options decide how it fits in your
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Look for the Spiffco Seal of Quality![/b]
-Ten games is only the beginning. If you would like to make a game for the SpiffBoy, the next part of this section shows you how. Show me your game and I will add it to the list below (spots are limited, the description can only hold so much text).
-- Be the first! 🙂
+Ten games is only the beginning. If you would like to make a game for the SpiffBoy, the next part of this section shows you how. Show me your game and I will add it to the collection below.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Make your own games[/b]
 Always dreamed of making your own game? Any mod can add its own cartridges to the SpiffBoy. The [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] has everything you need to build one: a guide, two example cartridges to learn from, a blank cartridge for your label, and tools to make and test your own game. The console is built to mimic a real physical console, with its technical constraints.

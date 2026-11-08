@@ -42,8 +42,8 @@ Ajusta a SpiffBoy ao teu gosto: as opções sandbox decidem como se encaixa no t
 
 [img]https://ohhoop.github.io/SpiffBoy/i/games.png[/img]
 [b]Procura o Selo de Qualidade Spiffco![/b]
-Dez jogos são só o começo. Se gostavas de criar um jogo para a SpiffBoy, a próxima parte desta secção mostra-te como. Mostra-me o teu jogo e eu acrescento-o à lista abaixo (os lugares são limitados, a descrição só aguenta uma certa quantidade de texto).
-- Sê o primeiro! 🙂
+Dez jogos são só o começo. Se gostavas de criar um jogo para a SpiffBoy, a próxima parte desta secção mostra-te como. Mostra-me o teu jogo e eu acrescento-o à coleção abaixo.
+- [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3834522856]SpiffBoy Games Collection[/url]
 
 [b]Cria os teus próprios jogos[/b]
 Sempre sonhaste criar o teu próprio jogo? Qualquer mod pode adicionar os seus próprios cartuchos à SpiffBoy. O [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3825220785]SpiffBoy SDK[/url] tem tudo o que precisas para criar um: um guia, dois cartuchos de exemplo para aprender, um cartucho em branco para a tua etiqueta e ferramentas para criar e testar o teu próprio jogo. A consola foi construída para imitar uma verdadeira consola física, com as suas limitações técnicas.

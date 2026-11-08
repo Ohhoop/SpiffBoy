@@ -1,6 +1,7 @@
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Framework/Cartridges"
 require"SpiffBoy/Core/GameBase"
+require"SpiffBoy/Games/BrickBash/Class"
 require"SpiffBoy/Games/BrickBash/Rounds"
 require"SpiffBoy/Games/BrickBash/Field"
 require"SpiffBoy/Games/BrickBash/Paddle"
@@ -10,7 +11,6 @@ require"SpiffBoy/Games/BrickBash/Records"
 require"SpiffBoy/Games/BrickBash/Music"
 require"SpiffBoy/Framework/GameTexts"
 
-SpiffBoyBrickBashGame=SpiffBoyGameBase:derive("SpiffBoyBrickBashGame")
 
 local a=SpiffBoyBrickBashGame
 local f=SpiffBoy.BrickBash
@@ -25,10 +25,7 @@ local e=f.Music
 local d=SpiffBoy.Cartridges.SHADES[4]
 local q=SpiffBoy.Cartridges.SHADES[1]
 local F=SpiffBoy.Cartridges.SCREEN_WIDTH
-local g=SpiffBoy.GameTexts.of("BrickBash")
-a.gameText=g
-
-a.MODES={{key="c",text="ModeA",endless=false},{key="e",text="ModeB",endless=true}}
+local g=a.gameText
 
 a.MODE_TITLE="title"
 a.MODE_SETUP="setup"
