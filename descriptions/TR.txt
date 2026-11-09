@@ -91,7 +91,7 @@ Video tanıtımına henüz göz atmadıysanız lütfen izleyin, yapması ÇOK uz
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Tüm hakları saklıdır: izinsiz yeniden yükleme, kopyalama veya yeniden yazma yasaktır. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Lisans[/url]
+SpiffBoy © 2026 Ohhoop. Tüm hakları saklıdır. Taklitlere kanma, kaliteyi seç! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Lisans[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

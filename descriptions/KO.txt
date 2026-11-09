@@ -91,7 +91,7 @@ A: 네. 안전하게 제거할 수도 있지만, 당연히 카트리지 세이�
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. 모든 권리 보유: 허가 없는 재업로드, 복제, 재작성을 금지합니다. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]라이선스[/url]
+SpiffBoy © 2026 Ohhoop. 모든 권리 보유. 모조품은 사절, 품질을 선택하세요! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]라이선스[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

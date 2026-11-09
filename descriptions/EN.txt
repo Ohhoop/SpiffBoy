@@ -92,7 +92,7 @@ If you haven't checked the video presentation yet, please do, it took me SO long
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. All rights reserved: no re-uploads, copies or rewrites without permission. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licence[/url]
+SpiffBoy © 2026 Ohhoop. All rights reserved. Accept no imitations, choose quality! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licence[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

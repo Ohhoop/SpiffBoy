@@ -91,7 +91,7 @@ Hvis du ikke har sett videopresentasjonen ennå, så gjør det, den tok meg SÅ 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Alle rettigheter forbeholdt: ingen ny opplasting, kopiering eller omskriving uten tillatelse. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Lisens[/url]
+SpiffBoy © 2026 Ohhoop. Alle rettigheter forbeholdt. Godta ingen etterligninger, velg kvalitet! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Lisens[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

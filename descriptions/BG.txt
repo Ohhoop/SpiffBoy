@@ -82,7 +82,7 @@ A: Да, но ако го премахнете, ще загубите запис
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Всички права запазени: без разрешение не се допуска повторно качване, копиране или пренаписване. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Лиценз[/url]
+SpiffBoy © 2026 Ohhoop. Всички права запазени. Не приемайте имитации, изберете качеството! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Лиценз[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

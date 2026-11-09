@@ -91,7 +91,7 @@ Si todavía no viste el video de presentación, por favor míralo, ¡me tomó MU
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Todos los derechos reservados: prohibido resubir, copiar o reescribir sin permiso. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licencia[/url]
+SpiffBoy © 2026 Ohhoop. Todos los derechos reservados. ¡No aceptes imitaciones, elige calidad! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licencia[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

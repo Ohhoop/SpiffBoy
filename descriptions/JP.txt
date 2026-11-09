@@ -91,7 +91,7 @@ A: はい。安全に削除することもできますが、当然ながらカ�
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. All rights reserved。無断での再アップロード、複製、書き換えを禁じます。 [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]ライセンス[/url]
+SpiffBoy © 2026 Ohhoop. All rights reserved. 偽物にご注意、品質を選ぼう！ [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]ライセンス[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

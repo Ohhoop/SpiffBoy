@@ -82,7 +82,7 @@ A: ได้ แต่ถ้าลบ เซฟในตลับจะหาย
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. สงวนลิขสิทธิ์: ห้ามคัดลอกหรือเขียนใหม่โดยไม่ได้รับอนุญาต [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]สัญญาอนุญาต[/url]
+SpiffBoy © 2026 Ohhoop. สงวนลิขสิทธิ์ อย่ายอมรับของเลียนแบบ เลือกคุณภาพ! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]สัญญาอนุญาต[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

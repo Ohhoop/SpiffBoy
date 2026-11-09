@@ -82,7 +82,7 @@ A: Так, але після видалення ви втратите збере
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Усі права захищено: без дозволу не можна перезавантажувати, копіювати чи переписувати. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Ліцензія[/url]
+SpiffBoy © 2026 Ohhoop. Усі права захищено. Не погоджуйтеся на підробки, обирайте якість! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Ліцензія[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

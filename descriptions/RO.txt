@@ -91,7 +91,7 @@ Dacă n-ai văzut încă prezentarea video, te rog s-o vezi, mi-a luat ATÂT de 
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Toate drepturile rezervate: fără reîncărcare, copiere sau rescriere fără permisiune. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licență[/url]
+SpiffBoy © 2026 Ohhoop. Toate drepturile rezervate. Nu accepta imitații, alege calitatea! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licență[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

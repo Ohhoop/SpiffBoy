@@ -82,7 +82,7 @@ A: Ναι, αλλά αν το αφαιρέσετε θα χάσετε τις απ
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Όλα τα δικαιώματα διατηρούνται: όχι αναδημοσίευση, αντιγραφή ή επανεγγραφή χωρίς άδεια. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Άδεια[/url]
+SpiffBoy © 2026 Ohhoop. Όλα τα δικαιώματα διατηρούνται. Μη δέχεστε απομιμήσεις, επιλέξτε ποιότητα! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Άδεια[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

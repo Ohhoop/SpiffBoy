@@ -91,7 +91,7 @@ Nếu bạn chưa xem video giới thiệu, hãy xem nhé, tôi đã mất RẤT
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
-SpiffBoy © 2026 Ohhoop. Bảo lưu mọi quyền: không đăng lại, sao chép hay viết lại khi chưa được phép. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Giấy phép[/url]
+SpiffBoy © 2026 Ohhoop. Bảo lưu mọi quyền. Đừng chấp nhận hàng nhái, hãy chọn chất lượng! [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Giấy phép[/url]
 
 Workshop ID: 3825220364
 Mod ID: SpiffBoy
