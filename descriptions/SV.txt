@@ -91,5 +91,7 @@ Om du inte har sett videopresentationen än, gör det, den tog mig SÅ lång tid
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
+SpiffBoy © 2026 Ohhoop. Alla rättigheter förbehållna: ingen ny uppladdning, kopiering eller omskrivning utan tillstånd. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licens[/url]
+
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

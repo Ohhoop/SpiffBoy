@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"SpiffBoy/Core/Runtime"
 require"SpiffBoy/Games/QuickStart/Base"
 require"SpiffBoy/Games/QuickStart/Fixed"

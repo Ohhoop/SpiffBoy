@@ -91,5 +91,7 @@ Ha még nem láttad a bemutató videót, nézd meg, NAGYON sokáig készült, ha
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
+SpiffBoy © 2026 Ohhoop. Minden jog fenntartva: engedély nélkül tilos újra feltölteni, másolni vagy átírni. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licenc[/url]
+
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

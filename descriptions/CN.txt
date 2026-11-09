@@ -91,5 +91,7 @@ A: 可以。你也可以安全地移除它，不过当然，你会失去卡带�
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
+SpiffBoy © 2026 Ohhoop. 保留所有权利：未经许可，禁止重新上传、复制或改写。 [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]许可协议[/url]
+
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

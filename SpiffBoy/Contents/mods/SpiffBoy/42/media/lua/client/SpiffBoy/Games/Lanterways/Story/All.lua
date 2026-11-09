@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"SpiffBoy/Games/Lanterways/Story/Common"
 require"SpiffBoy/Games/Lanterways/Story/Chapter1"
 require"SpiffBoy/Games/Lanterways/Story/Chapter3"

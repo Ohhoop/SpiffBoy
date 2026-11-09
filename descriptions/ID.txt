@@ -91,5 +91,7 @@ Kalau kamu belum menonton video presentasinya, tontonlah, membuatnya butuh waktu
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
+SpiffBoy © 2026 Ohhoop. Hak cipta dilindungi: dilarang mengunggah ulang, menyalin, atau menulis ulang tanpa izin. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Lisensi[/url]
+
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

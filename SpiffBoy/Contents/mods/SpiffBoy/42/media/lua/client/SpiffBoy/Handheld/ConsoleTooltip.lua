@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"ISUI/ISToolTipInv"
 require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Handheld/ConsoleStatus"

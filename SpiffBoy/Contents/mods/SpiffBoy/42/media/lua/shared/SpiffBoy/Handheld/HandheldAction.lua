@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"TimedActions/ISBaseTimedAction"
 require"SpiffBoy/Handheld/Handheld"
 require"SpiffBoy/Link/Links"

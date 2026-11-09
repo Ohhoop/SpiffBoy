@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"OptionScreens/MainOptions"
 require"SpiffBoy/Core/Core"
 require"SpiffBoy/Core/KeyBinds"

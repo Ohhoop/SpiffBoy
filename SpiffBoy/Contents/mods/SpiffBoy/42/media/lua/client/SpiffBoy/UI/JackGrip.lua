@@ -1,3 +1,4 @@
+-- SpiffBoy (c) 2026 Ohhoop. All rights reserved. See LICENSE.txt.
 require"ISUI/ISPanel"
 
 SpiffBoyJackGrip=ISPanel:derive("SpiffBoyJackGrip")

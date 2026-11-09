@@ -91,5 +91,7 @@ Jeśli jeszcze nie widziałeś prezentacji wideo, koniecznie ją obejrzyj, jej z
 
 [img]https://ohhoop.github.io/SpiffBoy/i/footer.gif[/img]
 
+SpiffBoy © 2026 Ohhoop. Wszelkie prawa zastrzeżone: zakaz ponownego wrzucania, kopiowania i przepisywania bez zgody. [url=https://github.com/Ohhoop/SpiffBoy/blob/main/LICENSE]Licencja[/url]
+
 Workshop ID: 3825220364
 Mod ID: SpiffBoy

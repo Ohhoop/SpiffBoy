@@ -1,0 +1,68 @@
+SpiffBoy Licence
+
+Copyright (c) 2026 Ohhoop. All rights reserved, except as written below.
+
+This licence covers SpiffBoy: its code, its console, its framework, its
+programming interfaces, its cartridge format, its games, its art, its 3D
+models, its sounds, its music and its texts, in this repository, in the
+Steam Workshop items that ship it, and in every copy of them.
+
+SpiffBoy follows the Project Zomboid Modding Policy and the Project Zomboid
+Terms and Conditions of The Indie Stone. Where this licence and them
+disagree, they prevail.
+
+1. The Indie Stone
+
+   The Indie Stone may use, modify, reproduce, create derivative works from,
+   distribute, transmit, perform, communicate and exploit SpiffBoy and its
+   code, in whole or in part, in connection with Project Zomboid, including
+   in the game itself, as the Project Zomboid Modding Policy describes.
+
+2. What you may do
+
+   a. Download, install and play SpiffBoy in Project Zomboid, in single
+      player and on multiplayer servers.
+   b. Add SpiffBoy to a server or a Steam Workshop collection by pointing to
+      its Steam Workshop item.
+   c. Modify SpiffBoy, or put it in a private modpack, for your own personal
+      use, without making it available to anyone else.
+   d. Make cartridge mods for SpiffBoy, alone or with the SpiffBoy SDK under
+      the SpiffBoy SDK Licence. A cartridge mod must require SpiffBoy and run
+      on it, and must not include any file of SpiffBoy.
+   e. Record, stream and publish videos and screenshots of SpiffBoy.
+
+3. What you may not do without the written permission of Ohhoop
+
+   a. Copy, upload or redistribute SpiffBoy or any part of it, including in
+      a public or unlisted modpack.
+   b. Publish a modified version of SpiffBoy.
+   c. Make and publish a derivative work of SpiffBoy. This includes a
+      translation, a port or a rewrite of its code, made by hand or with any
+      software, and any console, framework or game system that reproduces
+      its design, its structure, its programming interfaces or its cartridge
+      format.
+   d. Use its art, 3D models, sounds, music or texts in any other work.
+   e. Sell SpiffBoy or any part of it, or put any of it behind a paywall or
+      a donation.
+
+4. Fonts
+
+   The pixel fonts in media/ui/SpiffBoy/font keep their own licences, found
+   in media/ui/SpiffBoy/font/licenses. This licence does not change them.
+
+5. Project Zomboid
+
+   Thanks to The Indie Stone for creating Project Zomboid
+   (https://projectzomboid.com/), which made this possible. This is an
+   unofficial fan production for non-commercial purposes made under the
+   Indie Stone Terms (https://projectzomboid.com/blog/support/terms-conditions/).
+   Project Zomboid and Spiffo belong to The Indie Stone. SpiffBoy is not
+   official and is not affiliated with The Indie Stone.
+
+6. No warranty
+
+   SpiffBoy is provided as is, without warranty of any kind. Ohhoop is not
+   liable for any damage arising from its use.
+
+To ask for a permission, write to Ohhoop on the Steam Workshop page of
+SpiffBoy.
