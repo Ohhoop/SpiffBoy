@@ -12,7 +12,7 @@ local j="false"
 local a=nil
 
 local function i()
-local d=getCore():getGameMode().."/"..getWorld():getWorld()
+local d=getCore():getGameMode():toString().."/"..getWorld():getWorld()
 return(string.gsub(d,"[\r\n]",""))
 end
 

@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.6: SpiffBoy now has a licence (LICENSE.txt, a licence line at the top of every Lua file and in the description); More Games links to the SpiffBoy Games collection"
+	"changenote"		"0.2.7: the console guide no longer breaks the first opening of the console in a world since Project Zomboid 42.22 (the view stayed in place and the console was not taken in the hands)"
 }
