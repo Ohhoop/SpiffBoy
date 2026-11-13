@@ -588,6 +588,7 @@ instance:wake()
 local a=SpiffBoyHandheldWindow:new(instance)
 a:show()
 a:takeUp()
+a.guidePending=true
 end
 
 function SpiffBoyHandheldWindow.open(playerObj,console)
@@ -672,7 +673,6 @@ self.instance.window=self
 self.instance.lastShownMs=getTimestampMs()
 SpiffBoy.PlayerGuard.hold(self.playerObj,self)
 SpiffBoyZoomLock.engage()
-SpiffBoyGuideWindow.onConsoleShown(self)
 end
 
 function SpiffBoyHandheldWindow:dismiss()
@@ -742,6 +742,15 @@ end
 self:holdNormalSpeed()
 self:holdZoomIn()
 self.instance:step()
+self:showGuideOnceTaken()
+end
+
+function SpiffBoyHandheldWindow:showGuideOnceTaken()
+if not self.guidePending or not SpiffBoy.CameraShift.settled()then
+return
+end
+self.guidePending=false
+SpiffBoyGuideWindow.onConsoleShown(self)
 end
 
 function SpiffBoyHandheldWindow:holdNormalSpeed()

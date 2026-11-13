@@ -2,7 +2,7 @@
 require"SpiffBoy/Core/Core"
 
 SpiffBoy.CameraShift=SpiffBoy.CameraShift or{}
-local f=SpiffBoy.CameraShift
+local d=SpiffBoy.CameraShift
 
 local i=0.018
 local w="dragCamera"
@@ -31,14 +31,14 @@ end
 
 local function D(playerObj,pixelsX,pixelsY)
 local b=playerObj:getX()
-local d=playerObj:getY()
-local e=playerObj:getZ()
-local m=IsoUtils.XToScreen(b,d,e,0)
-local n=IsoUtils.YToScreen(b,d,e,0)
-local o=IsoUtils.XToScreen(b+1,d,e,0)-m
-local p=IsoUtils.XToScreen(b,d+1,e,0)-m
-local q=IsoUtils.YToScreen(b+1,d,e,0)-n
-local r=IsoUtils.YToScreen(b,d+1,e,0)-n
+local e=playerObj:getY()
+local f=playerObj:getZ()
+local m=IsoUtils.XToScreen(b,e,f,0)
+local n=IsoUtils.YToScreen(b,e,f,0)
+local o=IsoUtils.XToScreen(b+1,e,f,0)-m
+local p=IsoUtils.XToScreen(b,e+1,f,0)-m
+local q=IsoUtils.YToScreen(b+1,e,f,0)-n
+local r=IsoUtils.YToScreen(b,e+1,f,0)-n
 local h=o*r-p*q
 if h==0 then
 return 0,0
@@ -51,53 +51,53 @@ local b=getCore()
 while b:getNextZoom(playerNum,k)~=b:getNextZoom(playerNum,c)do
 b:doZoomScroll(playerNum,k)
 end
-local d={b:getNextZoom(playerNum,c)}
+local e={b:getNextZoom(playerNum,c)}
 while b:getNextZoom(playerNum,j)~=b:getNextZoom(playerNum,c)do
 b:doZoomScroll(playerNum,j)
-d[#d+1]=b:getNextZoom(playerNum,c)
+e[#e+1]=b:getNextZoom(playerNum,c)
 end
-return d
+return e
 end
 
 local function m(playerNum,value)
-local d=getCore()
-local b=d:getNextZoom(playerNum,c)
+local e=getCore()
+local b=e:getNextZoom(playerNum,c)
 if b==value then
 return
 end
 if value<b then
 setZoomLevels(b,value)
-d:doZoomScroll(playerNum,j)
+e:doZoomScroll(playerNum,j)
 else
 setZoomLevels(value,b)
-d:doZoomScroll(playerNum,k)
+e:doZoomScroll(playerNum,k)
 end
 end
 
-local function e(state)
+local function f(state)
 m(state.playerNum,state.zoomTo)
 setZoomLevels(unpack(state.levels))
 state.zooming=false
 end
 
-function f.begin(playerObj,screenTargetX,screenTargetY)
+function d.begin(playerObj,screenTargetX,screenTargetY)
 local b=playerObj:getPlayerNum()
 if b~=x then
 return
 end
 if a and a.zooming then
-e(a)
+f(a)
 end
 local r=getCore()
-local d=r:getNextZoom(b,c)
+local e=r:getNextZoom(b,c)
 local n=E(b)
 local h=n[#n]
-m(b,d)
-local o=math.abs(d-h)>=z
+m(b,e)
+local o=math.abs(e-h)>=z
 local p=i
 local q=a and a.progress or 0
 if o then
-local s=B*math.max(d,h)*math.abs(math.log(h/d))
+local s=B*math.max(e,h)*math.abs(math.log(h/e))
 p=math.min(i,A/s)
 q=0
 end
@@ -109,7 +109,7 @@ screenTargetY=screenTargetY,
 progress=q,
 step=p,
 levels=n,
-zoomFrom=d,
+zoomFrom=e,
 zoomTo=h,
 zooming=o,
 closing=false,
@@ -117,20 +117,24 @@ ticks=0,
 }
 end
 
-function f.finish()
+function d.settled()
+return a==nil or(a.settled==true and not a.closing)
+end
+
+function d.finish()
 if not a then
 return
 end
 if a.zooming then
-e(a)
+f(a)
 end
 a.step=i
 a.closing=true
 end
 
-function f.reset()
+function d.reset()
 if a and a.zooming then
-e(a)
+f(a)
 end
 a=nil
 if g then
@@ -144,7 +148,7 @@ return
 end
 local s=a.player
 if s:isDead()then
-f.reset()
+d.reset()
 return
 end
 if a.settled and not a.closing then
@@ -153,22 +157,22 @@ end
 if a.closing then
 a.progress=a.progress-a.step
 if a.progress<=0 then
-f.reset()
+d.reset()
 return
 end
 elseif a.progress<1 then
 a.progress=math.min(1,a.progress+a.step)
 end
-local d=a.progress
-local h=d*d*(3-2*d)
+local e=a.progress
+local h=e*e*(3-2*e)
 local n=h
 local b=a.playerNum
 if a.zooming then
 m(b,a.zoomFrom*(a.zoomTo/a.zoomFrom)^h)
-local o=1-d
+local o=1-e
 n=1-o*o*o
-if d>=1 then
-e(a)
+if e>=1 then
+f(a)
 end
 end
 local o=IsoCamera.getScreenWidth(b)
@@ -186,7 +190,7 @@ a.ticks=a.ticks+1
 if SpiffBoy.isDevBuild()and a.ticks<=y then
 SpiffBoy.log("camera shift tick "..tostring(a.ticks).." zoom "..tostring(getCore():getZoom(b)).." aim "..tostring(getCore():getNextZoom(b,c)).." progress "..tostring(a.progress).." eased "..tostring(h).." pixels "..tostring(t)..","..tostring(u).." world "..tostring(q)..","..tostring(r))
 end
-if d>=1 and not a.closing then
+if e>=1 and not a.closing then
 local v=getCore()
 a.settled=v:getZoom(b)==v:getNextZoom(b,c)
 if a.settled and SpiffBoy.isDevBuild()then
