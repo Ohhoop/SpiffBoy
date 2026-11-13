@@ -6,5 +6,5 @@
 	"visibility"		"0"
 	"contentfolder"		"SpiffBoy/Contents"
 	"previewfile"		"../Development/art/presentation/thumbnail.gif"
-	"changenote"		"0.2.8: the console guide opens once the console is in the hands and the view has finished moving, no longer at the same time as the console"
+	"changenote"		"0.3.0: a window announces a new official SpiffBoy game once, at the main menu or when the console opens, in every language, with a mod option to turn the announcements off; the files of the mod sit in its common folder, and the guide reads the game mode as text from 42.22 on only; framework api 2, where a cartridge keeps its art in the common folder of its mod, cartridges of api 1 keep working; an offer of a link cable shows one dialog at a time; a console waiting for its game from another player is released when that player leaves or sends nothing"
 }
